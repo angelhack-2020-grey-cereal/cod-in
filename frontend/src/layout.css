@@ -1,0 +1,9 @@
+.App-header {
+  background-color: white;
+  min-height: 100px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  border-style: solid;
+}
