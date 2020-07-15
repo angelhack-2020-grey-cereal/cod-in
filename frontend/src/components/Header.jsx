@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Link } from 'react-router-dom';
 
-import './App.css'
+import '../layout.css'
 
 export default function Header() {
 
@@ -12,7 +12,7 @@ export default function Header() {
         <Link to="/">codIt</Link>
       </h1>
       <h1>
-        user blah blah
+        {} 님 (Tier 3) 256 엔젤코인
       </h1>
     </div>
   )
