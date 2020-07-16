@@ -5,5 +5,5 @@ export default function ShopPage () {
     <div>
       shop
     </div>
-  )
+  );
 }

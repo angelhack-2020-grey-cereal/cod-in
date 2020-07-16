@@ -5,5 +5,5 @@ export default function MatchPage () {
     <div>
       match
     </div>
-  )
+  );
 }

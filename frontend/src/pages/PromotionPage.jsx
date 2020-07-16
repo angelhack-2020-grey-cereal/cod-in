@@ -5,5 +5,5 @@ export default function PromotionPage () {
     <div>
       promotion
     </div>
-  )
+  );
 }
