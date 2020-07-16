@@ -5,5 +5,5 @@ export default function HomePage() {
     <div>
       content
     </div>
-  )
-};
+  );
+}

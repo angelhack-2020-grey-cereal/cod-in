@@ -1,7 +1,7 @@
 import React from 'react';
 
-import InterviewSidebarContainer from '../components/InterviewSidebarContainer';
-import InterviewContentContainer from '../components/InterviewContentContainer';
+import InterviewSidebarContainer from '../components/InterviewSidebar';
+import InterviewContentContainer from '../components/InterviewContent';
 
 export default function ReviewPage() {
   return (
@@ -9,5 +9,5 @@ export default function ReviewPage() {
       <InterviewSidebarContainer />
       <InterviewContentContainer />
     </div>
-  )
-};
+  );
+}

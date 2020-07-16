@@ -12,5 +12,5 @@ export default function Header() {
         {} 님 (Tier 3) 256 엔젤코인
       </h1>
     </div>
-  )
-};
+  );
+}

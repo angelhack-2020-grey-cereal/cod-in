@@ -5,5 +5,5 @@ export default function MainPage() {
     <div>
       Main
     </div>
-  )
-};
+  );
+}

@@ -19,12 +19,8 @@ import Shop from './pages/ShopPage';
 function App() {
   const [blob, setBlob] = useState('');
 
-  function getBlob(param) {
-    setBlob(param);
-  };
-
   return (
-    <BlobContext.Provider value={[blob, getBlob]}>
+    <BlobContext.Provider value={{blob, setBlob}}>
       <Header />
       <Switch>
         <Route exact path="/" component={Home} />
@@ -38,6 +34,6 @@ function App() {
       </Switch>
     </BlobContext.Provider>
   );
-};
+}
 
 export default App;
