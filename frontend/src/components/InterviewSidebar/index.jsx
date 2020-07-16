@@ -24,13 +24,24 @@ export default function InterviewSidebar () {
         handleDataAvailable,
       )
       mediaRecorderRef.current.removeEventListener(
-        "dataavailable",
+        "stop",
         handleSetReplayBlob,
       )
       // TODO: remove after test
       console.log('test')
     };
   }, [])
+
+  useEffect(() => {
+    if (recordedChunks.length >0) {
+      const blob = new Blob(recordedChunks, {
+        type: "video/webm"
+      });
+      const url = URL.createObjectURL(blob);
+      setBlob(url); 
+      recordedChunks = []
+    }
+  }, [recordedChunks])
 
   const handleDataAvailable = useCallback(
     ({ data }) => {
@@ -40,11 +51,14 @@ export default function InterviewSidebar () {
     }, [setRecordedChunks])
 
   const handleSetReplayBlob = useCallback(() => {
-    const blob = new Blob(recordedChunks, {
-      type: "video/webm"
-    });
-    const url = URL.createObjectURL(blob);
-    setBlob(url);
+    console.log(recordedChunks)
+    if (recordedChunks.length > 0) {
+      const blob = new Blob(recordedChunks, {
+        type: "video/webm"
+      });
+      const url = URL.createObjectURL(blob);
+      setBlob(url);
+    }
   }, [recordedChunks, setBlob])
 
   const handleStartCaptureClick = useCallback(() => {
@@ -56,18 +70,18 @@ export default function InterviewSidebar () {
       "dataavailable",
       handleDataAvailable,
     );
-    // TODO: 정상적으로 동작하게하는 다른 옵션이 있는 것 같음. 현재는 동작 하지 않음
-    mediaRecorderRef.current.addEventListener(
-      "stop",
-      handleSetReplayBlob,
-    );
     mediaRecorderRef.current.start();
-  }, [webcamRef, setMode, mediaRecorderRef, handleDataAvailable, handleSetReplayBlob])
+  }, [webcamRef, setMode, mediaRecorderRef, handleDataAvailable])
 
   const handleStopCaptureClick = useCallback(() => {
+    // TODO: handleSetReplayBlob이 여전히 정상적인 타임라인(recordedChunks가 존재하고나서 실행)에 맞춰 동작하지 않음 
+    // mediaRecorderRef.current.addEventListener(
+    //   "stop",
+    //   handleSetReplayBlob,
+    // );
     mediaRecorderRef.current.stop();
     setMode(MODE_INTERVIEW_STOP);
-  }, [mediaRecorderRef, setMode])
+  }, [mediaRecorderRef, setMode, handleSetReplayBlob])
 
   return (
     <div>
