@@ -23,12 +23,6 @@ export default function InterviewSidebar () {
         "dataavailable",
         handleDataAvailable,
       )
-      mediaRecorderRef.current.removeEventListener(
-        "stop",
-        handleSetReplayBlob,
-      )
-      // TODO: remove after test
-      console.log('test')
     };
   }, [])
 
@@ -39,7 +33,7 @@ export default function InterviewSidebar () {
       });
       const url = URL.createObjectURL(blob);
       setBlob(url); 
-      recordedChunks = []
+      setRecordedChunks([])
     }
   }, [recordedChunks])
 
@@ -49,17 +43,6 @@ export default function InterviewSidebar () {
         setRecordedChunks((prev) => prev.concat(data));
       }
     }, [setRecordedChunks])
-
-  const handleSetReplayBlob = useCallback(() => {
-    console.log(recordedChunks)
-    if (recordedChunks.length > 0) {
-      const blob = new Blob(recordedChunks, {
-        type: "video/webm"
-      });
-      const url = URL.createObjectURL(blob);
-      setBlob(url);
-    }
-  }, [recordedChunks, setBlob])
 
   const handleStartCaptureClick = useCallback(() => {
     setMode(MODE_INTERVIEW_START);
@@ -74,14 +57,9 @@ export default function InterviewSidebar () {
   }, [webcamRef, setMode, mediaRecorderRef, handleDataAvailable])
 
   const handleStopCaptureClick = useCallback(() => {
-    // TODO: handleSetReplayBlob이 여전히 정상적인 타임라인(recordedChunks가 존재하고나서 실행)에 맞춰 동작하지 않음 
-    // mediaRecorderRef.current.addEventListener(
-    //   "stop",
-    //   handleSetReplayBlob,
-    // );
     mediaRecorderRef.current.stop();
     setMode(MODE_INTERVIEW_STOP);
-  }, [mediaRecorderRef, setMode, handleSetReplayBlob])
+  }, [mediaRecorderRef, setMode])
 
   return (
     <div>
@@ -121,14 +99,6 @@ export default function InterviewSidebar () {
             ),
           }[mode]
         }
-        {/* TODO: remove after test */}
-        <button 
-          className="button"
-          type="button"
-          onClick={handleSetReplayBlob}
-        >
-          Test Replay
-        </button>
       </div>
     </div>
   );
