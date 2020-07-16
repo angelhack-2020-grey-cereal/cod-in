@@ -17,32 +17,11 @@ export default function InterviewSidebar () {
   const [mode, setMode] = useState(false);
   const [recordedChunks, setRecordedChunks] = useState([]);
 
-  useEffect(() => {
-    return function cleanup() {
-      mediaRecorderRef.current.removeEventListener(
-        "dataavailable",
-        handleDataAvailable,
-      )
-    };
-  }, [])
-
-  useEffect(() => {
-    if (recordedChunks.length >0) {
-      const blob = new Blob(recordedChunks, {
-        type: "video/webm"
-      });
-      const url = URL.createObjectURL(blob);
-      setBlob(url); 
-      setRecordedChunks([])
+  const handleDataAvailable = useCallback(({ data }) => {
+    if (data.size > 0) {
+      setRecordedChunks((prev) => prev.concat(data));
     }
-  }, [recordedChunks])
-
-  const handleDataAvailable = useCallback(
-    ({ data }) => {
-      if (data.size > 0) {
-        setRecordedChunks((prev) => prev.concat(data));
-      }
-    }, [setRecordedChunks])
+  }, [setRecordedChunks])
 
   const handleStartCaptureClick = useCallback(() => {
     setMode(MODE_INTERVIEW_START);
@@ -60,6 +39,25 @@ export default function InterviewSidebar () {
     mediaRecorderRef.current.stop();
     setMode(MODE_INTERVIEW_STOP);
   }, [mediaRecorderRef, setMode])
+
+  useEffect(() => {
+    if (recordedChunks.length > 0) {
+      const blob = new Blob(recordedChunks, {
+        type: "video/webm"
+      });
+      const url = URL.createObjectURL(blob);
+      setBlob(url); 
+    }
+  }, [recordedChunks, setBlob])
+
+  useEffect(() => {
+    return function cleanup() {
+      if (recordedChunks.length > 0) {
+        mediaRecorderRef.current.removeEventListener("dataavailable", handleDataAvailable)
+        setRecordedChunks([])
+      }
+    };
+  }, [recordedChunks, handleDataAvailable])
 
   return (
     <div>
