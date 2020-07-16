@@ -6,4 +6,4 @@ export default function MainPage() {
       Main
     </div>
   )
-}
+};

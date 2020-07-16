@@ -6,4 +6,4 @@ export default function MatchPage () {
       match
     </div>
   )
-}
+};
