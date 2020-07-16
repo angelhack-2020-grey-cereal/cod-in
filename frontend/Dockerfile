@@ -1,4 +1,4 @@
-FROM node:10
+FROM node:14
 
 WORKDIR /app
 RUN yarn global add serve

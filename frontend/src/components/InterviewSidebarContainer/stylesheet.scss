@@ -1,0 +1,26 @@
+.InterviewSidebarContainer {
+  height: calc(100% - 220px);
+  width: 300px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background-color: gray;
+  overflow-x: hidden; 
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+
+  .Webcam {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-style: solid;
+  }
+
+  .CloseButton {
+    width: 150px;
+    height: 50px;
+  }
+}

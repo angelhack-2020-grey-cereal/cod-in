@@ -1,0 +1,9 @@
+.InterviewContentContainer {
+  height: calc(100% - 220px);
+  width: calc(100% - 300px);
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  background-color: whitesmoke;
+  overflow-x: hidden; 
+}
