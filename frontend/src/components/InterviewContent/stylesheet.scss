@@ -1,33 +1,60 @@
 .InterviewContent {
   flex: 1;
   display: flex;
+  flex-direction: column;
   align-items: stretch;
 
-  .whiteboard {
-    overflow: hidden;
-    flex: 1;
+  .progressBar {
+    height: 16px;
+    background-color: grey;
+    display: flex;
+    align-items: stretch;
 
-    .quill {
+    .progress {
       display: flex;
-      flex-direction: column;
+      justify-content: flex-end;
       align-items: stretch;
-      width: 100%;
-      height: 100%;
+      background-color: green;
 
-      .ql-container {
-        overflow: hidden;
-        flex: 1;
-
-        .ql-editor {
-          width: 100%;
-          height: 100%;
-        }
+      .playhead {
+        width: 16px;
+        background-color: lightgreen;
       }
     }
   }
 
-  .ide {
+  .editorContainer {
     overflow: hidden;
     flex: 1;
+    display: flex;
+    align-items: stretch;
+
+    .whiteboard {
+      overflow: hidden;
+      flex: 1;
+
+      .quill {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+        height: 100%;
+
+        .ql-container {
+          overflow: hidden;
+          flex: 1;
+
+          .ql-editor {
+            width: 100%;
+            height: 100%;
+          }
+        }
+      }
+    }
+
+    .ide {
+      overflow: hidden;
+      flex: 1;
+    }
   }
 }

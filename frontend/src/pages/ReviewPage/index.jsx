@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import InterviewSidebarContainer from '../../components/InterviewSidebar';
 import InterviewContentContainer from '../../components/InterviewContent';
 import './stylesheet.scss';
@@ -9,6 +9,7 @@ export default function ReviewPage({ match }) {
   const { interviews } = useContext(InterviewContext);
   const { interviewId } = match.params;
   const interview = interviews[interviewId];
+  const [progress, setProgress] = useState(0);
 
   if (!interview) {
     return (
@@ -18,8 +19,8 @@ export default function ReviewPage({ match }) {
 
   return (
     <div className="ReviewPage">
-      <InterviewSidebarContainer interview={interview}/>
-      <InterviewContentContainer interview={interview}/>
+      <InterviewSidebarContainer interview={interview} onProgress={setProgress}/>
+      <InterviewContentContainer interview={interview} progress={progress}/>
     </div>
   );
 }

@@ -18,10 +18,12 @@ export default function InterviewPage() {
   const start = useMemo(() => Date.now(), []);
   const history = useHistory();
 
-  const handleEnd = useCallback(videoURL => {
+  const handleEnd = useCallback(({ videoURL, videoOffset, duration }) => {
     const id = uuid.v4();
     addInterview({
       id,
+      duration,
+      videoOffset,
       videoURL,
       whiteboardLogs,
       ideLogs,
@@ -30,11 +32,11 @@ export default function InterviewPage() {
   }, [addInterview, whiteboardLogs, ideLogs]);
 
   const handleAddWhiteboardLog = useCallback(value => {
-    whiteboardLogs.push({ value, timestamp: Date.now() - start });
+    whiteboardLogs.unshift({ value, timestamp: Date.now() - start });
   }, [whiteboardLogs]);
 
   const handleAddIdeLog = useCallback(value => {
-    ideLogs.push({ value, timestamp: Date.now() - start });
+    ideLogs.unshift({ value, timestamp: Date.now() - start });
   }, [ideLogs]);
 
   return (
