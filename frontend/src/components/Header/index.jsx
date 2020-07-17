@@ -1,16 +1,19 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import './stylesheet.scss';
+import React from "react";
+import { Link } from "react-router-dom";
+import "./stylesheet.scss";
 
 export default function Header() {
   return (
     <div className="Header">
-      <h1>
-        <Link to="/">codIt</Link>
-      </h1>
-      <h1>
-        {} 님 (Tier 3) 256 엔젤코인
-      </h1>
+      <div className="container">
+        <Link to="/">
+          <img className="logo" src={require("../../images/logo.svg")} />
+        </Link>
+        <div className="divider">
+          <div>shop</div>
+          <div>profile</div>
+        </div>
+      </div>
     </div>
   );
 }

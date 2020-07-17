@@ -1,6 +1,35 @@
 .Header {
+  background-color: black;
+  color: white;
   height: 80px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	flex-wrap: wrap;;
+
+  .container {
+    width: 1024px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    margin: 0 auto;
+
+    .logo {
+      height: 40px;
+    }
+
+    .divider {
+      width: 200px;
+      
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      flex-wrap: wrap; 
+    }
+
+  }
 }
