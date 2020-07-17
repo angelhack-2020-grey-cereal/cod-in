@@ -1,21 +1,31 @@
 import React, { useCallback, useEffect, useRef } from 'react';
 import './stylesheet.scss';
 
-export default function InterviewSidebar({ interview, onEnd, onProgress }) {
+export default function InterviewSidebar({ interview, onEnd, progress, playing }) {
   const interviewing = !interview;
   const reviewing = !interviewing;
   const webcamRef = useRef(null);
   const mediaRef = useRef(null);
+  const videoProgress = reviewing ? progress - interview.videoOffset : -1;
+  const shouldPlayVideo = videoProgress >= 0;
 
   useEffect(() => {
     if (reviewing) {
       const player = webcamRef.current;
-      player.ontimeupdate = function () {
-        const time = interview.videoOffset + player.currentTime * 1e3;
-        onProgress(time);
-      };
+      player.currentTime = videoProgress / 1e3;
     }
-  }, [interview]);
+  }, [interview, shouldPlayVideo, playing]);
+
+  useEffect(() => {
+    if (reviewing) {
+      const player = webcamRef.current;
+      if (playing && shouldPlayVideo) {
+        player.play();
+      } else {
+        player.pause();
+      }
+    }
+  }, [interview, shouldPlayVideo, playing]);
 
   useEffect(() => {
     if (interviewing) {
@@ -26,8 +36,17 @@ export default function InterviewSidebar({ interview, onEnd, onProgress }) {
       navigator.mediaDevices.getUserMedia({ audio: true, video: true })
         .then(stream => {
           player.srcObject = stream;
+          return new Promise(resolve => {
+            player.onloadedmetadata = () => resolve(stream);
+          });
+        })
+        .then(stream => {
           const mediaRecorder = new MediaRecorder(stream, { mimeType: 'video/webm' });
-          mediaRecorder.ondataavailable = e => recordedChunks.push(e.data);
+          mediaRecorder.ondataavailable = e => {
+            if (e.data.size > 0) {
+              recordedChunks.push(e.data);
+            }
+          };
           mediaRecorder.start();
           const videoStartedAt = Date.now();
           mediaRef.current = {
@@ -80,7 +99,7 @@ export default function InterviewSidebar({ interview, onEnd, onProgress }) {
       };
       disposeMedia();
     } else {
-      onEnd('');
+      onEnd({ videoURL: null, videoOffset: 0, duration: 0 });
     }
   }, [mediaRef.current, onEnd]);
 
@@ -95,7 +114,7 @@ export default function InterviewSidebar({ interview, onEnd, onProgress }) {
           interviewing ? (
             <video ref={webcamRef} width={250} autoPlay muted/>
           ) : (
-            <video ref={webcamRef} src={interview.videoURL} width={250} autoPlay/>
+            <video ref={webcamRef} src={interview.videoURL} width={250}/>
           )
         }
       </div>

@@ -4,21 +4,32 @@
   flex-direction: column;
   align-items: stretch;
 
-  .progressBar {
-    height: 16px;
-    background-color: grey;
+  .controls {
+    height: 36px;
     display: flex;
     align-items: stretch;
 
-    .progress {
-      display: flex;
-      justify-content: flex-end;
-      align-items: stretch;
-      background-color: green;
+    .play {
+      width: 80px;
+    }
 
-      .playhead {
-        width: 16px;
-        background-color: lightgreen;
+    .progressBar {
+      flex: 1;
+      background-color: grey;
+      display: flex;
+      align-items: stretch;
+
+      .progress {
+        display: flex;
+        justify-content: flex-end;
+        align-items: stretch;
+        background-color: green;
+
+        .playhead {
+          width: 16px;
+          margin-right: -8px;
+          background-color: lightgreen;
+        }
       }
     }
   }
