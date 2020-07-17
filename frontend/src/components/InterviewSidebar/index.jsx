@@ -24,7 +24,6 @@ export default function InterviewSidebar() {
 
   const handleStartCaptureClick = useCallback(() => {
     setMode(MODE_REVIEW);
-    console.log(webcamRef.current);
     mediaRecorderRef.current = new MediaRecorder(webcamRef.current.stream, {
       mimeType: 'video/webm',
     });
@@ -60,44 +59,42 @@ export default function InterviewSidebar() {
   }, [recordedChunks, handleDataAvailable]);
 
   return (
-    <div>
-      <div className="InterviewSidebar">
-        <div>
-          <h1>문제 1</h1>
-          <h1>문제 2</h1>
-        </div>
-        <div className="webcam">
-          <Webcam
-            audio={true}
-            ref={webcamRef}
-            height={200}
-            width={250}
-            videoConstraints={{ height: 200, width: 250 }}
-          />
-        </div>
-        {
-          {
-            [MODE_INTERVIEW]: (
-              <button
-                className="button"
-                type="buton"
-                onClick={handleStartCaptureClick}
-              >
-                Test Start
-              </button>
-            ),
-            [MODE_REVIEW]: (
-              <button
-                className="button"
-                type="button"
-                onClick={handleStopCaptureClick}
-              >
-                Test Stop
-              </button>
-            ),
-          }[mode]
-        }
+    <div className="InterviewSidebar">
+      <div>
+        <h1>문제 1</h1>
+        <h1>문제 2</h1>
       </div>
+      <div className="webcam">
+        <Webcam
+          audio={true}
+          ref={webcamRef}
+          height={200}
+          width={250}
+          videoConstraints={{ height: 200, width: 250 }}
+        />
+      </div>
+      {
+        {
+          [MODE_INTERVIEW]: (
+            <button
+              className="button"
+              type="buton"
+              onClick={handleStartCaptureClick}
+            >
+              Test Start
+            </button>
+          ),
+          [MODE_REVIEW]: (
+            <button
+              className="button"
+              type="button"
+              onClick={handleStopCaptureClick}
+            >
+              Test Stop
+            </button>
+          ),
+        }[mode]
+      }
     </div>
   );
 }
