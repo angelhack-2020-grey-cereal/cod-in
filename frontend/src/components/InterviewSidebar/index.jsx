@@ -1,15 +1,14 @@
-
-import React, { useState, useCallback, useRef, useContext, useEffect } from 'react';
+import React, { useCallback, useContext, useEffect, useRef, useState } from 'react';
 
 import { BlobContext } from '../../contexts';
 
 import Webcam from 'react-webcam';
 import './stylesheet.scss';
 
-const MODE_INTERVIEW_STOP = false;
-const MODE_INTERVIEW_START = true;
+const MODE_INTERVIEW = false;
+const MODE_REVIEW = true;
 
-export default function InterviewSidebar () {
+export default function InterviewSidebar() {
   const { setBlob } = useContext(BlobContext);
 
   const webcamRef = useRef(null);
@@ -21,47 +20,48 @@ export default function InterviewSidebar () {
     if (data.size > 0) {
       setRecordedChunks((prev) => prev.concat(data));
     }
-  }, [setRecordedChunks])
+  }, [setRecordedChunks]);
 
   const handleStartCaptureClick = useCallback(() => {
-    setMode(MODE_INTERVIEW_START);
+    setMode(MODE_REVIEW);
+    console.log(webcamRef.current);
     mediaRecorderRef.current = new MediaRecorder(webcamRef.current.stream, {
-      mimeType: "video/webm"
+      mimeType: 'video/webm',
     });
     mediaRecorderRef.current.addEventListener(
-      "dataavailable",
+      'dataavailable',
       handleDataAvailable,
     );
     mediaRecorderRef.current.start();
-  }, [webcamRef, setMode, mediaRecorderRef, handleDataAvailable])
+  }, [webcamRef, setMode, mediaRecorderRef, handleDataAvailable]);
 
   const handleStopCaptureClick = useCallback(() => {
     mediaRecorderRef.current.stop();
-    setMode(MODE_INTERVIEW_STOP);
-  }, [mediaRecorderRef, setMode])
+    setMode(MODE_INTERVIEW);
+  }, [mediaRecorderRef, setMode]);
 
   useEffect(() => {
     if (recordedChunks.length > 0) {
       const blob = new Blob(recordedChunks, {
-        type: "video/webm"
+        type: 'video/webm',
       });
       const url = URL.createObjectURL(blob);
-      setBlob(url); 
+      setBlob(url);
     }
-  }, [recordedChunks, setBlob])
+  }, [recordedChunks, setBlob]);
 
   useEffect(() => {
     return function cleanup() {
       if (recordedChunks.length > 0) {
-        mediaRecorderRef.current.removeEventListener("dataavailable", handleDataAvailable)
-        setRecordedChunks([])
+        mediaRecorderRef.current.removeEventListener('dataavailable', handleDataAvailable);
+        setRecordedChunks([]);
       }
     };
-  }, [recordedChunks, handleDataAvailable])
+  }, [recordedChunks, handleDataAvailable]);
 
   return (
     <div>
-      <div className="InterviewSidebarContainer">
+      <div className="InterviewSidebar">
         <div>
           <h1>문제 1</h1>
           <h1>문제 2</h1>
@@ -77,23 +77,23 @@ export default function InterviewSidebar () {
         </div>
         {
           {
-            [MODE_INTERVIEW_STOP]: (
-              <button 
+            [MODE_INTERVIEW]: (
+              <button
                 className="button"
                 type="buton"
                 onClick={handleStartCaptureClick}
               >
                 Test Start
-              </button> 
-            ), 
-            [MODE_INTERVIEW_START]: (
+              </button>
+            ),
+            [MODE_REVIEW]: (
               <button
                 className="button"
                 type="button"
                 onClick={handleStopCaptureClick}
               >
                 Test Stop
-              </button> 
+              </button>
             ),
           }[mode]
         }

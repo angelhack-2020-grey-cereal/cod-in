@@ -1,10 +1,7 @@
-.InterviewSidebarContainer {
-  height: calc(100% - 220px);
+.InterviewSidebar {
   width: 300px;
-  bottom: 0;
-  left: 0;
   background-color: gray;
-  overflow: hidden; 
+  overflow: hidden;
 
   display: flex;
   flex-direction: column;
@@ -17,6 +14,7 @@
     align-items: center;
     border-style: solid;
   }
+
   .button {
     width: 150px;
     height: 50px;
