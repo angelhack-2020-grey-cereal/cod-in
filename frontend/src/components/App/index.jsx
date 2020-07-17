@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-import { BlobContext } from '../../contexts';
+import { InterviewContext } from '../../contexts';
 import './stylesheet.scss';
 
 import Header from '../Header';
@@ -15,10 +15,17 @@ import Promotion from '../../pages/PromotionPage';
 import Shop from '../../pages/ShopPage';
 
 function App() {
-  const [blob, setBlob] = useState('');
+  const [interviews, setInterviews] = useState({});
+
+  const addInterview = useCallback(interview => {
+    setInterviews({
+      ...interviews,
+      [interview.id]: interview,
+    });
+  }, [interviews, setInterviews]);
 
   return (
-    <BlobContext.Provider value={{ blob, setBlob }}>
+    <InterviewContext.Provider value={{ interviews, addInterview }}>
       <div className="App">
         <Header/>
         <Switch>
@@ -27,12 +34,12 @@ function App() {
           <Route path="/main" component={Main}/>
           <Route path="/match" component={Match}/>
           <Route path="/interview" component={Interview}/>
-          <Route path="/review" component={Review}/>
+          <Route path="/review/:interviewId" component={Review}/>
           <Route path="/promotion" component={Promotion}/>
           <Route path="/shop" component={Shop}/>
         </Switch>
       </div>
-    </BlobContext.Provider>
+    </InterviewContext.Provider>
   );
 }
 

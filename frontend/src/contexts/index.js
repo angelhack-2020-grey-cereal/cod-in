@@ -1,3 +1,3 @@
 import React from 'react';
 
-export const BlobContext = React.createContext(null);
+export const InterviewContext = React.createContext(null);

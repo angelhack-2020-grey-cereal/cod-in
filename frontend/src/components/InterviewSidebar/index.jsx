@@ -1,62 +1,70 @@
-import React, { useCallback, useContext, useEffect, useRef, useState } from 'react';
-
-import { BlobContext } from '../../contexts';
-
-import Webcam from 'react-webcam';
+import React, { useCallback, useEffect, useRef } from 'react';
 import './stylesheet.scss';
 
-const MODE_INTERVIEW = false;
-const MODE_REVIEW = true;
-
-export default function InterviewSidebar() {
-  const { setBlob } = useContext(BlobContext);
-
+export default function InterviewSidebar({ interview, onEnd }) {
+  const interviewing = !interview;
+  const reviewing = !interviewing;
   const webcamRef = useRef(null);
-  const mediaRecorderRef = useRef(null);
-  const [mode, setMode] = useState(false);
-  const [recordedChunks, setRecordedChunks] = useState([]);
+  const mediaRef = useRef(null);
 
-  const handleDataAvailable = useCallback(({ data }) => {
-    if (data.size > 0) {
-      setRecordedChunks((prev) => prev.concat(data));
-    }
-  }, [setRecordedChunks]);
+  const disposeMedia = useCallback(() => {
+    if (mediaRef.current) {
+      const {
+        mediaRecorder,
+        stream,
+      } = mediaRef.current;
 
-  const handleStartCaptureClick = useCallback(() => {
-    setMode(MODE_REVIEW);
-    mediaRecorderRef.current = new MediaRecorder(webcamRef.current.stream, {
-      mimeType: 'video/webm',
-    });
-    mediaRecorderRef.current.addEventListener(
-      'dataavailable',
-      handleDataAvailable,
-    );
-    mediaRecorderRef.current.start();
-  }, [webcamRef, setMode, mediaRecorderRef, handleDataAvailable]);
+      const tracks = stream.getTracks();
+      tracks.forEach(track => track.stop());
 
-  const handleStopCaptureClick = useCallback(() => {
-    mediaRecorderRef.current.stop();
-    setMode(MODE_INTERVIEW);
-  }, [mediaRecorderRef, setMode]);
-
-  useEffect(() => {
-    if (recordedChunks.length > 0) {
-      const blob = new Blob(recordedChunks, {
-        type: 'video/webm',
-      });
-      const url = URL.createObjectURL(blob);
-      setBlob(url);
-    }
-  }, [recordedChunks, setBlob]);
-
-  useEffect(() => {
-    return function cleanup() {
-      if (recordedChunks.length > 0) {
-        mediaRecorderRef.current.removeEventListener('dataavailable', handleDataAvailable);
-        setRecordedChunks([]);
+      if (mediaRecorder.state !== 'inactive') {
+        mediaRecorder.stop();
       }
-    };
-  }, [recordedChunks, handleDataAvailable]);
+    }
+  }, [mediaRef.current]);
+
+  const handleEnd = useCallback(() => {
+    if (mediaRef.current) {
+      const {
+        mediaRecorder,
+        recordedChunks,
+      } = mediaRef.current;
+
+      mediaRecorder.onstop = () => {
+        mediaRecorder.onstop = undefined;
+        const blob = new Blob(recordedChunks, {
+          type: 'video/webm',
+        });
+        const videoURL = URL.createObjectURL(blob);
+        onEnd(videoURL);
+      };
+      disposeMedia();
+    } else {
+      onEnd('');
+    }
+  }, [mediaRef.current, onEnd]);
+
+  useEffect(() => {
+    if (interviewing) {
+      const player = webcamRef.current;
+      const recordedChunks = [];
+
+      navigator.mediaDevices.getUserMedia({ audio: true, video: true })
+        .then(stream => {
+          player.srcObject = stream;
+          const mediaRecorder = new MediaRecorder(stream, { mimeType: 'video/webm' });
+          mediaRecorder.ondataavailable = e => recordedChunks.push(e.data);
+          mediaRecorder.start();
+          mediaRef.current = {
+            mediaRecorder,
+            stream,
+            recordedChunks,
+          };
+        });
+
+      return disposeMedia;
+    }
+  }, []);
 
   return (
     <div className="InterviewSidebar">
@@ -65,35 +73,17 @@ export default function InterviewSidebar() {
         <h1>문제 2</h1>
       </div>
       <div className="webcam">
-        <Webcam
-          audio={true}
-          ref={webcamRef}
-          height={200}
-          width={250}
-          videoConstraints={{ height: 200, width: 250 }}
-        />
+        {
+          interviewing ? (
+            <video ref={webcamRef} width={250} autoPlay muted/>
+          ) : (
+            <video src={interview.videoURL} width={250} autoPlay/>
+          )
+        }
       </div>
       {
-        {
-          [MODE_INTERVIEW]: (
-            <button
-              className="button"
-              type="buton"
-              onClick={handleStartCaptureClick}
-            >
-              Test Start
-            </button>
-          ),
-          [MODE_REVIEW]: (
-            <button
-              className="button"
-              type="button"
-              onClick={handleStopCaptureClick}
-            >
-              Test Stop
-            </button>
-          ),
-        }[mode]
+        interviewing &&
+        <button onClick={handleEnd}>End the Interview</button>
       }
     </div>
   );
