@@ -1,0 +1,17 @@
+@import "../../common/constants";
+
+.SignInPage {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .content-wrapper {
+    width: 100%;
+    max-width: 1024px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+  }
+}
+

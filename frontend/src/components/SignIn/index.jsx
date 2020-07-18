@@ -4,9 +4,10 @@ import Button from '../Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faGithub } from '@fortawesome/fontawesome-free-brands';
 import { UserContext } from '../../contexts';
+import { Redirect } from 'react-router-dom';
 
 export default function SignIn() {
-  const { setUser } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
 
   const handleSignIn = useCallback(() => {
     setUser({
@@ -16,6 +17,12 @@ export default function SignIn() {
       coin: 128,
     });
   }, []);
+
+  if (user) {
+    return (
+      <Redirect to="/"/>
+    )
+  }
 
   return (
     <div className="SignIn">

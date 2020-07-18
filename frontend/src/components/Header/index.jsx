@@ -34,7 +34,7 @@ export default function Header() {
               </div>
             </a>
           ) : (
-            <a href="#" className="link">Sign In</a>
+            <Link to="/sign-in" className="link">Sign In</Link>
           )
         }
       </div>
