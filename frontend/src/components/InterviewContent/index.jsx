@@ -54,7 +54,7 @@ export default function InterviewContent({
         reviewing &&
         <div className="controls">
           <button className="play" onClick={playing ? onPause : onPlay}>{playing ? 'Pause' : 'Play'}</button>
-          <div className="progressBar"
+          <div className="progress-bar"
                onMouseDown={handleMouseDown}
                ref={progressBarRef}>
             <div className="progress" style={{ width: `${(progress / interview.duration * 100).toFixed(1)}%` }}>
@@ -63,7 +63,7 @@ export default function InterviewContent({
           </div>
         </div>
       }
-      <div className="editorContainer">
+      <div className="editor-container">
         <div className="whiteboard">
           {
             interviewing ? (

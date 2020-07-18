@@ -1,5 +1,83 @@
+@import "../../common/constants";
+
 .MatchingPage {
+  overflow: hidden;
   flex: 1;
   display: flex;
+  flex-direction: column;
   align-items: stretch;
+  background-color: #212121;
+  color: white;
+  padding: 64px;
+
+  .matching-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .header {
+      align-self: flex-end;
+      display: flex;
+    }
+
+    .center {
+      align-self: center;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+
+      .connecting {
+        font-size: 72px;
+        margin-bottom: 56px;
+      }
+
+      .description {
+        font-size: $font-size-medium;
+        margin-bottom: 20px;
+      }
+
+      .progress-bar {
+        width: 200px;
+        height: 4px;
+        display: flex;
+        align-items: stretch;
+        background-color: #EDEDED;
+
+        .active {
+          width: 40%;
+          background-color: $color-primary;
+        }
+      }
+    }
+
+    .footer {
+      align-self: center;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      color: $color-light;
+      font-size: $font-size-medium;
+
+      .tip-title {
+        font-weight: bold;
+      }
+
+      .tip {
+        margin-bottom: 28px;
+      }
+
+      .footer-text {
+        &:after{
+          white-space: pre;
+          content: ' | CodIn Front-end Developers';
+          color: $color-dark;
+        }
+      }
+    }
+  }
 }
