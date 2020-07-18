@@ -1,0 +1,153 @@
+@import "../../common/constants";
+
+.InterviewList {
+  flex: 1;
+  background-color: $color-lightest;
+  box-shadow: 0 3px 6px $color-dark-shadow;
+  border: 1px solid #CCCCCC;
+  opacity: 1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &:first-child {
+    margin-right: 24px;
+  }
+
+  .participate {
+    white-space: pre;
+    margin: 48px;
+  }
+
+  .InterviewSummary {
+    align-self: stretch;
+    background-color: $color-lightest;
+    border: 1px solid $color-borderline;
+    opacity: 1;
+    padding: 20px;
+    margin-bottom: 16px;
+
+    .chat-header {
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+
+    .chat-container {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+
+      .chat {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        border: 1px solid $color-secondary;
+        border-radius: 10px;
+        padding: 12px 12px 8px;
+        margin-bottom: 20px;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+
+        &:after {
+          bottom: -2px;
+          content: '';
+          position: absolute;
+          width: 18px;
+          height: 33px;
+          background-size: contain;
+          background-repeat: no-repeat;
+          background-position: bottom;
+          pointer-events: none;
+        }
+
+        &.left {
+          margin-right: 128px;
+
+          &:after {
+            left: -9px;
+            background-image: url(../../images/balloon_tail_left.png);
+          }
+        }
+
+        &.right {
+          margin-left: 128px;
+          align-items: flex-end;
+
+          &:after {
+            right: -9px;
+            background-image: url(../../images/balloon_tail_right.png);
+          }
+        }
+
+        .chat-text {
+          align-self: stretch;
+          margin-bottom: 4px;
+        }
+
+        .user {
+          display: flex;
+          align-items: center;
+
+          .avatar {
+            $size: 20px;
+            width: $size;
+            height: $size;
+            border-radius: $size;
+            background-position: center;
+            background-size: cover;
+            margin-right: 4px;
+            border: 1px solid $color-lighter;
+          }
+
+          .label {
+            color: $color-light;
+          }
+        }
+      }
+    }
+  }
+
+  .MoreButton {
+    align-self: stretch;
+    margin-top: 44px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: $color-primary;
+    font-size: $font-size-medium;
+    border-top: 1px solid $color-borderline;
+    padding: 32px 0;
+
+    .label {
+      font-size: $font-size-large;
+      margin-bottom: 4px;
+    }
+
+    .icon {
+
+    }
+  }
+}
+
+.text-bold {
+  font-weight: bold;
+}
+
+.text-primary {
+  color: $color-primary;
+}
+
+.text-red {
+  color: #C54647;
+}
+
+.text-gray {
+  color: #999999;
+}

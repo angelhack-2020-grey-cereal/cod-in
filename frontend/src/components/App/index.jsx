@@ -13,7 +13,8 @@ import sampleInterviewerVideo from '../../assets/videos/interviewer.mp4';
 import sampleIntervieweeVideo from '../../assets/videos/interviewee.mp4';
 import sampleWhiteboardLogs from '../../assets/whiteboard-logs/sample0.json';
 import sampleIdeLogsSample from '../../assets/ide-logs/sample0.json';
-import { InterviewContext } from '../../contexts';
+import profileMe from '../../images/profile/me.jpg';
+import { InterviewContext, UserContext } from '../../contexts';
 import './stylesheet.scss';
 
 function App() {
@@ -29,6 +30,12 @@ function App() {
     },
   });
 
+  const [user, setUser] = useState({
+    name: '제이슨',
+    tier: 4,
+    avatar_url: profileMe,
+  });
+
   const addInterview = useCallback(interview => {
     setInterviews({
       ...interviews,
@@ -38,22 +45,24 @@ function App() {
 
   return (
     <InterviewContext.Provider value={{ interviews, addInterview }}>
-      <Switch>
-        <Route path="/matching/:role" component={Matching}/>
-        <Route path="/interview" component={Interview}/>
-        <Route path="/review/:interviewId" component={Review}/>
-        <div className="App">
-          <Header/>
-          <Switch>
-            <Route exact path="/" component={Main}/>
-            <Route path="/login" component={Login}/>
-            <Route path="/promotion" component={Promotion}/>
-            <Route path="/shop" component={Shop}/>
-            <Redirect to="/"/>
-          </Switch>
-          <Footer/>
-        </div>
-      </Switch>
+      <UserContext.Provider value={{ user, setUser }}>
+        <Switch>
+          <Route path="/matching/:role" component={Matching}/>
+          <Route path="/interview" component={Interview}/>
+          <Route path="/review/:interviewId" component={Review}/>
+          <div className="App">
+            <Header/>
+            <Switch>
+              <Route exact path="/" component={Main}/>
+              <Route path="/login" component={Login}/>
+              <Route path="/promotion" component={Promotion}/>
+              <Route path="/shop" component={Shop}/>
+              <Redirect to="/"/>
+            </Switch>
+            <Footer/>
+          </div>
+        </Switch>
+      </UserContext.Provider>
     </InterviewContext.Provider>
   );
 }
