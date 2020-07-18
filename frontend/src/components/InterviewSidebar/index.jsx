@@ -3,7 +3,7 @@ import sampleIntervieweeVideo from '../../assets/videos/interviewee.mp4';
 import './stylesheet.scss';
 
 const FPS = 30;
-const MAX_SECONDS = 5;
+const MAX_SECONDS = 120;
 
 export default function InterviewSidebar({ interview, onEnd, progress, playing }) {
   const interviewing = !interview;
