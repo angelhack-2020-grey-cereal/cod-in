@@ -10,7 +10,8 @@
   color: $color-lightest;
 
   > * {
-    padding: 0 48px;
+    padding-left: 48px;
+    padding-right: 48px;
   }
 
   .header {
@@ -19,8 +20,8 @@
     color: $color-light;
     font-size: $font-size-large;
     cursor: pointer;
-    padding-top: 24px;
-    padding-bottom: 24px;
+    height: 64px;
+    white-space: pre;
 
     &:hover {
       background-color: $color-dark;
@@ -39,13 +40,15 @@
       font-size: 40px;
     }
 
-    .per {
-      margin: 0 8px;
-    }
-
     .secondary {
+      display: flex;
       font-size: 28px;
       color: $color-light;
+      white-space: nowrap;
+
+      .per {
+        margin: 0 8px;
+      }
     }
   }
 
@@ -70,8 +73,8 @@
         position: absolute;
         content: '';
         bottom: 0;
-        left: -60px;
-        right: -60px;
+        left: -48px;
+        right: -48px;
         height: 1px;
         background-color: $color-darker;
       }
@@ -152,6 +155,73 @@
 
     .exit {
       font-size: $font-size-medium;
+    }
+  }
+
+  &.collapse {
+    width: 96px;
+    align-items: stretch;
+
+    > * {
+      padding-left: 0;
+      padding-right: 0;
+      align-items: center;
+    }
+
+    .header {
+      justify-content: center;
+    }
+
+    .countdown {
+      flex-direction: column;
+      align-items: center;
+
+      .primary {
+        font-size: 28px;
+      }
+
+      .secondary {
+        font-size: $font-size-large;
+
+        .per {
+          margin-left: 0;
+        }
+      }
+    }
+
+    .problem-container {
+      background-color: $color-darker;
+      align-items: stretch;
+      margin-bottom: 36px;
+
+      .problem {
+        text-align: center;
+
+        &.active {
+          background-color: $color-dark;
+        }
+      }
+    }
+
+    .video-container {
+      justify-content: flex-start;
+
+      .video {
+        margin-bottom: 24px;
+
+        .status {
+          justify-content: center;
+          font-size: $font-size-small;
+
+          .badge {
+            display: none;
+          }
+        }
+      }
+    }
+
+    .button-container {
+      display: none;
     }
   }
 }

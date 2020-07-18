@@ -1,7 +1,7 @@
 import React, { useCallback, useContext, useEffect, useRef, useState } from 'react';
 import './stylesheet.scss';
 import Button from '../Button';
-import { mmss } from '../../common/utils';
+import { classes, mmss } from '../../common/utils';
 import Profile from '../Profile';
 import { UserContext } from '../../contexts';
 import { mockInterviewee } from '../../assets/mocks/users';
@@ -9,6 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons/faChevronLeft';
 import { faMicrophone } from '@fortawesome/free-solid-svg-icons/faMicrophone';
 import { faVideo } from '@fortawesome/free-solid-svg-icons/faVideo';
+import { faChevronRight } from '@fortawesome/free-solid-svg-icons/faChevronRight';
 
 const FPS = 30;
 const MAX_SECONDS = 120;
@@ -23,6 +24,7 @@ export default function InterviewSidebar({ interview, onEnd, progress, playing }
   const shouldPlayVideo = videoProgress >= 0;
   const [seconds, setSeconds] = useState(0);
   const { user: me } = useContext(UserContext);
+  const [collapse, setCollapse] = useState(false);
 
   useEffect(() => {
     const intervalId = window.setInterval(() => {
@@ -150,15 +152,16 @@ export default function InterviewSidebar({ interview, onEnd, progress, playing }
   const countdown = Math.max(0, interviewing ? MAX_SECONDS - seconds : progress / 1e3 | 0);
 
   return (
-    <div className="InterviewSidebar">
-      <div className="header">
-        <FontAwesomeIcon fixedWidth icon={faChevronLeft}/>&nbsp;
-        메뉴 숨기기
+    <div className={classes('InterviewSidebar', collapse && 'collapse')}>
+      <div className="header" onClick={() => setCollapse(!collapse)}>
+        <FontAwesomeIcon fixedWidth icon={collapse ? faChevronRight : faChevronLeft}/>
+        {!collapse && ' 메뉴 숨기기'}
       </div>
       <div className="countdown">
         <div className="primary">{mmss(countdown)}</div>
-        <div className="secondary per">/</div>
-        <div className="secondary">{mmss(MAX_SECONDS)}</div>
+        <div className="secondary">
+          <div className="per">/</div>
+          {mmss(MAX_SECONDS)}</div>
       </div>
       <div className="problem-container">
         <div className="problem active">문제 1</div>
@@ -166,7 +169,7 @@ export default function InterviewSidebar({ interview, onEnd, progress, playing }
         <div className="problem">문제 3</div>
       </div>
       <div className="video-container">
-        <div className="video interviewer">
+        <div className="video">
           {
             interviewing ? (
               <video ref={interviewerVideoRef} autoPlay muted/>
@@ -175,12 +178,14 @@ export default function InterviewSidebar({ interview, onEnd, progress, playing }
             )
           }
           <div className="status">
-            <FontAwesomeIcon className="icon" fixedWidth icon={faMicrophone}/>&nbsp;
-            <Profile role="interviewer"
+            <div className="badge">
+              <FontAwesomeIcon className="icon" fixedWidth icon={faMicrophone}/>&nbsp;
+            </div>
+            <Profile role="interviewer" simple={collapse}
                      user={interviewing || interview.role === 'interviewer' ? me : interview.user}/>
           </div>
         </div>
-        <div className="video interviewee">
+        <div className="video">
           {
             interviewing ? (
               <video ref={intervieweeVideoRef} src={require('../../assets/videos/interviewee.mp4')} autoPlay muted/>
@@ -189,8 +194,10 @@ export default function InterviewSidebar({ interview, onEnd, progress, playing }
             )
           }
           <div className="status">
-            <FontAwesomeIcon className="icon" fixedWidth icon={faMicrophone}/>&nbsp;
-            <Profile role="interviewee"
+            <div className="badge">
+              <FontAwesomeIcon className="icon" fixedWidth icon={faMicrophone}/>&nbsp;
+            </div>
+            <Profile role="interviewee" simple={collapse}
                      user={interviewing ? mockInterviewee : interview.role === 'interviewee' ? me : interview.user}/>
           </div>
         </div>
