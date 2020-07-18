@@ -19,10 +19,35 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
-
+    
     .participate {
       white-space: pre;
       margin: 48px;
+    }
+
+    .participate-i {
+      white-space: pre;
+      margin: 48px; 
+    }
+
+    .participate-i:before {
+      // transform: rotate(20deg);
+      content: "1.5 x";
+      font-size: 12px;
+      width: 40px;
+      height: 18px;
+      line-height: 18px;
+      text-align: center;
+      display: block;
+      border-radius: 5%;
+      background: #D7322D;
+      // border: 1px solid #FF9429;
+      box-shadow: 0 0 3px rgba(0,0,0,0.4);
+      color: $color-lighter;
+      position: absolute;
+      top: -8px;
+      left: auto;
+      right: -15px;
     }
   }
 
@@ -155,7 +180,7 @@
 }
 
 .text-border {
-  font-weight: bold;
+  font-size: $font-size-small;
 }
 
 .text-primary {
