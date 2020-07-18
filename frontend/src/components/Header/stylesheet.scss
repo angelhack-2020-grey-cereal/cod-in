@@ -1,86 +1,86 @@
 @import "../../common/constants";
 
 .Header {
-  background-color: $color-darkest;
+  background-color: #212121;
   color: $color-lightest;
-  height: 80px;
-  
-	display: flex;
-	align-items: center;
-	justify-content: space-around;
-	flex-wrap: wrap;;
+  height: 76px;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-around;
+  flex-wrap: wrap;;
 
   .container {
-    width: 1024px;
+    width: 100%;
+    max-width: 1024px;
 
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
+    align-items: stretch;
 
-    margin: 0 auto;
-
-    .logo {
-      height: 40px;
-    }
-
-    .divider {
-      @media (max-width: $breakpoint-responsive) {
-        display: none;
-      }
-      
-      width: 400px;
-      
+    .logo-wrapper {
       display: flex;
       align-items: center;
-      justify-content: space-around;
-      flex-wrap: wrap; 
 
-      .divide {
-        color: #484848;
-        font-size: $font-size-medium
+      .logo {
+        height: 32px;
       }
 
-      .user {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
+      margin-right: auto;
+    }
 
-        .avatar {
-          $size: 40px;
-          width: $size;
-          height: $size;
-          border-radius: $size;
-          background-position: center;
-          background-size: cover;
-          margin-right: 8px;
-          border: 1px solid $color-lighter;
+    .link {
+      position: relative;
+      display: flex;
+      align-items: center;
+      padding: 0 12px;
+
+      &:after {
+        content: '';
+        position: absolute;
+        right: 0;
+        width: 1px;
+        height: 16px;
+        background-color: rgba(#707070, 0.7);
+      }
+    }
+
+    .user {
+      margin-left: 12px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      .avatar {
+        $size: 32px;
+        width: $size;
+        height: $size;
+        border-radius: $size;
+        background-position: center;
+        background-size: cover;
+        margin-right: 12px;
+        border: 1px solid $color-lighter;
+      }
+
+      .info {
+        display: flex;
+        flex-direction: column;
+
+        .label {
+          display: flex;
+          font-weight: bold;
+          align-items: center;
+          margin-bottom: 2px;
+
+          .icon {
+            margin-left: 12px;
+          }
         }
 
-        .info {
-          display: flex;
-          flex-direction: column;
-
-          .label {
-            display: flex;
-            white-space: pre;
-
-            .name {
-              font-weight: bold;
-            }
-
-            .tier {
-              color: $color-light;
-            }
+        .balance {
+          .icon {
+            margin-right: 4px;
           }
 
-          .balance {
-            .icon {
-              margin-right: 4px;
-            }
-
-            color: $color-light;
-          }
+          color: $color-light;
         }
       }
     }

@@ -17,7 +17,8 @@
 
   .participate {
     white-space: pre;
-    margin: 48px;
+    margin-top: 28px;
+    margin-bottom: 48px;
 
     .coin-wrapper {
       margin-left: 12px;
@@ -132,7 +133,7 @@
             border-radius: $size;
             background-position: center;
             background-size: cover;
-            margin-right: 8px;
+            margin-right: 4px;
             border: 1px solid $color-lighter;
           }
 
