@@ -9,6 +9,7 @@ body {
 html {
   font-family: 'Roboto', sans-serif;
   font-size: $font-size-medium;
+  color: $color-dark;
   user-select: none;
   background: #EDEDED;
 
@@ -17,7 +18,6 @@ html {
   }
 }
 
-
 #root {
   width: 100vw;
   height: 100vh;
@@ -25,4 +25,9 @@ html {
   display: flex;
   flex-direction: column;
   align-items: stretch;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
 }

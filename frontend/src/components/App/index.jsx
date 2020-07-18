@@ -1,6 +1,7 @@
 import React, { useCallback, useState } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import Header from '../Header';
+import Footer from '../Footer';
 import Login from '../../pages/LoginPage';
 import Main from '../../pages/MainPage';
 import Interview from '../../pages/InterviewPage';
@@ -50,6 +51,7 @@ function App() {
             <Route path="/shop" component={Shop}/>
             <Redirect to="/"/>
           </Switch>
+          <Footer/>
         </div>
       </Switch>
     </InterviewContext.Provider>

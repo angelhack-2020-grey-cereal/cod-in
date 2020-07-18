@@ -1,0 +1,55 @@
+@import "../../common/constants";
+
+.Footer {
+  background-color: $color-darkest;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+
+  .link-container,
+  .copyright {
+    display: flex;
+    justify-content: center;
+
+    .footer-wrapper {
+      width: 100%;
+      max-width: 1024px;
+    }
+  }
+
+  .link-container {
+    background-color: #E8E8E8;
+    padding: 36px 12px;
+
+    .footer-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .left,
+      .right {
+        .link {
+          font-weight: bold;
+        }
+      }
+
+      .left {
+        .link {
+          margin-right: 32px;
+        }
+      }
+
+      .right {
+        .link {
+          font-size: $font-size-large;
+          margin-left: 8px;
+        }
+      }
+    }
+  }
+
+  .copyright {
+    background-color: #CCC;
+    padding: 12px;
+  }
+}
