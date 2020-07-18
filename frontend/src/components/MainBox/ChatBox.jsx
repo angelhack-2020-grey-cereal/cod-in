@@ -2,7 +2,7 @@ import React from "react";
 import "./stylesheet.scss";
 
 export default function ChatBox({
-  purpose,
+  role,
   user,
   result,
   time,
@@ -102,7 +102,7 @@ export default function ChatBox({
               </div>
             </>
           ),
-        }[purpose]
+        }[role]
       }
     </div>
   );

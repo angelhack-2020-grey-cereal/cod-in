@@ -9,6 +9,8 @@
   cursor: pointer;
   text-decoration: none;
   text-align: center;
+  display: flex;
+  align-items: center;
 
   &:after {
     content: '';

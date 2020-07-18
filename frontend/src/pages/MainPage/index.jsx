@@ -7,8 +7,8 @@ export default function MainPage() {
   return (
     <div className="MainPage">
       <div className="main-group">
-        <MainBox purpose="interviewee" />
-        <MainBox purpose="interviewer" />
+        <MainBox role="interviewee" />
+        <MainBox role="interviewer" />
       </div>
     </div>
   );

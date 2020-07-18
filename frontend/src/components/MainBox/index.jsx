@@ -1,55 +1,57 @@
-import React from "react";
-import ChatBox from "./ChatBox";
-import ParticipateButton from './ParticipateButton';
+import React from 'react';
+import ChatBox from './ChatBox';
 import MoreButton from './MoreButton';
 
 import intervieweeReview from '../../assets/main_comment/interviewee_review.json';
 import interviewerReview from '../../assets/main_comment/interviewer_review.json';
 
-import "./stylesheet.scss";
+import './stylesheet.scss';
+import Button from '../Button';
 
-export default function MainBox({ purpose }) {
+export default function MainBox({ role }) {
   return (
     <div className="Mainbox">
       <div className="group">
-        <ParticipateButton purpose={purpose} />
+        <Button className="participate" to="/matching/interviewer">
+          면접자로 참여하기 <span className="text-border">(+30 Angel)</span>
+        </Button>
         {
           {
-            "interviewee": (
+            'interviewee': (
               intervieweeReview.map(({ id, user, result, time, comment_from, comment_to, profile_src }) => {
                 return (
-                  <ChatBox 
+                  <ChatBox
                     key={id}
-                    purpose={purpose}
+                    role={role}
                     user={user}
                     result={result}
                     time={time}
                     comment_from={comment_from}
                     comment_to={comment_to}
                     profile_src={profile_src}
-                />
-                )
+                  />
+                );
               })
             ),
-            "interviewer": (
+            'interviewer': (
               interviewerReview.map(({ id, user, result, time, comment_from, comment_to, profile_src }) => {
                 return (
                   <ChatBox
-                    key={id} 
-                    purpose={purpose}
+                    key={id}
+                    role={role}
                     user={user}
                     result={result}
                     time={time}
                     comment_from={comment_from}
                     comment_to={comment_to}
                     profile_src={profile_src}
-                />
-                )
-              })            
-            )
-          }[purpose]
+                  />
+                );
+              })
+            ),
+          }[role]
         }
-        <MoreButton />
+        <MoreButton/>
       </div>
     </div>
   );

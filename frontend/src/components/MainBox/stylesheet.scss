@@ -1,18 +1,16 @@
 @import "../../common/constants";
 
 .Mainbox {
-  @media (max-width: $breakpoint-responsive) {
-    // display: none;
-  }
-  overflow: hidden;
-  max-height: 85%;
-  width: 500px;
-  background: $color-lighter 0% 0% no-repeat padding-box;
-  box-shadow: 0px 3px 6px $color-dark-shadow;
+  flex: 1;
+  background: $color-lighter;
+  box-shadow: 0 3px 6px $color-dark-shadow;
   border: 1px solid #CCCCCC;
   border-radius: 10px;
   opacity: 1;
-  margin: 0 12px 0 12px;
+
+  &:first-child {
+    margin-right: 24px;
+  }
 
   .group {
     overflow: hidden;
@@ -22,41 +20,10 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
-  }
 
-  .ParticipateButton {
-    height: 200px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    .text-box {
-      height: 50px;
-      display: flex;
-      flex-direction: row;
-      color: $color-primary;
-      font-size: $font-size-medium;
-
-      .icon {
-        font-size: $font-size-medium;
-      }
-
-      .text-line {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        color: $color-darkest;
-
-        .emphasis {
-          color: $color-primary;
-        }
-      }
-    }
-
-    .text-border {
-      font-weight: bold;
+    .participate {
+      white-space: pre;
+      margin: 48px;
     }
   }
 
@@ -68,7 +35,7 @@
     opacity: 1;
     padding: 16px 16px 16px 16px;
     margin-bottom: 16px;
-    
+
     .chat-header {
       height: 28px;
       display: flex;
@@ -76,27 +43,27 @@
       justify-content: space-between;
       margin-bottom: 8px;
     }
+
     .chat-container {
       height: 142px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      
+
       .chat-container-left {
         height: 60px;
         display: flex;
-        align-items: center;
         align-items: stretch;
         justify-content: flex-start;
-  
+
         .chat-interviewer {
           height: 60px;
           width: 340px;
           background: #FFFFFF 0% 0% no-repeat padding-box;
           border: 1px solid $color-secondary;
           border-radius: 10px;
-          opacity: 1;      
-  
+          opacity: 1;
+
           .chat-content-i {
             padding: 8px 8px 4px 8px;
             height: 48px;
@@ -104,18 +71,19 @@
             flex-direction: column;
             align-items: stretch;
             justify-content: space-around;
-  
+
             .name-container-i {
               display: flex;
               flex-direction: row;
               align-items: center;
+
               .profile-i {
                 height: 20px;
                 width: 20px;
                 border: 1px solid $color-borderline;
                 border-radius: 20px;
               }
-  
+
               .font-i {
                 color: $color-light;
                 font-size: $font-size-small;
@@ -124,49 +92,49 @@
           }
         }
       }
-  
+
       .chat-container-right {
 
         height: 60px;
         display: flex;
         align-items: center;
         justify-content: flex-end;
-  
+
         .chat-challenger {
           height: 60px;
           width: 340px;
           background: #FFFFFF 0% 0% no-repeat padding-box;
           border: 1px solid $color-secondary;
           border-radius: 10px;
-          opacity: 1;      
-  
+          opacity: 1;
+
           .chat-content-c {
-            padding: 8px 8px 4px 8px;          
+            padding: 8px 8px 4px 8px;
             height: 48px;
             display: flex;
             flex-direction: column;
             align-items: stretch;
-            justify-content: space-around;        
-  
+            justify-content: space-around;
+
             .name-container-c {
               display: flex;
               flex-direction: row;
               align-items: center;
               justify-content: flex-end;
-  
+
               .profile-c {
                 height: 20px;
                 width: 20px;
                 border: 1px solid $color-borderline;
                 border-radius: 20px;
               }
-  
+
               .font-c {
                 color: $color-light;
                 font-size: $font-size-small;
               }
             }
-  
+
           }
         }
       }
