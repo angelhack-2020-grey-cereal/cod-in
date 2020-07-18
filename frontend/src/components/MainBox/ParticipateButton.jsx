@@ -9,7 +9,7 @@ export default function ParticipateButton({ purpose }) {
     <div className="ParticipateButton">
       {
         {
-          "challenger": (
+          "interviewee": (
             <>
               <div className="text-box"></div>
               <Button to="/matching/interviewee">
@@ -26,7 +26,7 @@ export default function ParticipateButton({ purpose }) {
                   <div>Angel <span className="emphasis">+20 추가 획득 기회!</span></div>
                 </div>
               </div>
-              <Button to="/matching/interviewee">
+              <Button to="/matching/interviewer">
                 면접자로 참여하기 <span className="text-border">(+30 Angel)</span>
               </Button>
             </>

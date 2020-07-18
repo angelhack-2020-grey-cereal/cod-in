@@ -7,7 +7,7 @@ export default function MainPage() {
   return (
     <div className="MainPage">
       <div className="main-group">
-        <MainBox purpose="challenger" />
+        <MainBox purpose="interviewee" />
         <MainBox purpose="interviewer" />
       </div>
     </div>

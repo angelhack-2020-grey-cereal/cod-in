@@ -14,7 +14,7 @@ export default function ChatBox({
     <div className="ChatBox">
       {
         {
-          challenger: (
+          interviewee: (
             <>
               <div className="chat-header">
                 <div>

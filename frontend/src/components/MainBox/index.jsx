@@ -3,7 +3,7 @@ import ChatBox from "./ChatBox";
 import ParticipateButton from './ParticipateButton';
 import MoreButton from './MoreButton';
 
-import challengerReview from '../../assets/main_comment/challenger_review.json';
+import intervieweeReview from '../../assets/main_comment/interviewee_review.json';
 import interviewerReview from '../../assets/main_comment/interviewer_review.json';
 
 import "./stylesheet.scss";
@@ -15,8 +15,8 @@ export default function MainBox({ purpose }) {
         <ParticipateButton purpose={purpose} />
         {
           {
-            "challenger": (
-              challengerReview.map(({ id, user, result, time, comment_from, comment_to, profile_src }) => {
+            "interviewee": (
+              intervieweeReview.map(({ id, user, result, time, comment_from, comment_to, profile_src }) => {
                 return (
                   <ChatBox 
                     key={id}

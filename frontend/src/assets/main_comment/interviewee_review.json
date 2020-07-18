@@ -1,6 +1,6 @@
 [
   {
-    "id": "challenger_1",
+    "id": "interviewee_1",
     "user": "엔젤핵 님 (Tier 4)",
     "result": true,
     "time": "일주일 전",
@@ -9,7 +9,7 @@
     "profile_src": "https://i.pinimg.com/564x/0b/86/66/0b8666080b8216172fb8036b19f4e47d.jpg"
   },
   {
-    "id": "challenger_2",
+    "id": "interviewee_2",
     "user": "cereal 님 (Tier 3)",
     "result": false,
     "time": "일주일 전",
@@ -18,7 +18,7 @@
     "profile_src": "https://img.segye.com/content/image/2020/06/17/20200617507674.jpg"    
   },
   {
-    "id": "challenger_3",
+    "id": "interviewee_3",
     "user": "그레이 님 (Tier 3)",
     "result": true,
     "time": "이주일 전",

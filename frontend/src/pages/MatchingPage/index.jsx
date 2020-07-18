@@ -35,7 +35,13 @@ export default function MatchingPage({ match }) {
         </div>
         <div className="center">
           <div className="connecting">
-            면접자 연결중 ···
+            {
+              {
+                interviewee: "지원자",
+                interviewer: "면접자"
+              }[role]
+            }
+            &nbsp;연결중 ···
           </div>
           <div className="description">
             곧 매칭이 시작됩니다.<br/>나보다 높은 Tier의 면접자를 만날 수 있습니다.<br/>잠시만 기다려주세요.
