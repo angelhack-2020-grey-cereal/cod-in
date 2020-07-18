@@ -56,12 +56,8 @@
         }
   
         .buy-it {
-          width: 65px;
-          height: 27px;
-          background: $color-primary 0% 0% no-repeat padding-box;
-          color: $color-lightest;
-          border-style: none;
-          opacity: 1;      
+          font-size: $font-size-medium;
+          padding: 4px 8px;
         }
       }
     }
