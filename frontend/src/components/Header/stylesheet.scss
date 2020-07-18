@@ -1,6 +1,8 @@
+@import "../../common/constants";
+
 .Header {
-  background-color: black;
-  color: white;
+  background-color: $color-darkset;
+  color: $color-lighter;
   height: 80px;
   
 	display: flex;
@@ -23,13 +25,38 @@
     }
 
     .divider {
-      width: 200px;
+      width: 400px;
       
       display: flex;
       align-items: center;
       justify-content: space-around;
       flex-wrap: wrap; 
-    }
 
+      .divide {
+        color: #484848;
+        font-size: $font-size-medium
+      }
+
+      .profile-container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        .profile-image {
+          width: 40px;
+          height: 40px;
+          border-radius: 40px;
+          margin-right: 10px;
+        }
+
+        .user-name {
+          font-weight: bold;
+        }
+
+        .user-tier {
+          color: $color-light;
+        }
+      }
+    }
   }
 }
