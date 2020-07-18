@@ -1,12 +1,22 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { Redirect, useHistory } from 'react-router-dom';
 import './stylesheet.scss';
-import { Redirect } from 'react-router-dom';
 import Button from '../../components/Button';
 
 export default function MatchingPage({ match }) {
-  const { mode } = match.params;
+  const { role } = match.params;
+  const history = useHistory();
 
-  if (!['interview', 'review'].includes(mode)) {
+  useEffect(() => {
+    const timeoutId = window.setTimeout(() => {
+      history.push('/interview');
+    }, 8000);
+    return () => {
+      window.clearTimeout(timeoutId);
+    };
+  }, []);
+
+  if (!['interviewer', 'interviewee'].includes(role)) {
     return (
       <Redirect to="/"/>
     );
@@ -16,7 +26,7 @@ export default function MatchingPage({ match }) {
     <div className="MatchingPage">
       <div className="matching-wrapper">
         <div className="header">
-          <Button className="cancel">
+          <Button className="cancel" to="/">
             매칭 취소하기
           </Button>
         </div>

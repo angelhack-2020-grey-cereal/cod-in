@@ -38,7 +38,7 @@ function App() {
   return (
     <InterviewContext.Provider value={{ interviews, addInterview }}>
       <Switch>
-        <Route path="/matching/:mode" component={Matching}/>
+        <Route path="/matching/:role" component={Matching}/>
         <div className="App">
           <Header/>
           <Switch>

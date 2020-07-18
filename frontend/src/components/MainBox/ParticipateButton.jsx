@@ -14,7 +14,7 @@ export default function ParticipateButton() {
           <div>Angel <span className="emphasis">+20 추가 획득 기회!</span></div>
         </div>
       </div>
-      <Button>
+      <Button to="/matching/interviewee">
         지원자로 참여하기 (-30 Angel)
       </Button>
     </div>

@@ -46,14 +46,14 @@
 
       .progress-bar {
         width: 200px;
-        height: 4px;
+        height: 5px;
         display: flex;
         align-items: stretch;
         background-color: #EDEDED;
 
         .active {
           background-color: $color-primary;
-          animation: increase 3s forwards;
+          animation: increase 10s forwards;
 
           @keyframes increase {
             from {

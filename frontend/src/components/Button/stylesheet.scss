@@ -1,8 +1,27 @@
 @import "../../common/constants";
 
 .Button {
+  position: relative;
   padding: 12px 28px;
   background-color: $color-primary;
   color: $color-lighter;
   font-size: $font-size-large;
+  cursor: pointer;
+  text-decoration: none;
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 0;
+    background-color: $color-dark;
+    transition: opacity .1s;
+  }
+
+  &:active:after {
+    opacity: .2;
+  }
 }
