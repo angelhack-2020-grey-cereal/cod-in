@@ -31,3 +31,7 @@ a {
   text-decoration: none;
   color: inherit;
 }
+
+* {
+  flex-shrink: 0;
+}
