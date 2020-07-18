@@ -1,6 +1,9 @@
 @import "../../common/constants";
 
 .Mainbox {
+  @media (max-width: $breakpoint-responsive) {
+    // display: none;
+  }
   overflow: hidden;
   max-height: 85%;
   width: 500px;
@@ -123,6 +126,7 @@
       }
   
       .chat-container-right {
+
         height: 60px;
         display: flex;
         align-items: center;

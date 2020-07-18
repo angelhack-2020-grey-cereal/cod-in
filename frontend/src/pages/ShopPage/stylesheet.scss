@@ -1,0 +1,33 @@
+@import "../../common/constants";
+
+.ShopPage {
+  display: flex;
+  flex:1;
+  align-items: center;
+  justify-content: center;
+
+  .container {
+    width: 1024px;
+    height: 85%;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #00000029;
+    border: 1px solid #CCCCCC;
+    border-radius: 10px;
+    opacity: 1;
+
+    .header {
+      @media (max-width: $breakpoint-responsive) {
+        display: none;
+      }
+
+      height: 100px;
+      width: 85%;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      font-size: $font-size-large;
+      margin-left: 30px;
+    }
+  }
+}
+

@@ -25,6 +25,10 @@
     }
 
     .divider {
+      @media (max-width: $breakpoint-responsive) {
+        display: none;
+      }
+      
       width: 400px;
       
       display: flex;
