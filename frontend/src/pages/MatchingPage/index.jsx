@@ -8,11 +8,14 @@ export default function MatchingPage({ match }) {
   const history = useHistory();
 
   useEffect(() => {
-    const timeoutId = window.setTimeout(() => {
+    let timeoutId = window.setTimeout(() => {
+      timeoutId = null;
       history.push('/interview');
     }, 5000);
     return () => {
-      window.clearTimeout(timeoutId);
+      if (timeoutId !== null) {
+        window.clearTimeout(timeoutId);
+      }
     };
   }, []);
 

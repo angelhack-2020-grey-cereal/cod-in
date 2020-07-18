@@ -1,18 +1,36 @@
+@import "../../common/constants";
+
 .InterviewSidebar {
   width: 300px;
   background-color: lightgrey;
   overflow: hidden;
-
+  padding: 16px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
+
+  .countdown {
+    font-size: $font-size-largest;
+    margin-bottom: 16px;
+  }
+
+  .problem-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: auto;
+
+    .problem {
+      font-size: $font-size-large;
+    }
+  }
 
   .video {
     display: flex;
     flex-direction: column;
     align-items: center;
     border: 1px solid black;
+    margin-bottom: 16px;
   }
 
   .button {

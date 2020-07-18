@@ -1,6 +1,9 @@
-import React, { useCallback, useEffect, useRef } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import sampleIntervieweeVideo from '../../assets/videos/interviewee.mp4';
 import './stylesheet.scss';
+
+const FPS = 30;
+const MAX_SECONDS = 5;
 
 export default function InterviewSidebar({ interview, onEnd, progress, playing }) {
   const interviewing = !interview;
@@ -10,6 +13,22 @@ export default function InterviewSidebar({ interview, onEnd, progress, playing }
   const mediaRef = useRef(null);
   const videoProgress = reviewing ? progress - interview.interviewerVideoOffset : -1;
   const shouldPlayVideo = videoProgress >= 0;
+  const [seconds, setSeconds] = useState(0);
+
+  useEffect(() => {
+    const intervalId = window.setInterval(() => {
+      if (mediaRef.current) {
+        const seconds = (Date.now() - mediaRef.current.interviewStartedAt) / 1e3 | 0;
+        setSeconds(seconds);
+        if (seconds > MAX_SECONDS) {
+          handleEnd();
+        }
+      }
+    }, 1000 / FPS);
+    return () => {
+      window.clearInterval(intervalId);
+    };
+  }, [setSeconds]);
 
   useEffect(() => {
     if (reviewing) {
@@ -119,11 +138,16 @@ export default function InterviewSidebar({ interview, onEnd, progress, playing }
     }
   }, [mediaRef.current, onEnd]);
 
+  const countdown = Math.max(0, interviewing ? MAX_SECONDS - seconds : progress / 1e3 | 0);
+
   return (
     <div className="InterviewSidebar">
-      <div>
-        <h1>문제 1</h1>
-        <h1>문제 2</h1>
+      <div className="countdown">
+        {`${countdown / 60 | 0}`.padStart(2, '0')}:{`${countdown % 60}`.padStart(2, '0')}
+      </div>
+      <div className="problem-container">
+        <div className="problem">문제 1</div>
+        <div className="problem">문제 2</div>
       </div>
       <div className="video interviewer">
         {

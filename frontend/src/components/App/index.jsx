@@ -39,12 +39,12 @@ function App() {
     <InterviewContext.Provider value={{ interviews, addInterview }}>
       <Switch>
         <Route path="/matching/:role" component={Matching}/>
+        <Route path="/interview" component={Interview}/>
         <div className="App">
           <Header/>
           <Switch>
             <Route exact path="/" component={Main}/>
             <Route path="/login" component={Login}/>
-            <Route path="/interview" component={Interview}/>
             <Route path="/review/:interviewId" component={Review}/>
             <Route path="/promotion" component={Promotion}/>
             <Route path="/shop" component={Shop}/>

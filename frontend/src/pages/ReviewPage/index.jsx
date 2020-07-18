@@ -26,9 +26,7 @@ export default function ReviewPage({ match }) {
         }, 1000 / FPS);
 
         return () => {
-          if (timeoutId !== null) {
-            window.clearTimeout(timeoutId);
-          }
+          window.clearTimeout(timeoutId);
         };
       }
     }
