@@ -10,7 +10,7 @@ export default function MatchingPage({ match }) {
   useEffect(() => {
     const timeoutId = window.setTimeout(() => {
       history.push('/interview');
-    }, 8000);
+    }, 5000);
     return () => {
       window.clearTimeout(timeoutId);
     };
