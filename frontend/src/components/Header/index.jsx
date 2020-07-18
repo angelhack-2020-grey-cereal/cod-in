@@ -7,11 +7,22 @@ export default function Header() {
     <div className="Header">
       <div className="container">
         <Link to="/">
-          <img className="logo" src={require("../../images/logo.svg")} />
+          <img className="logo" src={require("../../images/logo-white.svg")} />
         </Link>
         <div className="divider">
-          <div>shop</div>
-          <div>profile</div>
+          <div>About us</div>
+          <div className="divide">|</div>
+          <div>Shop</div>
+          <div className="divide">|</div>
+          <div>Leader Board</div>
+          <div className="divide">|</div>
+          <div className="profile-container">
+            <img className="profile-image" src={require("../../images/profile.jpg")} />
+            <div>
+              <div className="user-name">Gil Dong</div>
+              <div className="user-tier">(Tier3 / 128 Angel)</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
