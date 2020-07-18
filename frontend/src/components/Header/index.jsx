@@ -2,6 +2,8 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import './stylesheet.scss';
 import { UserContext } from '../../contexts';
+import { faCoins } from '@fortawesome/free-solid-svg-icons/faCoins';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default function Header() {
   const { user: me } = useContext(UserContext);
@@ -25,7 +27,7 @@ export default function Header() {
                 <div className="name">{me.name} </div>
                 <div className="tier">(Tier {me.tier})</div>
               </div>
-              <div className="balance">{me.coin} Angel</div>
+              <div className="balance"><FontAwesomeIcon className="icon" icon={faCoins}/>{me.coin} Angel</div>
             </div>
           </div>
         </div>
