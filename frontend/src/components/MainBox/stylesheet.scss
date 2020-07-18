@@ -29,11 +29,11 @@
     justify-content: center;
 
     .text-box {
+      height: 50px;
       display: flex;
       flex-direction: row;
       color: $color-primary;
       font-size: $font-size-medium;
-      padding-bottom: 16px;
 
       .icon {
         font-size: $font-size-medium;
@@ -42,7 +42,6 @@
       .text-line {
         display: flex;
         flex-direction: column;
-        justify-content: center;
         align-items: center;
         color: $color-darkest;
 
