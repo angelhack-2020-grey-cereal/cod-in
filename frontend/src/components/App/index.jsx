@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Redirect, Route, Switch } from 'react-router-dom';
 import Header from '../Header';
 import Home from '../../pages/HomePage';
 import Login from '../../pages/LoginPage';
@@ -9,6 +9,7 @@ import Interview from '../../pages/InterviewPage';
 import Review from '../../pages/ReviewPage';
 import Promotion from '../../pages/PromotionPage';
 import Shop from '../../pages/ShopPage';
+import Matching from '../../pages/MatchingPage';
 import sampleInterviewerVideo from '../../assets/videos/interviewer.mp4';
 import sampleIntervieweeVideo from '../../assets/videos/interviewee.mp4';
 import sampleWhiteboardLogs from '../../assets/whiteboard-logs/sample0.json';
@@ -38,19 +39,23 @@ function App() {
 
   return (
     <InterviewContext.Provider value={{ interviews, addInterview }}>
-      <div className="App">
-        <Header/>
-        <Switch>
-          <Route exact path="/" component={Home}/>
-          <Route path="/login" component={Login}/>
-          <Route path="/main" component={Main}/>
-          <Route path="/match" component={Match}/>
-          <Route path="/interview" component={Interview}/>
-          <Route path="/review/:interviewId" component={Review}/>
-          <Route path="/promotion" component={Promotion}/>
-          <Route path="/shop" component={Shop}/>
-        </Switch>
-      </div>
+      <Switch>
+        <Route path="/matching/:mode" component={Matching}/>
+        <div className="App">
+          <Header/>
+          <Switch>
+            <Route exact path="/" component={Home}/>
+            <Route path="/login" component={Login}/>
+            <Route path="/main" component={Main}/>
+            <Route path="/match" component={Match}/>
+            <Route path="/interview" component={Interview}/>
+            <Route path="/review/:interviewId" component={Review}/>
+            <Route path="/promotion" component={Promotion}/>
+            <Route path="/shop" component={Shop}/>
+            <Redirect to="/"/>
+          </Switch>
+        </div>
+      </Switch>
     </InterviewContext.Provider>
   );
 }
