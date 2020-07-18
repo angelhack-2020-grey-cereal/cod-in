@@ -4,25 +4,14 @@ import Button from '../Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faGithub } from '@fortawesome/fontawesome-free-brands';
 import { UserContext } from '../../contexts';
-import { Redirect } from 'react-router-dom';
+import mockUsers from '../../assets/mocks/users';
 
 export default function SignIn() {
-  const { user, setUser } = useContext(UserContext);
+  const { setUser } = useContext(UserContext);
 
   const handleSignIn = useCallback(() => {
-    setUser({
-      name: '제이슨',
-      tier: 4,
-      avatar_url: require('../../images/profile/me.jpg'),
-      coin: 128,
-    });
+    setUser(mockUsers[0]);
   }, []);
-
-  if (user) {
-    return (
-      <Redirect to="/"/>
-    )
-  }
 
   return (
     <div className="SignIn">

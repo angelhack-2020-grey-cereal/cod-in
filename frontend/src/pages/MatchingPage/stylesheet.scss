@@ -35,8 +35,84 @@
       text-align: center;
 
       .connecting {
-        font-size: 72px;
+        line-height: 60px;
+        font-size: 60px;
+        margin-bottom: 44px;
+      }
+
+      .connected {
+        line-height: 60px;
+        font-size: 40px;
+        margin-bottom: 44px;
+      }
+
+      .avatar-container {
         margin-bottom: 56px;
+        display: flex;
+
+        .Avatar {
+          position: relative;
+          $size: 160px;
+          width: $size;
+          height: $size;
+          border-radius: $size;
+          border: 5px solid $color-primary;
+          background-size: cover;
+          background-position: center;
+          overflow: hidden;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          z-index: 0;
+          transition: opacity .5s;
+
+          .role {
+            font-weight: bold;
+          }
+
+          .name {
+            font-size: $font-size-large;
+          }
+
+          &:before {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: -1;
+            content: '';
+            background-color: rgba(0, 0, 0, .5);
+          }
+
+          &:empty {
+            opacity: .1;
+
+            &:before {
+              background: none;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              content: '?';
+              font-size: 80px;
+            }
+          }
+
+          & + .Avatar {
+            animation: matching 1s 5 ease-in-out alternate forwards;
+
+            @keyframes matching {
+              from {
+                margin-left: 64px;
+              }
+
+              to {
+                margin-left: 32px;
+              }
+            }
+          }
+        }
       }
 
       .description {

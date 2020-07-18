@@ -1,7 +1,7 @@
 import React from 'react';
 
 import InterviewList from '../../components/InterviewList';
-import interviews from '../../assets/interviews.json';
+import mockInterviews from '../../assets/mocks/interviews';
 import './stylesheet.scss';
 
 export default function MainPage() {
@@ -9,9 +9,9 @@ export default function MainPage() {
     <div className="MainPage">
       <div className="main-group">
         <InterviewList role="interviewee"
-                          interviews={interviews.filter(interview => interview.role === 'interviewee')}/>
+                       interviews={mockInterviews.filter(interview => interview.role === 'interviewee')}/>
         <InterviewList role="interviewer"
-                          interviews={interviews.filter(interview => interview.role === 'interviewer')}/>
+                       interviews={mockInterviews.filter(interview => interview.role === 'interviewer')}/>
       </div>
     </div>
   );
