@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import sampleIntervieweeVideo from '../../assets/videos/interviewee.mp4';
 import './stylesheet.scss';
+import Button from '../Button';
 
 const FPS = 30;
 const MAX_SECONDS = 120;
@@ -168,8 +169,11 @@ export default function InterviewSidebar({ interview, onEnd, progress, playing }
         }
       </div>
       {
-        interviewing &&
-        <button onClick={handleEnd}>End the Interview</button>
+        interviewing ? (
+          <Button onClick={handleEnd}>End the Interview</Button>
+        ) : (
+          <Button to="/">Back to Main</Button>
+        )
       }
     </div>
   );

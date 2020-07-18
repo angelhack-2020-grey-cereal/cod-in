@@ -3,6 +3,7 @@ import './stylesheet.scss';
 import { ControlledEditor as MonacoEditor, monaco } from '@monaco-editor/react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+import Button from '../Button';
 
 monaco
   .init()
@@ -75,7 +76,7 @@ export default function InterviewContent({
       {
         reviewing &&
         <div className="controls">
-          <button className="play" onClick={playing ? onPause : onPlay}>{playing ? 'Pause' : 'Play'}</button>
+          <Button className="play" onClick={playing ? onPause : onPlay}>{playing ? 'Pause' : 'Play'}</Button>
           <div className="progress-bar"
                onMouseDown={handleMouseDown}
                ref={progressBarRef}>

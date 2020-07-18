@@ -7,12 +7,11 @@
   align-items: stretch;
 
   .controls {
-    height: 36px;
     display: flex;
     align-items: stretch;
 
     .play {
-      width: 80px;
+      width: 48px;
     }
 
     .progress-bar {
@@ -25,12 +24,12 @@
         display: flex;
         justify-content: flex-end;
         align-items: stretch;
-        background-color: green;
+        background-color: $color-secondary;
 
         .playhead {
           width: 16px;
           margin-right: -8px;
-          background-color: lightgreen;
+          background-color: $color-primary;
         }
       }
     }
