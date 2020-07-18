@@ -1,10 +1,11 @@
 import React, { useCallback, useContext, useMemo } from 'react';
+import * as uuid from 'uuid';
+import { useHistory } from 'react-router-dom';
 import InterviewSidebar from '../../components/InterviewSidebar';
 import InterviewContent from '../../components/InterviewContent';
 import './stylesheet.scss';
 import { InterviewContext } from '../../contexts';
-import * as uuid from 'uuid';
-import { useHistory } from 'react-router-dom';
+import sampleIntervieweeVideo from '../../assets/videos/interviewee.mp4';
 
 const defaultProblem = 'State the problem here.';
 const defaultCode = `function solution() {
@@ -18,13 +19,14 @@ export default function InterviewPage() {
   const start = useMemo(() => Date.now(), []);
   const history = useHistory();
 
-  const handleEnd = useCallback(({ videoURL, videoOffset, duration }) => {
+  const handleEnd = useCallback(({ interviewerVideoURL, interviewerVideoOffset, duration }) => {
     const id = uuid.v4();
     addInterview({
       id,
       duration,
-      videoOffset,
-      videoURL,
+      interviewerVideoOffset,
+      interviewerVideoURL,
+      intervieweeVideoURL: sampleIntervieweeVideo,
       whiteboardLogs,
       ideLogs,
     });

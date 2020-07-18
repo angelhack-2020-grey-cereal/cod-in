@@ -13,9 +13,6 @@ export default function InterviewContent({
   const progressBarRef = useRef(null);
 
   const handleMouseDown = useCallback(e => {
-    const prevPlaying = playing;
-    onPause();
-
     const handleMouseMove = e => {
       const progressBar = progressBarRef.current;
       const rect = progressBar.getBoundingClientRect();
@@ -32,6 +29,10 @@ export default function InterviewContent({
         onPlay();
       }
     };
+
+    const prevPlaying = playing;
+    onPause();
+    handleMouseMove(e);
 
     document.addEventListener('mousemove', handleMouseMove);
     document.addEventListener('mouseup', handleMouseUp);

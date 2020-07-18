@@ -8,11 +8,11 @@
   align-items: center;
   justify-content: space-around;
 
-  .webcam {
+  .video {
     display: flex;
     flex-direction: column;
     align-items: center;
-    border-style: solid;
+    border: 1px solid black;
   }
 
   .button {

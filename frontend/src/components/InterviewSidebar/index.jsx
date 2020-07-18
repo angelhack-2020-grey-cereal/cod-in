@@ -1,35 +1,51 @@
 import React, { useCallback, useEffect, useRef } from 'react';
+import sampleIntervieweeVideo from '../../assets/videos/interviewee.mp4';
 import './stylesheet.scss';
 
 export default function InterviewSidebar({ interview, onEnd, progress, playing }) {
   const interviewing = !interview;
   const reviewing = !interviewing;
-  const webcamRef = useRef(null);
+  const interviewerVideoRef = useRef(null);
+  const intervieweeVideoRef = useRef(null);
   const mediaRef = useRef(null);
-  const videoProgress = reviewing ? progress - interview.videoOffset : -1;
+  const videoProgress = reviewing ? progress - interview.interviewerVideoOffset : -1;
   const shouldPlayVideo = videoProgress >= 0;
 
   useEffect(() => {
     if (reviewing) {
-      const player = webcamRef.current;
-      player.currentTime = videoProgress / 1e3;
+      const interviewerVideo = interviewerVideoRef.current;
+      interviewerVideo.currentTime = videoProgress / 1e3;
     }
   }, [interview, shouldPlayVideo, playing]);
 
   useEffect(() => {
     if (reviewing) {
-      const player = webcamRef.current;
+      const intervieweeVideo = intervieweeVideoRef.current;
+      intervieweeVideo.currentTime = progress / 1e3;
+    }
+  }, [interview, playing]);
+
+  useEffect(() => {
+    if (reviewing) {
+      const interviewerVideo = interviewerVideoRef.current;
       if (playing && shouldPlayVideo) {
-        player.play();
+        interviewerVideo.play();
       } else {
-        player.pause();
+        interviewerVideo.pause();
+      }
+
+      const intervieweeVideo = intervieweeVideoRef.current;
+      if (playing) {
+        intervieweeVideo.play();
+      } else {
+        intervieweeVideo.pause();
       }
     }
   }, [interview, shouldPlayVideo, playing]);
 
   useEffect(() => {
     if (interviewing) {
-      const player = webcamRef.current;
+      const player = interviewerVideoRef.current;
       const recordedChunks = [];
       const interviewStartedAt = Date.now();
 
@@ -92,14 +108,14 @@ export default function InterviewSidebar({ interview, onEnd, progress, playing }
         const blob = new Blob(recordedChunks, {
           type: 'video/webm',
         });
-        const videoURL = URL.createObjectURL(blob);
-        const videoOffset = videoStartedAt - interviewStartedAt;
+        const interviewerVideoURL = URL.createObjectURL(blob);
+        const interviewerVideoOffset = videoStartedAt - interviewStartedAt;
         const duration = interviewEndedAt - interviewStartedAt;
-        onEnd({ videoURL, videoOffset, duration });
+        onEnd({ interviewerVideoURL, interviewerVideoOffset, duration });
       };
       disposeMedia();
     } else {
-      onEnd({ videoURL: null, videoOffset: 0, duration: 0 });
+      onEnd({ interviewerVideoURL: null, interviewerVideoOffset: 0, duration: 0 });
     }
   }, [mediaRef.current, onEnd]);
 
@@ -109,12 +125,21 @@ export default function InterviewSidebar({ interview, onEnd, progress, playing }
         <h1>문제 1</h1>
         <h1>문제 2</h1>
       </div>
-      <div className="webcam">
+      <div className="video interviewer">
         {
           interviewing ? (
-            <video ref={webcamRef} width={250} autoPlay muted/>
+            <video ref={interviewerVideoRef} width={250} autoPlay muted/>
           ) : (
-            <video ref={webcamRef} src={interview.videoURL} width={250}/>
+            <video ref={interviewerVideoRef} src={interview.interviewerVideoURL} width={250}/>
+          )
+        }
+      </div>
+      <div className="video interviewee">
+        {
+          interviewing ? (
+            <video ref={intervieweeVideoRef} src={sampleIntervieweeVideo} width={250} autoPlay muted/>
+          ) : (
+            <video ref={intervieweeVideoRef} src={interview.intervieweeVideoURL} width={250}/>
           )
         }
       </div>

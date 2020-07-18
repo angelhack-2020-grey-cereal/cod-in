@@ -9,9 +9,10 @@ import Interview from '../../pages/InterviewPage';
 import Review from '../../pages/ReviewPage';
 import Promotion from '../../pages/PromotionPage';
 import Shop from '../../pages/ShopPage';
-import videoSample0 from '../../assets/videos/sample0.mp4';
-import whiteboardLogsSample0 from '../../assets/whiteboard-logs/sample0.json';
-import ideLogsSample0 from '../../assets/ide-logs/sample0.json';
+import sampleInterviewerVideo from '../../assets/videos/interviewer.mp4';
+import sampleIntervieweeVideo from '../../assets/videos/interviewee.mp4';
+import sampleWhiteboardLogs from '../../assets/whiteboard-logs/sample0.json';
+import sampleIdeLogsSample from '../../assets/ide-logs/sample0.json';
 import { InterviewContext } from '../../contexts';
 import './stylesheet.scss';
 
@@ -20,10 +21,11 @@ function App() {
     'sample0': {
       id: 'sample0',
       duration: 120000,
-      videoOffset: 0,
-      videoURL: videoSample0,
-      whiteboardLogs: whiteboardLogsSample0,
-      ideLogs: ideLogsSample0,
+      interviewerVideoOffset: 0,
+      interviewerVideoURL: sampleInterviewerVideo,
+      intervieweeVideoURL: sampleIntervieweeVideo,
+      whiteboardLogs: sampleWhiteboardLogs,
+      ideLogs: sampleIdeLogsSample,
     },
   });
 
