@@ -37,8 +37,8 @@ export default function MatchingPage({ match }) {
           <div className="connecting">
             {
               {
-                interviewee: "지원자",
-                interviewer: "면접자"
+                interviewee: "면접자",
+                interviewer: "지원자"
               }[role]
             }
             &nbsp;연결중 ···
