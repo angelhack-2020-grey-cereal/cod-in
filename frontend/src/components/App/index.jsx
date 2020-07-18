@@ -4,6 +4,7 @@ import Header from '../Header';
 import Footer from '../Footer';
 import Login from '../../pages/LoginPage';
 import Main from '../../pages/MainPage';
+import Landing from '../../pages/LandingPage';
 import Interview from '../../pages/InterviewPage';
 import Review from '../../pages/ReviewPage';
 import Promotion from '../../pages/PromotionPage';
@@ -29,12 +30,7 @@ function App() {
     },
   });
 
-  const [user, setUser] = useState({
-    name: '제이슨',
-    tier: 4,
-    avatar_url: require('../../images/profile/me.jpg'),
-    coin: 128,
-  });
+  const [user, setUser] = useState(null);
 
   const addInterview = useCallback(interview => {
     setInterviews({
@@ -53,7 +49,7 @@ function App() {
           <div className="App">
             <Header/>
             <Switch>
-              <Route exact path="/" component={Main}/>
+              <Route exact path="/" component={user ?Main:Landing}/>
               <Route path="/login" component={Login}/>
               <Route path="/promotion" component={Promotion}/>
               <Route path="/shop" component={Shop}/>

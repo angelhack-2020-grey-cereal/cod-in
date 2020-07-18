@@ -1,0 +1,43 @@
+@import "../../common/constants";
+
+.SignIn {
+  padding: 48px 72px 72px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .title {
+    font-size: $font-size-larger;
+  }
+
+  .divider {
+    width: 36px;
+    height: 1px;
+    background-color: $color-light;
+    margin: 40px 0;
+  }
+
+  .Button {
+    width: 316px;
+    height: 50px;
+
+    .icon {
+      margin-right: 8px;
+      margin-bottom: 2px;
+    }
+
+    &.fb-button {
+      background-color: #3B5998;
+      margin-bottom: 16px;
+    }
+
+    &.gh-button {
+      background-color: #212121;
+    }
+  }
+
+  .or {
+    margin: 36px 0;
+    font-size: $font-size-large;
+  }
+}

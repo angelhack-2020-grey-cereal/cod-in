@@ -3,6 +3,7 @@
 .Button {
   position: relative;
   padding: 12px 28px;
+  border: 1px solid $color-primary;
   background-color: $color-primary;
   color: $color-lightest;
   font-size: $font-size-large;
@@ -11,6 +12,13 @@
   text-align: center;
   display: flex;
   align-items: center;
+  justify-content: center;
+  transition: all .1s;
+
+  &:not(:hover).secondary {
+    background-color: $color-lightest;
+    color: $color-primary;
+  }
 
   &:after {
     content: '';

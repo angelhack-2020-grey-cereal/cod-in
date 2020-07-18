@@ -1,0 +1,42 @@
+@import "../../common/constants";
+
+.LandingPage {
+  flex: 1;
+  background-image: url(../../images/landing.png);
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .content-wrapper {
+    width: 100%;
+    max-width: 1024px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    .text-container {
+      margin-top: 48px;
+      color: $color-lightest;
+
+      .slogan {
+        font-size: 56px;
+        margin-bottom: 48px;
+
+        .bold {
+          font-weight: bold;
+        }
+      }
+
+      .description {
+        font-size: $font-size-larger;
+      }
+    }
+
+    .dialog {
+      @include card;
+    }
+  }
+}
+
