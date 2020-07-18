@@ -7,7 +7,7 @@ export default function Header() {
     <div className="Header">
       <div className="container">
         <Link to="/">
-          <img className="logo" src={require("../../images/logo-white.svg")} />
+          <img className="logo" src={require("../../images/logo-white.svg")} alt="logo" />
         </Link>
         <div className="divider">
           <div>About us</div>
@@ -17,7 +17,7 @@ export default function Header() {
           <div>Leader Board</div>
           <div className="divide">|</div>
           <div className="profile-container">
-            <img className="profile-image" src={require("../../images/profile.jpg")} />
+            <img className="profile-image" src={require("../../images/profile/me.jpg")} alt="profile" />
             <div>
               <div className="user-name">Gil Dong</div>
               <div className="user-tier">(Tier3 / 128 Angel)</div>

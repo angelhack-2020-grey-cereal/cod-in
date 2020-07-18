@@ -7,7 +7,7 @@ export default function MoreButton() {
   return (
     <div className="MoreButton">
       더보기
-      <FontAwesomeIcon calssName="chevronDown" icon={faChevronDown} size="lg" />
+      <FontAwesomeIcon icon={faChevronDown} size="lg" />
     </div>
   );
 }
