@@ -170,7 +170,7 @@ export default function InterviewSidebar({ interview, onEnd, progress, playing }
       </div>
       {
         interviewing ? (
-          <Button onClick={handleEnd}>End the Interview</Button>
+          <Button onClick={handleEnd}>End Interview</Button>
         ) : (
           <Button to="/">Back to Main</Button>
         )
