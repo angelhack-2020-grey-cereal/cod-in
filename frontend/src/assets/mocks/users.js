@@ -1,4 +1,4 @@
-export default [
+const users = [
   {
     name: '제이슨',
     tier: 4,
@@ -19,3 +19,7 @@ export default [
     avatar_url: 'https://www.mandlpaints.com/wp-content/uploads/2018/09/Ash-Grey.jpg',
   },
 ];
+
+export default users;
+
+export const [mockUser, mockInterviewee] = users;

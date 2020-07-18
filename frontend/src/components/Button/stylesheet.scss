@@ -20,6 +20,11 @@
     color: $color-primary;
   }
 
+  &.critical {
+    border-color: $color-critical;
+    background-color: $color-critical;
+  }
+
   &:after {
     content: '';
     position: absolute;

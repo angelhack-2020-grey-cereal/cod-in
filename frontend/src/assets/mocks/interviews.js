@@ -1,12 +1,26 @@
 import mockUsers from './users';
+import whiteboardLogs from './whiteboardLogs';
+import ideLogs from './ideLogs';
+
+const DAY = 86400 * 1e3;
+
+const mockInterviewBase = {
+  duration: 120000,
+  interviewerVideoOffset: 0,
+  interviewerVideoURL: require('../videos/interviewer.mp4'),
+  intervieweeVideoURL: require('../videos/interviewee.mp4'),
+  whiteboardLogs: whiteboardLogs[0],
+  ideLogs: ideLogs[0],
+};
 
 export default [
   {
     id: 'interviewee_1',
     role: 'interviewee',
+    ...mockInterviewBase,
     user: mockUsers[1],
     accepted: true,
-    time: '1주 전',
+    timestamp: Date.now() - 7 * DAY,
     comments: [
       {
         me: false,
@@ -19,11 +33,12 @@ export default [
     ],
   },
   {
+    ...mockInterviewBase,
     id: 'interviewee_2',
     role: 'interviewee',
     user: mockUsers[2],
     accepted: false,
-    time: '1주 전',
+    timestamp: Date.now() - 7 * DAY,
     comments: [
       {
         me: false,
@@ -36,11 +51,12 @@ export default [
     ],
   },
   {
+    ...mockInterviewBase,
     id: 'interviewee_3',
     role: 'interviewee',
     user: mockUsers[3],
     accepted: true,
-    time: '2주 전',
+    timestamp: Date.now() - 7 * DAY,
     comments: [
       {
         me: false,
@@ -53,11 +69,12 @@ export default [
     ],
   },
   {
+    ...mockInterviewBase,
     id: 'interviewee_1',
     role: 'interviewer',
     user: mockUsers[1],
     accepted: true,
-    time: '1주 전',
+    timestamp: Date.now() - 7 * DAY,
     comments: [
       {
         me: true,
@@ -70,11 +87,12 @@ export default [
     ],
   },
   {
+    ...mockInterviewBase,
     id: 'interviewee_2',
     role: 'interviewer',
     user: mockUsers[2],
     accepted: false,
-    time: '1주 전',
+    timestamp: Date.now() - 7 * DAY,
     comments: [
       {
         me: true,
@@ -87,11 +105,12 @@ export default [
     ],
   },
   {
+    ...mockInterviewBase,
     id: 'interviewee_3',
     role: 'interviewer',
     user: mockUsers[3],
     accepted: true,
-    time: '2주 전',
+    timestamp: Date.now() - 7 * DAY,
     comments: [
       {
         me: true,

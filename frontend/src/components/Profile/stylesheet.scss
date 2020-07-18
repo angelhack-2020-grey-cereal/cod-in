@@ -1,0 +1,25 @@
+@import "../../common/constants";
+
+.Profile {
+  display: flex;
+  align-items: center;
+
+  .avatar {
+    $size: 20px;
+    width: $size;
+    height: $size;
+    border-radius: $size;
+    background-position: center;
+    background-size: cover;
+    margin-right: 4px;
+    border: 1px solid $color-lighter;
+  }
+
+  .role {
+    font-weight: bold;
+  }
+
+  .label {
+    color: $color-light;
+  }
+}

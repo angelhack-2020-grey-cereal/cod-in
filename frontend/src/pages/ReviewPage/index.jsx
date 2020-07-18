@@ -10,7 +10,7 @@ const FPS = 30;
 export default function ReviewPage({ match }) {
   const { interviews } = useContext(InterviewContext);
   const { interviewId } = match.params;
-  const interview = interviews[interviewId];
+  const interview = interviews.find(interview => interview.id === interviewId);
   const [progress, setProgress] = useState(0);
   const [playing, setPlaying] = useState(false);
 

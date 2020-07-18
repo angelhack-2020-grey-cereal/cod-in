@@ -1,8 +1,10 @@
 import React, { useContext } from 'react';
+import moment from 'moment';
 import './stylesheet.scss';
 import { UserContext } from '../../contexts';
 import { classes } from '../../common/utils';
 import { Link } from 'react-router-dom';
+import Profile from '../Profile';
 
 export default function InterviewSummary({ interview }) {
   const { user: me } = useContext(UserContext);
@@ -10,7 +12,7 @@ export default function InterviewSummary({ interview }) {
     role,
     user: you,
     accepted,
-    time,
+    timestamp,
     comments,
   } = interview;
 
@@ -19,7 +21,7 @@ export default function InterviewSummary({ interview }) {
       <div className="chat-header">
         <div>
           <span
-            className="text-bold">{you.name} (Tier {you.tier}) 님</span>{role === 'interviewee' ? '으로부터' : '에게'}&nbsp;
+            className="text-bold">{you.name} (Tier {you.tier}) </span>님{role === 'interviewee' ? '으로부터' : '에게'}&nbsp;
           {accepted ? (
             <span className="text-primary text-bold">합격</span>
           ) : (
@@ -27,7 +29,7 @@ export default function InterviewSummary({ interview }) {
           )}
           을 {role === 'interviewee' ? '받으셨습니다.' : '주셨습니다.'}
         </div>
-        <div className="text-gray">{time}{' >'}</div>
+        <div className="text-gray">{moment(timestamp).fromNow()}</div>
       </div>
       <div className="chat-container">
         {
@@ -39,10 +41,8 @@ export default function InterviewSummary({ interview }) {
                 <div className="chat-text">
                   {comment.value}
                 </div>
-                <div className="user">
-                  <div className="avatar" style={{ backgroundImage: `url(${user.avatar_url})` }}/>
-                  <div className="label">{user.name} (Tier {user.tier})</div>
-                </div>
+                <Profile user={user}
+                         role={comment.me ? role : (role === 'interviewee' ? 'interviewer' : 'interviewee')}/>
               </div>
             );
           })
