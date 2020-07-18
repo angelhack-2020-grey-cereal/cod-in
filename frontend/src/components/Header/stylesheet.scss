@@ -41,6 +41,10 @@
         height: 16px;
         background-color: rgba(#707070, 0.7);
       }
+
+      &:last-child:after {
+        content: none;
+      }
     }
 
     .user {

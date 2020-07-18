@@ -18,3 +18,9 @@ $font-size-larger: 24px;
 $font-size-largest: 36px;
 
 $breakpoint-responsive: 720px;
+
+@mixin card {
+  background-color: $color-lightest;
+  box-shadow: 0 3px 6px $color-dark-shadow;
+  border: 1px solid #CCCCCC;
+}

@@ -1,11 +1,8 @@
 @import "../../common/constants";
 
 .InterviewList {
+  @include card;
   flex: 1;
-  background-color: $color-lightest;
-  box-shadow: 0 3px 6px $color-dark-shadow;
-  border: 1px solid #CCCCCC;
-  opacity: 1;
   padding: 20px;
   display: flex;
   flex-direction: column;
