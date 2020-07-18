@@ -1,6 +1,33 @@
 import React from "react";
 import "./stylesheet.scss";
 
+const books = [
+  {
+    title: "알고리즘 문제해결 전략",
+    price: 1024,
+    src: "../../images/books/algorithm.png"
+  },  
+  {
+    title: "알고리즘 문제해결 전략",
+    price: 1024,
+    src: "../../images/books/algorithm.png"
+  },  
+  {
+    title: "알고리즘 문제해결 전략",
+    price: 1024,
+    src: "../../images/books/algorithm.png"
+  },  
+  {
+    title: "알고리즘 문제해결 전략",
+    price: 1024,
+    src: "../../images/books/algorithm.png"
+  },  
+  {
+    title: "알고리즘 문제해결 전략",
+    price: 1024,
+    src: "../../images/books/algorithm.png"
+  }
+]
 export default function ShopPage() {
   const category = [
     "전체",
@@ -27,7 +54,11 @@ export default function ShopPage() {
           })}
         </div>
         <div className="content">
-          
+         {books.map((value, index) => {
+           return (
+             <img className="image-each" key="index" src={value.src} />
+           )
+         })}
         </div>
       </div>
     </div>

@@ -18,6 +18,26 @@
   .participate {
     white-space: pre;
     margin: 48px;
+
+    &:before {
+      // transform: rotate(20deg);
+      content: "1.5 x";
+      font-size: 12px;
+      width: 40px;
+      height: 18px;
+      line-height: 18px;
+      text-align: center;
+      display: block;
+      border-radius: 5%;
+      background: #D7322D;
+      // border: 1px solid #FF9429;
+      box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
+      color: $color-lighter;
+      position: absolute;
+      top: -8px;
+      left: auto;
+      right: -15px;
+    }
   }
 
   .InterviewSummary {
@@ -124,6 +144,12 @@
     font-size: $font-size-medium;
     border-top: 1px solid $color-borderline;
     padding: 32px 0;
+    cursor: pointer;
+    transition: color .1s;
+
+    &:hover {
+      color: $color-secondary;
+    }
 
     .label {
       font-size: $font-size-large;
