@@ -1,13 +1,15 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import "./stylesheet.scss";
+import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
+import './stylesheet.scss';
+import { UserContext } from '../../contexts';
 
 export default function Header() {
+  const { user: me } = useContext(UserContext);
   return (
     <div className="Header">
       <div className="container">
         <Link to="/">
-          <img className="logo" src={require("../../images/logo-white.png")} alt="logo" />
+          <img className="logo" src={require('../../images/logo-white.png')} alt="logo"/>
         </Link>
         <div className="divider">
           <div>About us</div>
@@ -16,11 +18,14 @@ export default function Header() {
           <div className="divide">|</div>
           <div>Leader Board</div>
           <div className="divide">|</div>
-          <div className="profile-container">
-            <img className="profile-image" src={require("../../images/profile/me.jpg")} alt="profile" />
-            <div>
-              <div className="user-name">Gil Dong</div>
-              <div className="user-tier">(Tier3 / 128 Angel)</div>
+          <div className="user">
+            <div className="avatar" style={{ backgroundImage: `url(${me.avatar_url})` }}/>
+            <div className="info">
+              <div className="label">
+                <div className="name">{me.name} </div>
+                <div className="tier">(Tier {me.tier})</div>
+              </div>
+              <div className="balance">{me.coin} Angel</div>
             </div>
           </div>
         </div>

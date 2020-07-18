@@ -13,7 +13,6 @@ import sampleInterviewerVideo from '../../assets/videos/interviewer.mp4';
 import sampleIntervieweeVideo from '../../assets/videos/interviewee.mp4';
 import sampleWhiteboardLogs from '../../assets/whiteboard-logs/sample0.json';
 import sampleIdeLogsSample from '../../assets/ide-logs/sample0.json';
-import profileMe from '../../images/profile/me.jpg';
 import { InterviewContext, UserContext } from '../../contexts';
 import './stylesheet.scss';
 
@@ -33,7 +32,8 @@ function App() {
   const [user, setUser] = useState({
     name: '제이슨',
     tier: 4,
-    avatar_url: profileMe,
+    avatar_url: require('../../images/profile/me.jpg'),
+    coin: 128,
   });
 
   const addInterview = useCallback(interview => {

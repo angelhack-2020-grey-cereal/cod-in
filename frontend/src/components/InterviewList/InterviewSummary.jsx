@@ -40,7 +40,7 @@ export default function InterviewSummary({ interview }) {
                 </div>
                 <div className="user">
                   <div className="avatar" style={{ backgroundImage: `url(${user.avatar_url})` }}/>
-                  <div className="label">&nbsp;{user.name} (Tier {user.tier})</div>
+                  <div className="label">{user.name} (Tier {user.tier})</div>
                 </div>
               </div>
             );
