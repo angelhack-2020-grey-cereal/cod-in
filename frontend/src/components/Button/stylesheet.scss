@@ -1,0 +1,8 @@
+@import "../../common/constants";
+
+.Button {
+  padding: 12px 28px;
+  background-color: $color-primary;
+  color: $color-lighter;
+  font-size: $font-size-large;
+}

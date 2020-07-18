@@ -19,6 +19,10 @@
     .header {
       align-self: flex-end;
       display: flex;
+
+      .cancel {
+        opacity: .4;
+      }
     }
 
     .center {
@@ -48,8 +52,18 @@
         background-color: #EDEDED;
 
         .active {
-          width: 40%;
           background-color: $color-primary;
+          animation: increase 3s forwards;
+
+          @keyframes increase {
+            from {
+              width: 0;
+            }
+
+            to {
+              width: 100%;
+            }
+          }
         }
       }
     }
@@ -72,7 +86,7 @@
       }
 
       .footer-text {
-        &:after{
+        &:after {
           white-space: pre;
           content: ' | CodIn Front-end Developers';
           color: $color-dark;
