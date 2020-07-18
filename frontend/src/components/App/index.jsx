@@ -1,7 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import Header from '../Header';
-import Home from '../../pages/HomePage';
 import Login from '../../pages/LoginPage';
 import Main from '../../pages/MainPage';
 import Interview from '../../pages/InterviewPage';
@@ -43,9 +42,8 @@ function App() {
         <div className="App">
           <Header/>
           <Switch>
-            <Route exact path="/" component={Home}/>
+            <Route exact path="/" component={Main}/>
             <Route path="/login" component={Login}/>
-            <Route path="/main" component={Main}/>
             <Route path="/interview" component={Interview}/>
             <Route path="/review/:interviewId" component={Review}/>
             <Route path="/promotion" component={Promotion}/>
