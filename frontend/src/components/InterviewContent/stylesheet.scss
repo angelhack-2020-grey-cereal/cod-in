@@ -1,3 +1,5 @@
+@import "../../common/constants";
+
 .InterviewContent {
   flex: 1;
   display: flex;
@@ -51,9 +53,23 @@
         width: 100%;
         height: 100%;
 
+        &, * {
+          border-color: $color-darker !important;
+        }
+
+        .ql-toolbar {
+          &, * {
+            background-color: $color-dark !important;
+            color: white !important;
+            stroke: white !important;
+          }
+        }
+
         .ql-container {
           overflow: hidden;
           flex: 1;
+          background-color: $color-dark;
+          color: $color-lighter;
 
           .ql-editor {
             width: 100%;

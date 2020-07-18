@@ -1,8 +1,22 @@
 import React, { useCallback, useRef } from 'react';
 import './stylesheet.scss';
-import { ControlledEditor as MonacoEditor } from '@monaco-editor/react';
+import { ControlledEditor as MonacoEditor, monaco } from '@monaco-editor/react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+
+monaco
+  .init()
+  .then(monaco => {
+    monaco.editor.defineTheme('cod-in', {
+      base: 'vs-dark',
+      inherit: true,
+      rules: [{ background: '333333' }],
+      colors: {
+        'editor.background': '#333333',
+      },
+    });
+  })
+  .catch(error => console.error('An error occurred during initialization of Monaco: ', error));
 
 export default function InterviewContent({
                                            interview, onAddIdeLog, onAddWhiteboardLog, defaultProblem, defaultCode,
@@ -48,6 +62,14 @@ export default function InterviewContent({
     interview.ideLogs[0]
   );
 
+  const monacoEditorProps = {
+    language: 'javascript',
+    theme: 'cod-in',
+    options: {
+      minimap: { enabled: false },
+    },
+  };
+
   return (
     <div className="InterviewContent">
       {
@@ -80,11 +102,11 @@ export default function InterviewContent({
         <div className="ide">
           {
             interviewing ? (
-              <MonacoEditor language="javascript"
+              <MonacoEditor {...monacoEditorProps}
                             value={defaultCode}
                             onChange={(ev, value) => onAddIdeLog(value)}/>
             ) : (
-              <MonacoEditor language="javascript"
+              <MonacoEditor {...monacoEditorProps}
                             value={ide.value}
                             options={{ readOnly: true }}/>
             )

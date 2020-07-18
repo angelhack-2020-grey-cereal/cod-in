@@ -2,12 +2,13 @@
 
 .InterviewSidebar {
   width: 300px;
-  background-color: lightgrey;
   overflow: hidden;
   padding: 16px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: $color-darker;
+  color: $color-lighter;
 
   .countdown {
     font-size: $font-size-largest;
