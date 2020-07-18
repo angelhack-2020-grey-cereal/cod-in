@@ -1,7 +1,21 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono:300,700%7CRoboto:100,400,700&display=swap');
+
 html,
 body {
   margin: 0;
 }
+
+html {
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  user-select: none;
+  background: #EDEDED 0% 0% no-repeat padding-box;
+
+  &.mobile {
+    font-size: 18px;
+  }
+}
+
 
 #root {
   width: 100vw;

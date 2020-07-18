@@ -1,12 +1,13 @@
+@import "../../common/constants";
+
 .Mainbox {
   max-height: 85%;
   width: 500px;
-  background: #FFFFFF 0% 0% no-repeat padding-box;
-  box-shadow: 0px 3px 6px #00000029;
+  background: $color-lighter 0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 6px $color-dark-shadow;
   border: 1px solid #CCCCCC;
   border-radius: 10px;
   opacity: 1;
-    
   margin: 0 12px 0 12px;
 
   .group {
@@ -30,12 +31,12 @@
     .text-box {
       display: flex;
       flex-direction: row;
-      color: #66BB6A;
-      font-size: 16px;
+      color: $color-primary;
+      font-size: $font-size-medium;
       padding-bottom: 16px;
 
       .icon {
-        font-size: 16px;
+        font-size: $font-size-medium;
       }
 
       .text-line {
@@ -43,10 +44,10 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        color: #000000;
+        color: $color-darkset;
 
         .emphasis {
-          color: #66BB6A
+          color: $color-primary;
         }
       }
     }
@@ -54,10 +55,10 @@
     .participate-button {
       width: 384px;
       height: 48px;
-      background: #66BB6A 0% 0% no-repeat padding-box;
+      background: $color-primary 0% 0% no-repeat padding-box;
       opacity: 1;
-      color: #ffffff;
-      font-size: 20px;
+      color: $color-lighter;
+      font-size: $font-size-large;
       border: 0px;
     }
   }
@@ -65,7 +66,7 @@
   .ChatBox {
     width: 484px;
     height: 256px;
-    background: #FFFFFF 0% 0% no-repeat padding-box;
+    background: $color-lighter 0% 0% no-repeat padding-box;
     border: 1px solid #EDEDED;
     opacity: 1;
   }
@@ -76,7 +77,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    color: #66BB6A;
-    font-size: 16px;
+    color: $color-primary;
+    font-size: $font-size-medium;
   }
 }
