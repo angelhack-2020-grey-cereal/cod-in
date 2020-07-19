@@ -31,3 +31,12 @@
         - 메인 브랜치에 커밋이 푸쉬될때 마다 자동으로 Docker 이미지를 빌드하여 Docker Hub에 배포해주는 CD 파이프라인을 구현하였습니다.
     - [Ainize](https://ainize.ai/)
         - Docker Hub에 배포된 이미지를 웹에 호스팅해주는 서비스입니다.
+
+## Meet the Crew
+
+:) | Name (Alphabetical) | Primary Roles
+--- | --- | ---
+<img src=https://ca.slack-edge.com/T016CH03QA3-U017869R16V-477030032bc4-512 width="50"> | 김수정 | 기획 및 발표
+<img src=https://ca.slack-edge.com/T016CH03QA3-U016GNQRR0F-c27fa5860659-512 width="50"> | 박진서 | 기획 및 개발
+<img src=https://ca.slack-edge.com/T016CH03QA3-U016XDM5WCA-7208a91245f6-512 width="50"> | 이용재 | 개발 및 데모
+<img src=https://ca.slack-edge.com/T016CH03QA3-U016PHWFT70-ed2827ac41e2-512 width="50"> | 임희라 | 디자인
