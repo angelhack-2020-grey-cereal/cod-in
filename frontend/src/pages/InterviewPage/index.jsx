@@ -5,7 +5,7 @@ import InterviewSidebar from '../../components/InterviewSidebar';
 import InterviewContent from '../../components/InterviewContent';
 import './stylesheet.scss';
 import { InterviewContext } from '../../contexts';
-import sampleIntervieweeVideo from '../../assets/videos/interviewee.mp4';
+import { mockInterviewee } from '../../assets/mocks/users';
 
 const defaultProblem = 'State the problem here.';
 const defaultCode = `function solution() {
@@ -23,12 +23,17 @@ export default function InterviewPage() {
     const id = uuid.v4();
     addInterview({
       id,
+      role: 'interviewer',
       duration,
       interviewerVideoOffset,
       interviewerVideoURL,
-      intervieweeVideoURL: sampleIntervieweeVideo,
+      intervieweeVideoURL: require('../../assets/videos/interviewee.mp4'),
       whiteboardLogs,
       ideLogs,
+      user: mockInterviewee,
+      accepted: true, // TODO:
+      timestamp: Date.now(),
+      comments: [], // TODO:
     });
     history.push(`/review/${id}`);
   }, [addInterview, whiteboardLogs, ideLogs]);

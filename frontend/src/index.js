@@ -4,6 +4,10 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './components/App';
 import * as serviceWorker from './serviceWorker';
 import './stylesheet.scss';
+import moment from 'moment';
+import 'moment/locale/ko';
+
+moment.locale('ko');
 
 ReactDOM.render(
   <React.StrictMode>

@@ -1,7 +1,15 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
-import sampleIntervieweeVideo from '../../assets/videos/interviewee.mp4';
+import React, { useCallback, useContext, useEffect, useRef, useState } from 'react';
 import './stylesheet.scss';
 import Button from '../Button';
+import { classes, mmss } from '../../common/utils';
+import Profile from '../Profile';
+import { UserContext } from '../../contexts';
+import { mockInterviewee } from '../../assets/mocks/users';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronLeft } from '@fortawesome/free-solid-svg-icons/faChevronLeft';
+import { faMicrophone } from '@fortawesome/free-solid-svg-icons/faMicrophone';
+import { faVideo } from '@fortawesome/free-solid-svg-icons/faVideo';
+import { faChevronRight } from '@fortawesome/free-solid-svg-icons/faChevronRight';
 
 const FPS = 30;
 const MAX_SECONDS = 120;
@@ -15,6 +23,8 @@ export default function InterviewSidebar({ interview, onEnd, progress, playing }
   const videoProgress = reviewing ? progress - interview.interviewerVideoOffset : -1;
   const shouldPlayVideo = videoProgress >= 0;
   const [seconds, setSeconds] = useState(0);
+  const { user: me } = useContext(UserContext);
+  const [collapse, setCollapse] = useState(false);
 
   useEffect(() => {
     const intervalId = window.setInterval(() => {
@@ -142,39 +152,73 @@ export default function InterviewSidebar({ interview, onEnd, progress, playing }
   const countdown = Math.max(0, interviewing ? MAX_SECONDS - seconds : progress / 1e3 | 0);
 
   return (
-    <div className="InterviewSidebar">
+    <div className={classes('InterviewSidebar', collapse && 'collapse')}>
+      <div className="header" onClick={() => setCollapse(!collapse)}>
+        <FontAwesomeIcon fixedWidth icon={collapse ? faChevronRight : faChevronLeft}/>
+        {!collapse && ' 메뉴 숨기기'}
+      </div>
       <div className="countdown">
-        {`${countdown / 60 | 0}`.padStart(2, '0')}:{`${countdown % 60}`.padStart(2, '0')}
+        <div className="primary">{mmss(countdown)}</div>
+        <div className="secondary">
+          <div className="per">/</div>
+          {mmss(MAX_SECONDS)}</div>
       </div>
       <div className="problem-container">
-        <div className="problem">문제 1</div>
+        <div className="problem active">문제 1</div>
         <div className="problem">문제 2</div>
+        <div className="problem">문제 3</div>
       </div>
-      <div className="video interviewer">
+      <div className="video-container">
+        <div className="video">
+          {
+            interviewing ? (
+              <video ref={interviewerVideoRef} autoPlay muted/>
+            ) : (
+              <video ref={interviewerVideoRef} src={interview.interviewerVideoURL}/>
+            )
+          }
+          <div className="status">
+            <div className="badge">
+              <FontAwesomeIcon className="icon" fixedWidth icon={faMicrophone}/>&nbsp;
+            </div>
+            <Profile role="interviewer" simple={collapse}
+                     user={interviewing || interview.role === 'interviewer' ? me : interview.user}/>
+          </div>
+        </div>
+        <div className="video">
+          {
+            interviewing ? (
+              <video ref={intervieweeVideoRef} src={require('../../assets/videos/interviewee.mp4')} autoPlay muted/>
+            ) : (
+              <video ref={intervieweeVideoRef} src={interview.intervieweeVideoURL}/>
+            )
+          }
+          <div className="status">
+            <div className="badge">
+              <FontAwesomeIcon className="icon" fixedWidth icon={faMicrophone}/>&nbsp;
+            </div>
+            <Profile role="interviewee" simple={collapse}
+                     user={interviewing ? mockInterviewee : interview.role === 'interviewee' ? me : interview.user}/>
+          </div>
+        </div>
+      </div>
+      <div className="button-container">
+        <div className="video-control-container">
+          <div className="video-control">
+            <FontAwesomeIcon fixedWidth icon={faVideo}/>
+          </div>
+          <div className="video-control">
+            <FontAwesomeIcon fixedWidth icon={faMicrophone}/>
+          </div>
+        </div>
         {
           interviewing ? (
-            <video ref={interviewerVideoRef} width={250} autoPlay muted/>
+            <Button className="exit" critical onClick={handleEnd}>End Interview</Button>
           ) : (
-            <video ref={interviewerVideoRef} src={interview.interviewerVideoURL} width={250}/>
+            <Button className="exit" to="/">Back to Main</Button>
           )
         }
       </div>
-      <div className="video interviewee">
-        {
-          interviewing ? (
-            <video ref={intervieweeVideoRef} src={sampleIntervieweeVideo} width={250} autoPlay muted/>
-          ) : (
-            <video ref={intervieweeVideoRef} src={interview.intervieweeVideoURL} width={250}/>
-          )
-        }
-      </div>
-      {
-        interviewing ? (
-          <Button onClick={handleEnd}>End Interview</Button>
-        ) : (
-          <Button to="/">Back to Main</Button>
-        )
-      }
     </div>
   );
 }

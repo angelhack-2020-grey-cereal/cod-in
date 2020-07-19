@@ -10,11 +10,8 @@ import Interview from '../../pages/InterviewPage';
 import Review from '../../pages/ReviewPage';
 import Shop from '../../pages/ShopPage';
 import Matching from '../../pages/MatchingPage';
-import sampleInterviewerVideo from '../../assets/videos/interviewer.mp4';
-import sampleIntervieweeVideo from '../../assets/videos/interviewee.mp4';
-import sampleWhiteboardLogs from '../../assets/whiteboard-logs/sample0.json';
-import sampleIdeLogsSample from '../../assets/ide-logs/sample0.json';
 import { InterviewContext, UserContext } from '../../contexts';
+import mockInterviews from '../../assets/mocks/interviews';
 import './stylesheet.scss';
 
 let defaultUser = null;
@@ -31,17 +28,7 @@ try {
 }
 
 function App() {
-  const [interviews, setInterviews] = useState({
-    'sample0': {
-      id: 'sample0',
-      duration: 120000,
-      interviewerVideoOffset: 0,
-      interviewerVideoURL: sampleInterviewerVideo,
-      intervieweeVideoURL: sampleIntervieweeVideo,
-      whiteboardLogs: sampleWhiteboardLogs,
-      ideLogs: sampleIdeLogsSample,
-    },
-  });
+  const [interviews, setInterviews] = useState(mockInterviews);
 
   const [user, _setUser] = useState(defaultUser);
 
@@ -51,10 +38,10 @@ function App() {
   }, [_setUser]);
 
   const addInterview = useCallback(interview => {
-    setInterviews({
+    setInterviews([
       ...interviews,
-      [interview.id]: interview,
-    });
+      interview,
+    ]);
   }, [interviews, setInterviews]);
 
   return (

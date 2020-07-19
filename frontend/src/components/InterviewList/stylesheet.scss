@@ -37,7 +37,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background: #D7322D;
+      background: $color-critical;
       box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
       color: $color-lighter;
       position: absolute;
@@ -114,26 +114,6 @@
         .chat-text {
           align-self: stretch;
           margin-bottom: 4px;
-        }
-
-        .user {
-          display: flex;
-          align-items: center;
-
-          .avatar {
-            $size: 20px;
-            width: $size;
-            height: $size;
-            border-radius: $size;
-            background-position: center;
-            background-size: cover;
-            margin-right: 4px;
-            border: 1px solid $color-lighter;
-          }
-
-          .label {
-            color: $color-light;
-          }
         }
       }
     }

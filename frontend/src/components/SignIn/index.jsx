@@ -4,13 +4,13 @@ import Button from '../Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faGithub } from '@fortawesome/fontawesome-free-brands';
 import { UserContext } from '../../contexts';
-import mockUsers from '../../assets/mocks/users';
+import { mockUser } from '../../assets/mocks/users';
 
 export default function SignIn() {
   const { setUser } = useContext(UserContext);
 
   const handleSignIn = useCallback(() => {
-    setUser(mockUsers[0]);
+    setUser(mockUser);
   }, []);
 
   return (

@@ -1,41 +1,227 @@
 @import "../../common/constants";
 
 .InterviewSidebar {
-  width: 300px;
+  width: 320px;
   overflow: hidden;
-  padding: 16px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch;
   background-color: $color-darker;
   color: $color-lightest;
 
-  .countdown {
-    font-size: $font-size-largest;
-    margin-bottom: 16px;
+  > * {
+    padding-left: 48px;
+    padding-right: 48px;
   }
 
-  .problem-container {
+  .header {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    margin-bottom: auto;
+    color: $color-light;
+    font-size: $font-size-large;
+    cursor: pointer;
+    height: 64px;
+    white-space: pre;
 
-    .problem {
-      font-size: $font-size-large;
+    &:hover {
+      background-color: $color-dark;
     }
   }
 
-  .video {
+  .countdown {
+    font-size: $font-size-largest;
+    margin-top: 20px;
+    margin-bottom: 20px;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    border: 1px solid black;
-    margin-bottom: 16px;
+    white-space: pre;
+
+    .primary {
+      font-size: 40px;
+    }
+
+    .secondary {
+      display: flex;
+      font-size: 28px;
+      color: $color-light;
+      white-space: nowrap;
+
+      .per {
+        margin: 0 8px;
+      }
+    }
   }
 
-  .button {
-    width: 150px;
-    height: 50px;
+  .problem-container {
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    background-color: $color-dark;
+
+    .problem {
+      position: relative;
+      font-size: $font-size-large;
+      padding: 24px 0;
+      color: $color-light;
+      cursor: pointer;
+
+      &.active {
+        color: $color-lightest;
+      }
+
+      &:after {
+        position: absolute;
+        content: '';
+        bottom: 0;
+        left: -48px;
+        right: -48px;
+        height: 1px;
+        background-color: $color-darker;
+      }
+    }
+  }
+
+  .video-container {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    justify-content: space-evenly;
+
+    .video {
+      display: flex;
+      flex-direction: column;
+      align-self: stretch;
+
+      video {
+        align-self: stretch;
+        width: 100%;
+        height: auto;
+        margin-bottom: 12px;
+      }
+
+      .status {
+        display: flex;
+        align-items: center;
+
+        .icon {
+          color: $color-primary;
+          margin-right: 4px;
+        }
+      }
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  .button-container {
+    background-color: $color-dark;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+
+    .video-control-container {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 16px;
+
+      .video-control {
+        $size: 40px;
+        width: $size;
+        height: $size;
+        border-radius: $size;
+        border: 1px solid $color-lightest;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: $font-size-large;
+        margin-right: 16px;
+        cursor: pointer;
+        transition: all .1s;
+
+        &:hover {
+          background-color: $color-lightest;
+          color: $color-dark;
+        }
+
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+    }
+
+    .exit {
+      font-size: $font-size-medium;
+    }
+  }
+
+  &.collapse {
+    width: 96px;
+    align-items: stretch;
+
+    > * {
+      padding-left: 0;
+      padding-right: 0;
+      align-items: center;
+    }
+
+    .header {
+      justify-content: center;
+    }
+
+    .countdown {
+      flex-direction: column;
+      align-items: center;
+
+      .primary {
+        font-size: 28px;
+      }
+
+      .secondary {
+        font-size: $font-size-large;
+
+        .per {
+          margin-left: 0;
+        }
+      }
+    }
+
+    .problem-container {
+      background-color: $color-darker;
+      align-items: stretch;
+      margin-bottom: 36px;
+
+      .problem {
+        text-align: center;
+
+        &.active {
+          background-color: $color-dark;
+        }
+      }
+    }
+
+    .video-container {
+      justify-content: flex-start;
+
+      .video {
+        margin-bottom: 24px;
+
+        .status {
+          justify-content: center;
+          font-size: $font-size-small;
+
+          .badge {
+            display: none;
+          }
+        }
+      }
+    }
+
+    .button-container {
+      display: none;
+    }
   }
 }
