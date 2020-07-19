@@ -12,7 +12,7 @@ Peer-to-Peer Coding Interview Platform
 ## Demo
 [![Run on Ainize](https://ainize.ai/static/images/run_on_ainize_button.svg)](https://codin-64json.endpoint.ainize.ai)
 
-[Demo Video](https://youtu.be/MCcuj5_UE9Y)
+[**Pitch/Demo Video**](https://youtu.be/MCcuj5_UE9Y)
 
 ## Showcase
 <p align="center">
