@@ -3,16 +3,19 @@ import InterviewSidebarContainer from '../../components/InterviewSidebar';
 import InterviewContentContainer from '../../components/InterviewContent';
 import './stylesheet.scss';
 import { InterviewContext } from '../../contexts';
-import { Redirect } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
+import ResultDialog from '../../components/ResultDialog';
+import PromotionDialog from '../../components/PromotionDialog';
 
 const FPS = 30;
 
 export default function ReviewPage({ match }) {
   const { interviews } = useContext(InterviewContext);
-  const { interviewId } = match.params;
+  const { interviewId, dialogType } = match.params;
   const interview = interviews.find(interview => interview.id === interviewId);
   const [progress, setProgress] = useState(0);
   const [playing, setPlaying] = useState(false);
+  const history = useHistory();
 
   useEffect(() => {
     if (playing) {
@@ -38,6 +41,8 @@ export default function ReviewPage({ match }) {
     );
   }
 
+  console.log(dialogType);
+
   return (
     <div className="ReviewPage">
       <InterviewSidebarContainer interview={interview} progress={progress} playing={playing}/>
@@ -46,6 +51,14 @@ export default function ReviewPage({ match }) {
         onChangeProgress={setProgress}
         onPlay={() => setPlaying(true)}
         onPause={() => setPlaying(false)}/>
+      {
+        dialogType === 'result' &&
+        <ResultDialog user={interview.user} onConfirm={() => history.push(`/review/${interviewId}/promotion`)}/>
+      }
+      {
+        dialogType === 'promotion' &&
+        <PromotionDialog user={interview.user} onConfirm={() => history.push(`/review/${interviewId}`)}/>
+      }
     </div>
   );
 }

@@ -51,7 +51,8 @@ function App() {
         <Switch>
           {user && <Route path="/matching/:role" component={Matching}/>}
           {user && <Route path="/interview" component={Interview}/>}
-          {user && <Route path="/review/:interviewId" component={Review}/>}
+          {user && <Route exact path="/review/:interviewId" component={Review}/>}
+          {user && <Route path="/review/:interviewId/:dialogType" component={Review}/>}
           <Fragment>
             <div className="App">
               <Header/>

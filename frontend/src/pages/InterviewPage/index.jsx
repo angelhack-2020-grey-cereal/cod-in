@@ -35,10 +35,10 @@ export default function InterviewPage() {
       outputsLogs,
       feedbacks,
       user: mockInterviewee,
-      accepted: true, // TODO:
+      accepted: true,
       timestamp: Date.now(),
     });
-    history.push(`/review/${id}`);
+    history.push(`/review/${id}/result`);
   }, [addInterview, whiteboardLogs, ideLogs]);
 
   const handleAddWhiteboardLog = useCallback(value => {

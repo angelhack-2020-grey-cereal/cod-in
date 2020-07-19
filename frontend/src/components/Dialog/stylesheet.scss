@@ -1,9 +1,0 @@
-@import "../../common/constants";
-
-.Dialog {
-  background-color: rgba($color-darkest, .8);
-
-  .card {
-    @include card;
-  }
-}
