@@ -24,7 +24,7 @@ export default function InterviewSidebar({ interview, onEnd, progress, playing }
   const shouldPlayVideo = videoProgress >= 0;
   const [seconds, setSeconds] = useState(0);
   const { user: me } = useContext(UserContext);
-  const [collapse, setCollapse] = useState(false);
+  const [collapsed, setCollapsed] = useState(false);
 
   useEffect(() => {
     const intervalId = window.setInterval(() => {
@@ -152,10 +152,10 @@ export default function InterviewSidebar({ interview, onEnd, progress, playing }
   const countdown = Math.max(0, interviewing ? MAX_SECONDS - seconds : progress / 1e3 | 0);
 
   return (
-    <div className={classes('InterviewSidebar', collapse && 'collapse')}>
-      <div className="header" onClick={() => setCollapse(!collapse)}>
-        <FontAwesomeIcon fixedWidth icon={collapse ? faChevronRight : faChevronLeft}/>
-        {!collapse && ' 메뉴 숨기기'}
+    <div className={classes('InterviewSidebar', collapsed && 'collapsed')}>
+      <div className="header" onClick={() => setCollapsed(!collapsed)}>
+        <FontAwesomeIcon fixedWidth icon={collapsed ? faChevronRight : faChevronLeft}/>
+        {!collapsed && ' 메뉴 숨기기'}
       </div>
       <div className="countdown">
         <div className="primary">{mmss(countdown)}</div>
@@ -181,7 +181,7 @@ export default function InterviewSidebar({ interview, onEnd, progress, playing }
             <div className="badge">
               <FontAwesomeIcon className="icon" fixedWidth icon={faMicrophone}/>&nbsp;
             </div>
-            <Profile role="interviewer" simple={collapse}
+            <Profile role="interviewer" simple={collapsed}
                      user={interviewing || interview.role === 'interviewer' ? me : interview.user}/>
           </div>
         </div>
@@ -197,7 +197,7 @@ export default function InterviewSidebar({ interview, onEnd, progress, playing }
             <div className="badge">
               <FontAwesomeIcon className="icon" fixedWidth icon={faMicrophone}/>&nbsp;
             </div>
-            <Profile role="interviewee" simple={collapse}
+            <Profile role="interviewee" simple={collapsed}
                      user={interviewing ? mockInterviewee : interview.role === 'interviewee' ? me : interview.user}/>
           </div>
         </div>

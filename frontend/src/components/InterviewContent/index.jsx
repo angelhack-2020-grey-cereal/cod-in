@@ -191,20 +191,20 @@ export default function InterviewContent({
                 ))
               }
             </div>
-            <div className="feedback-input">
-              <input value={feedbackValue}
-                     onChange={({ target }) => setFeedbackValue(target.value)}
-                     onKeyPress={e => {
-                       if (e.key === 'Enter') {
-                         e.preventDefault();
-                         handleAddFeedback();
-                       }
-                     }}/>
-              <Button onClick={handleAddFeedback}>
-                피드백 남기기
-              </Button>
-            </div>
           </Drawer>
+          <div className="feedback-input">
+            <input value={feedbackValue}
+                   onChange={({ target }) => setFeedbackValue(target.value)}
+                   onKeyPress={e => {
+                     if (e.key === 'Enter') {
+                       e.preventDefault();
+                       handleAddFeedback();
+                     }
+                   }}/>
+            <Button onClick={handleAddFeedback}>
+              피드백 남기기
+            </Button>
+          </div>
         </div>
         <div className="editor-wrapper">
           <div className="editor ide">
@@ -232,12 +232,12 @@ export default function InterviewContent({
                 ))
               }
             </div>
-            <div className="console-toolbar">
-              <Button disabled={reviewing} onClick={handleRun}>
-                실행하기
-              </Button>
-            </div>
           </Drawer>
+          <div className="console-toolbar">
+            <Button disabled={reviewing} onClick={handleRun}>
+              실행하기
+            </Button>
+          </div>
         </div>
       </div>
     </div>

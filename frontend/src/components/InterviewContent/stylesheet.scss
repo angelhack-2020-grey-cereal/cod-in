@@ -89,100 +89,116 @@
       }
 
       .Drawer {
-        border-top: 1px solid $color-darker;
+        $drawer-header-height: 48px;
+        $drawer-height: 256px;
+        position: relative;
+        overflow: hidden;
         color: $color-light;
+        box-shadow: 0 0 8px rgba(0, 0, 0, .4);
+        height: $drawer-height;
+        transition: height .1s;
+
+        &.collapsed {
+          height: $drawer-header-height;
+
+          .drawer-body {
+            display: none;
+          }
+        }
 
         .drawer-header {
           font-size: $font-size-large;
-          padding: 12px 20px;
+          padding: 0 20px;
+          height: $drawer-header-height;
           display: flex;
           justify-content: space-between;
           align-items: center;
           cursor: pointer;
-          border-bottom: 1px solid $color-darker;
         }
 
         .drawer-body {
+          height: $drawer-height - $drawer-header-height;
           display: flex;
           flex-direction: column;
           font-size: $font-size-large;
           color: $color-lighter;
-        }
-      }
-
-      .drawer-feedback {
-        .feedback-container {
-          height: 220px;
-          padding: 20px;
-          display: flex;
-          flex-direction: column;
           overflow-y: auto;
+        }
 
-          .feedback {
-            margin-bottom: 8px;
-            white-space: pre-wrap;
+        &.drawer-feedback {
+          .feedback-container {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
 
-            &:last-child {
-              margin-bottom: 0;
-            }
+            .feedback {
+              margin-bottom: 8px;
+              white-space: pre-wrap;
 
-            .time {
-              font-weight: bold;
-              color: $color-primary;
-            }
+              &:last-child {
+                margin-bottom: 0;
+              }
 
-            .user {
-              font-weight: bold;
+              .time {
+                font-weight: bold;
+                color: $color-primary;
+              }
+
+              .user {
+                font-weight: bold;
+              }
             }
           }
         }
 
-        .feedback-input {
-          background-color: $color-darker;
-          display: flex;
-          padding: 12px 20px;
-          align-items: center;
+        &.drawer-console {
+          .console {
+            padding: 20px;
+            white-space: pre-wrap;
+            font-family: monospace;
 
-          input {
-            flex: 1;
-            margin-right: 20px;
-          }
-
-          .Button {
-            font-size: $font-size-medium;
+            .console-line {
+              &.error {
+                color: $color-critical;
+              }
+            }
           }
         }
       }
 
-      .drawer-console {
-        .console {
-          height: 220px;
-          padding: 20px;
-          white-space: pre-wrap;
-          font-family: monospace;
+      .console-toolbar {
+        position: relative;
+        background-color: $color-darker;
+        display: flex;
+        padding: 12px 20px;
+        align-items: center;
+        justify-content: flex-end;
 
-          .console-line {
-            &.error {
-              color: $color-critical;
-            }
-          }
+        input {
+          flex: 1;
+          margin-right: 20px;
         }
 
-        .console-toolbar {
-          background-color: $color-darker;
-          display: flex;
+        .Button {
+          font-size: $font-size-medium;
+        }
+      }
+
+      .feedback-input {
+        position: relative;
+        background-color: $color-darker;
+        color: $color-lighter;
+        display: flex;
+        align-items: stretch;
+
+        input {
           padding: 12px 20px;
-          align-items: center;
-          justify-content: flex-end;
+          flex: 1;
+        }
 
-          input {
-            flex: 1;
-            margin-right: 20px;
-          }
-
-          .Button {
-            font-size: $font-size-medium;
-          }
+        .Button {
+          margin: 12px 20px 12px 0;
+          font-size: $font-size-medium;
         }
       }
     }
