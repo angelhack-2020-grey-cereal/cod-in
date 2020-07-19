@@ -36,7 +36,7 @@ export default function InterviewSummary({ interview }) {
           feedbacks.map((feedback, i) => {
             const user = feedback.me ? me : you;
             return (
-              <div className={classes('chat', (role === 'interviewer' ^ feedback.me) ? 'right' : 'left')}
+              <div className={classes('chat', feedback.me ? 'right' : 'left')}
                    key={i}>
                 <div className="chat-text">
                   {feedback.value}
