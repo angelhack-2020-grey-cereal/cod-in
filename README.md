@@ -1,8 +1,18 @@
 # CodIn ![Deploy](https://github.com/angelhack-2020-grey-cereal/cod-in/workflows/Deploy/badge.svg)
-> Peer-to-Peer Coding Interview Platform
+
+> #### Table of Contents
+> - [Demo](#demo)
+> - [Showcase](#showcase)
+> - [MVP](#mvp)
+> - [Tech Stack](#tech-stack)
+> - [Meet the Crew](#meet-the-crew)
+
+Peer-to-Peer Coding Interview Platform
 
 ## Demo
 [![Run on Ainize](https://ainize.ai/static/images/run_on_ainize_button.svg)](https://codin-64json.endpoint.ainize.ai)
+
+[![YouTube](https://img.youtube.com/vi/MCcuj5_UE9Y/0.jpg)<br/>Demo Video](https://youtu.be/MCcuj5_UE9Y)
 
 ## Showcase
 <p align="center">
