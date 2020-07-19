@@ -16,6 +16,7 @@ export default function InterviewPage() {
   const { addInterview } = useContext(InterviewContext);
   const whiteboardLogs = useMemo(() => [{ value: defaultProblem, timestamp: 0 }], []);
   const ideLogs = useMemo(() => [{ value: defaultCode, timestamp: 0 }], []);
+  const feedbacks = useMemo(() => [], []);
   const start = useMemo(() => Date.now(), []);
   const history = useHistory();
 
@@ -30,10 +31,10 @@ export default function InterviewPage() {
       intervieweeVideoURL: require('../../assets/videos/interviewee.mp4'),
       whiteboardLogs,
       ideLogs,
+      feedbacks,
       user: mockInterviewee,
       accepted: true, // TODO:
       timestamp: Date.now(),
-      comments: [], // TODO:
     });
     history.push(`/review/${id}`);
   }, [addInterview, whiteboardLogs, ideLogs]);
@@ -46,15 +47,18 @@ export default function InterviewPage() {
     ideLogs.unshift({ value, timestamp: Date.now() - start });
   }, [ideLogs]);
 
+  const handleAddFeedback = useCallback(feedback => {
+    feedbacks.push(feedback);
+  }, [feedbacks]);
+
   return (
     <div className="InterviewPage">
       <InterviewSidebar onEnd={handleEnd}/>
-      <InterviewContent
-        onAddWhiteboardLog={handleAddWhiteboardLog}
-        onAddIdeLog={handleAddIdeLog}
-        defaultProblem={defaultProblem}
-        defaultCode={defaultCode}
-      />
+      <InterviewContent onAddWhiteboardLog={handleAddWhiteboardLog}
+                        onAddIdeLog={handleAddIdeLog}
+                        onAddFeedback={handleAddFeedback}
+                        defaultProblem={defaultProblem}
+                        defaultCode={defaultCode}/>
     </div>
   );
 }

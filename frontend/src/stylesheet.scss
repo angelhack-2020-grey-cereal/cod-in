@@ -36,3 +36,14 @@ a {
   flex-shrink: 0;
   box-sizing: border-box;
 }
+
+input {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  outline: none;
+  color: inherit;
+  font-size: inherit;
+  font-family: inherit;
+}

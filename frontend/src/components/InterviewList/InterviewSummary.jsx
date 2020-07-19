@@ -13,7 +13,7 @@ export default function InterviewSummary({ interview }) {
     user: you,
     accepted,
     timestamp,
-    comments,
+    feedbacks,
   } = interview;
 
   return (
@@ -33,16 +33,16 @@ export default function InterviewSummary({ interview }) {
       </div>
       <div className="chat-container">
         {
-          comments.map((comment, i) => {
-            const user = comment.me ? me : you;
+          feedbacks.map((feedback, i) => {
+            const user = feedback.me ? me : you;
             return (
-              <div className={classes('chat', (role === 'interviewer' ^ comment.me) ? 'right' : 'left')}
+              <div className={classes('chat', (role === 'interviewer' ^ feedback.me) ? 'right' : 'left')}
                    key={i}>
                 <div className="chat-text">
-                  {comment.value}
+                  {feedback.value}
                 </div>
                 <Profile user={user}
-                         role={comment.me ? role : (role === 'interviewee' ? 'interviewer' : 'interviewee')}/>
+                         role={feedback.me ? role : (role === 'interviewee' ? 'interviewer' : 'interviewee')}/>
               </div>
             );
           })

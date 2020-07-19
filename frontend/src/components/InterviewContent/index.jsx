@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from 'react';
+import React, { useCallback, useContext, useEffect, useRef, useState } from 'react';
 import './stylesheet.scss';
 import { ControlledEditor as MonacoEditor, monaco } from '@monaco-editor/react';
 import ReactQuill from 'react-quill';
@@ -8,6 +8,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay } from '@fortawesome/free-solid-svg-icons/faPlay';
 import { faPause } from '@fortawesome/free-solid-svg-icons/faPause';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons/faChevronDown';
+import { mmss } from '../../common/utils';
+import { UserContext } from '../../contexts';
 
 monaco
   .init()
@@ -24,12 +26,39 @@ monaco
   .catch(error => console.error('An error occurred during initialization of Monaco: ', error));
 
 export default function InterviewContent({
-                                           interview, onAddIdeLog, onAddWhiteboardLog, defaultProblem, defaultCode,
-                                           progress, playing, onChangeProgress, onPlay, onPause,
+                                           interview, onAddIdeLog, onAddWhiteboardLog, onAddFeedback, defaultProblem, defaultCode,
+                                           progress, playing, onChangeProgress, onPlay, onPause, seconds,
                                          }) {
   const interviewing = !interview;
   const reviewing = !interviewing;
   const progressBarRef = useRef(null);
+  const [feedbacks, setFeedbacks] = useState(interview ? interview.feedbacks : []);
+  const [feedbackValue, setFeedbackValue] = useState('');
+  const lastFeedbackRef = useRef(null);
+  const startedAtRef = useRef(Date.now());
+  const { user: me } = useContext(UserContext);
+
+  const handleAddFeedback = useCallback(() => {
+    if (feedbackValue.trim()) {
+      const feedback = {
+        me: true,
+        timestamp: interviewing ? Date.now() - startedAtRef.current : undefined,
+        value: feedbackValue,
+      };
+      if (interviewing) {
+        onAddFeedback(feedback);
+      }
+      setFeedbacks([...feedbacks, feedback]);
+      setFeedbackValue('');
+    }
+  }, [feedbacks, feedbackValue, setFeedbackValue]);
+
+  useEffect(() => {
+    const lastFeedback = lastFeedbackRef.current;
+    if (lastFeedback) {
+      lastFeedback.scrollIntoView();
+    }
+  });
 
   const handleMouseDown = useCallback(e => {
     const handleMouseMove = e => {
@@ -92,36 +121,71 @@ export default function InterviewContent({
         </div>
       }
       <div className="editor-container">
-        <div className="editor whiteboard">
-          {
-            interviewing ? (
-              <ReactQuill theme="snow"
-                          defaultValue={defaultProblem}
-                          onChange={onAddWhiteboardLog}/>
-            ) : (
-              <ReactQuill theme="snow"
-                          value={whiteboard.value}
-                          readOnly/>
-            )
-          }
+        <div className="editor-wrapper">
+          <div className="editor whiteboard">
+            {
+              interviewing ? (
+                <ReactQuill theme="snow"
+                            defaultValue={defaultProblem}
+                            onChange={onAddWhiteboardLog}/>
+              ) : (
+                <ReactQuill theme="snow"
+                            value={whiteboard.value}
+                            readOnly/>
+              )
+            }
+          </div>
           <div className="drawer">
             <div className="drawer-header">
-              Chatting
+              Feedback
               <FontAwesomeIcon fixedWidth icon={faChevronDown}/>
+            </div>
+            <div className="drawer-body">
+              <div className="feedback-container">
+                {
+                  feedbacks.map((feedback, i) => (
+                    <div className="feedback" key={i} ref={i === feedbacks.length - 1 ? lastFeedbackRef : undefined}>
+                      {
+                        feedback.timestamp !== undefined ? (
+                          <span className="time">{mmss(feedback.timestamp / 1e3 | 0)}  </span>
+                        ) : (
+                          <span className="user">{me.name}: </span>
+                        )
+                      }
+                      {feedback.value}
+                    </div>
+                  ))
+                }
+              </div>
+              <div className="feedback-input">
+                <input value={feedbackValue}
+                       onChange={({ target }) => setFeedbackValue(target.value)}
+                       onKeyPress={e => {
+                         if (e.key === 'Enter') {
+                           e.preventDefault();
+                           handleAddFeedback();
+                         }
+                       }}/>
+                <Button onClick={handleAddFeedback}>
+                  Enter
+                </Button>
+              </div>
             </div>
           </div>
         </div>
-        <div className="editor ide">
-          {
-            interviewing ? (
-              <MonacoEditor {...monacoEditorProps()}
-                            value={defaultCode}
-                            onChange={(ev, value) => onAddIdeLog(value)}/>
-            ) : (
-              <MonacoEditor {...monacoEditorProps({ readOnly: true })}
-                            value={ide.value}/>
-            )
-          }
+        <div className="editor-wrapper">
+          <div className="editor ide">
+            {
+              interviewing ? (
+                <MonacoEditor {...monacoEditorProps()}
+                              value={defaultCode}
+                              onChange={(ev, value) => onAddIdeLog(value)}/>
+              ) : (
+                <MonacoEditor {...monacoEditorProps({ readOnly: true })}
+                              value={ide.value}/>
+              )
+            }
+          </div>
         </div>
       </div>
     </div>

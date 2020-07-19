@@ -5,6 +5,7 @@
   display: flex;
   flex-direction: column;
   align-items: stretch;
+  background-color: $color-dark;
 
   .controls {
     display: flex;
@@ -35,46 +36,119 @@
     display: flex;
     align-items: stretch;
 
-    .editor {
+    .editor-wrapper {
       overflow: hidden;
       flex: 1;
-    }
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
 
-    .whiteboard {
-      .quill {
-        display: flex;
-        flex-direction: column;
-        align-items: stretch;
-        width: 100%;
-        height: 100%;
+      .editor {
+        overflow: hidden;
+        flex: 1;
+        position: relative;
 
-        &, * {
-          border-color: $color-darker !important;
-        }
-
-        .ql-toolbar {
-          &, * {
-            background-color: $color-dark !important;
-            color: white !important;
-            stroke: white !important;
-          }
-        }
-
-        .ql-container {
-          overflow: hidden;
-          flex: 1;
-          background-color: $color-dark;
-          color: $color-lightest;
-
-          .ql-editor {
+        &.whiteboard {
+          .quill {
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
             width: 100%;
             height: 100%;
+
+            &, * {
+              border-color: $color-darker !important;
+            }
+
+            .ql-toolbar {
+              border-top: none;
+
+              &, * {
+                background-color: $color-dark !important;
+                color: white !important;
+                stroke: white !important;
+              }
+            }
+
+            .ql-container {
+              overflow: hidden;
+              flex: 1;
+              background-color: $color-dark;
+              color: $color-lightest;
+              border-bottom: none;
+
+              .ql-editor {
+                width: 100%;
+                height: 100%;
+              }
+            }
           }
         }
       }
-    }
 
-    .ide {
+      .drawer {
+        border: 1px solid $color-darker;
+        border-bottom: none;
+        color: $color-light;
+
+        .drawer-header {
+          font-size: $font-size-large;
+          padding: 12px 24px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          cursor: pointer;
+          border-bottom: 1px solid $color-darker;
+        }
+
+        .drawer-body {
+          display: flex;
+          flex-direction: column;
+          color: $color-lightest;
+
+          .feedback-container {
+            height: 220px;
+            padding: 20px 24px;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+
+            .feedback {
+              margin-bottom: 8px;
+              white-space: pre-wrap;
+
+              &:last-child {
+                margin-bottom: 0;
+              }
+
+              .time {
+                font-weight: bold;
+                color: $color-primary;
+              }
+
+              .user {
+                font-weight: bold;
+              }
+            }
+          }
+
+          .feedback-input {
+            background-color: $color-darker;
+            display: flex;
+            padding: 12px 24px;
+            align-items: center;
+
+            input {
+              flex: 1;
+              margin-right: 24px;
+            }
+
+            .Button {
+              font-size: $font-size-medium;
+            }
+          }
+        }
+      }
     }
   }
 }
