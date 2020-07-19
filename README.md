@@ -1,6 +1,5 @@
-# CodIn
+# CodIn ![Deploy](https://github.com/angelhack-2020-grey-cereal/cod-in/workflows/Deploy/badge.svg)
 > Peer-to-Peer Coding Interview Platform
-![Deploy](https://github.com/angelhack-2020-grey-cereal/cod-in/workflows/Deploy/badge.svg)
 
 ## Demo
 [![Run on Ainize](https://ainize.ai/static/images/run_on_ainize_button.svg)](https://codin-64json.endpoint.ainize.ai)
