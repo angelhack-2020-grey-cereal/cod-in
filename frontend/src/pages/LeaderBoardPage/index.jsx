@@ -8,7 +8,7 @@ import Profile from '../../components/Profile';
 export default function LeaderBoardPage() {
   const tiers = [1, 2, 3, 4, 5];
   const { user: me } = useContext(UserContext);
-  const [selectedTier, setSelectedTier] = useState(me.tier);
+  const [selectedTier, setSelectedTier] = useState(me ? me.tier : 5);
 
   return (
     <div className="LeaderBoard">
@@ -61,7 +61,7 @@ export default function LeaderBoardPage() {
             </tr>
             {
               new Array(5).fill(0).map((_, index) => {
-                const user = mockUsers[(index + 2) % mockUsers.length];
+                const user = mockUsers[(index + mockUsers.length - 2) % mockUsers.length];
                 return (
                   <tr className={classes('row', index === 2 && 'active')} key={index}>
                     <td>{index + 874}</td>
