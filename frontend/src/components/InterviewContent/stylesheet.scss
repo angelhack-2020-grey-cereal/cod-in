@@ -25,12 +25,6 @@
         justify-content: flex-end;
         align-items: stretch;
         background-color: $color-secondary;
-
-        .playhead {
-          width: 16px;
-          margin-right: -8px;
-          background-color: $color-primary;
-        }
       }
     }
   }
@@ -41,10 +35,12 @@
     display: flex;
     align-items: stretch;
 
-    .whiteboard {
+    .editor {
       overflow: hidden;
       flex: 1;
+    }
 
+    .whiteboard {
       .quill {
         display: flex;
         flex-direction: column;
@@ -79,8 +75,6 @@
     }
 
     .ide {
-      overflow: hidden;
-      flex: 1;
     }
   }
 }

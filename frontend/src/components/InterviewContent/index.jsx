@@ -4,6 +4,10 @@ import { ControlledEditor as MonacoEditor, monaco } from '@monaco-editor/react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import Button from '../Button';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlay } from '@fortawesome/free-solid-svg-icons/faPlay';
+import { faPause } from '@fortawesome/free-solid-svg-icons/faPause';
+import { faChevronDown } from '@fortawesome/free-solid-svg-icons/faChevronDown';
 
 monaco
   .init()
@@ -63,31 +67,32 @@ export default function InterviewContent({
     interview.ideLogs[0]
   );
 
-  const monacoEditorProps = {
+  const monacoEditorProps = (options = {}) => ({
     language: 'javascript',
     theme: 'cod-in',
     options: {
+      ...options,
       minimap: { enabled: false },
     },
-  };
+  });
 
   return (
     <div className="InterviewContent">
       {
         reviewing &&
         <div className="controls">
-          <Button className="play" onClick={playing ? onPause : onPlay}>{playing ? 'Pause' : 'Play'}</Button>
+          <Button className="play" onClick={playing ? onPause : onPlay}>
+            <FontAwesomeIcon fixedWidth icon={playing ? faPause : faPlay}/>
+          </Button>
           <div className="progress-bar"
                onMouseDown={handleMouseDown}
                ref={progressBarRef}>
-            <div className="progress" style={{ width: `${(progress / interview.duration * 100).toFixed(1)}%` }}>
-              <div className="playhead"/>
-            </div>
+            <div className="progress" style={{ width: `${(progress / interview.duration * 100).toFixed(1)}%` }}/>
           </div>
         </div>
       }
       <div className="editor-container">
-        <div className="whiteboard">
+        <div className="editor whiteboard">
           {
             interviewing ? (
               <ReactQuill theme="snow"
@@ -99,17 +104,22 @@ export default function InterviewContent({
                           readOnly/>
             )
           }
+          <div className="drawer">
+            <div className="drawer-header">
+              Chatting
+              <FontAwesomeIcon fixedWidth icon={faChevronDown}/>
+            </div>
+          </div>
         </div>
-        <div className="ide">
+        <div className="editor ide">
           {
             interviewing ? (
-              <MonacoEditor {...monacoEditorProps}
+              <MonacoEditor {...monacoEditorProps()}
                             value={defaultCode}
                             onChange={(ev, value) => onAddIdeLog(value)}/>
             ) : (
-              <MonacoEditor {...monacoEditorProps}
-                            value={ide.value}
-                            options={{ readOnly: true }}/>
+              <MonacoEditor {...monacoEditorProps({ readOnly: true })}
+                            value={ide.value}/>
             )
           }
         </div>
