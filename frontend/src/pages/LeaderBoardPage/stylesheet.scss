@@ -1,6 +1,6 @@
 @import "../../common/constants";
 
-.ShopPage {
+.LeaderBoard {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -11,21 +11,53 @@
   .container {
     width: 100%;
     max-width: 1024px;
-    @include card;
+    // @include card; 
 
     .header {
       @media (max-width: $breakpoint-responsive) {
         display: none;
       }
 
-      height: 70px;
-      width: 85%;
+      height: 128px;
       display: flex;
       align-items: center;
-      justify-content: space-around;
-      font-size: $font-size-large;
-      margin-left: 55px;
+      justify-content: space-between;
+      box-shadow: 0px 3px 6px #00000029;
+      background-color: $color-lightest;
 
+      .header-component {
+        width: 20%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-size: $font-size-large;
+        
+        .rank-font {
+          padding-bottom: 10px;
+          font-size: $font-size-medium;
+          color: #707070;
+        }
+      }
+
+      .header-component-select {
+        width: 20%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 8px 4px -4px  $color-primary;
+        color: $color-primary;
+        font-size: $font-size-large;
+        
+        .rank-font {
+          padding-bottom: 10px;
+          font-size: $font-size-medium;
+          color: #707070;
+        }
+      }
     }
 
     .header button {
@@ -34,7 +66,7 @@
     }    
 
     button:hover {
-      font-weight: bold;
+      opacity: 0.5;
     }
 
     button:focus {
@@ -42,12 +74,48 @@
     }
 
     .content {
-      margin: 0 20px 0 20px;      
       display: flex;
-      flex-wrap: wrap;
-      order: 4;
-      align-self: space-around;
-      justify-content: space-around;
+
+      align-self: center;
+      justify-content: center;
+      padding-top: 50px;
+
+      .table {
+        width: 100%;
+        box-shadow: 0px 3px 6px #00000029;
+        background-color: #707070;
+        border-collapse: collapse;
+
+        .table-header {
+          height: 50px;
+          opacity: 1;
+          color: $color-lightest;
+
+          .table-width {
+            width: 10%;
+          }
+          .table-width-2x {
+            width: 20%;
+          }
+        }
+        
+        .table-body  {
+          height: 100px;
+          border: 1px solid #CCCCCC;
+          background-color: $color-lightest;
+          text-align: center;
+          justify-content: center;
+
+          .avatar {
+            $size: 50%;
+            width: 50%;
+            height: $size;
+            background-position: center;
+            background-size: cover;
+            border: 1px solid $color-lighter;
+          }
+        }
+      }
       
       .order-content {
         display: flex;
@@ -113,12 +181,6 @@
       border-style: none;
     }    
 
-    button:hover {
-      font-weight: bold;
-    }
-    button:focus {
-      outline: 0;
-    }
   }
 }
 
@@ -126,6 +188,3 @@
   color: $color-primary;
 }
 
-.divider {
-  color: lightgray;
-}
