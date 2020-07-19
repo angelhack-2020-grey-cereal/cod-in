@@ -14,6 +14,7 @@ import Matching from '../../pages/MatchingPage';
 import { InterviewContext, UserContext } from '../../contexts';
 import mockInterviews from '../../assets/mocks/interviews';
 import './stylesheet.scss';
+import UseChromeVideo from '../UseChromeDialog';
 
 let defaultUser = null;
 try {
@@ -28,10 +29,12 @@ try {
   console.error(e);
 }
 
+const isChrome = /Chrome/.test(navigator.userAgent);
+
 function App() {
   const [interviews, setInterviews] = useState(mockInterviews);
-
   const [user, _setUser] = useState(defaultUser);
+  const [ignoreChrome, setIgnoreChrome] = useState(isChrome);
 
   const setUser = useCallback(user => {
     _setUser(user);
@@ -67,6 +70,10 @@ function App() {
             </div>
           </Fragment>
         </Switch>
+        {
+          !ignoreChrome &&
+          <UseChromeVideo onConfirm={() => setIgnoreChrome(true)}/>
+        }
       </UserContext.Provider>
     </InterviewContext.Provider>
   );

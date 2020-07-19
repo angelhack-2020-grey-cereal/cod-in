@@ -1,0 +1,101 @@
+@import "../../common/constants";
+
+.UseChromeVideo {
+  @include dialog;
+  background: none;
+
+  iframe {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border: none;
+    opacity: .8;
+  }
+
+  .card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+
+    .text {
+      text-align: center;
+      font-size: $font-size-large;
+
+      .role {
+        font-weight: bold;
+      }
+
+      .name {
+        color: $color-primary;
+      }
+    }
+
+    .blackpink {
+      position: relative;
+      width: 550px;
+      height: 480px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: -120px -80px -100px;
+
+      &:before,
+      &:after {
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        position: absolute;
+        content: '';
+        background-size: cover;
+        background-position: center;
+      }
+
+      &:before {
+        background-image: url(../../images/result_bg.png);
+      }
+
+      .avatar {
+        $size: 160px;
+        width: $size;
+        height: $size;
+        border-radius: $size;
+        background-size: cover;
+        background-position: center;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 0;
+        transition: opacity .5s;
+        transform: scale(1.4);
+
+        .role {
+          font-weight: bold;
+        }
+
+        .name {
+          font-size: $font-size-large;
+        }
+      }
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: center;
+
+      .reject {
+        border-color: $color-critical;
+        color: $color-critical;
+
+        &:hover {
+          background-color: $color-critical;
+          color: $color-lightest;
+        }
+      }
+    }
+  }
+}
