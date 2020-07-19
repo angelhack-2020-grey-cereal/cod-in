@@ -71,12 +71,12 @@ export default function MatchingPage({ match }) {
           <div className="avatar-container">
             {
               role === 'interviewer' &&
-              <Avatar user={you}/>
+              <Avatar user={you} role="interviewee"/>
             }
             <Avatar user={me} role={role}/>
             {
               role === 'interviewee' &&
-              <Avatar user={you}/>
+              <Avatar user={you} role="interviewer"/>
             }
           </div>
           <div className="description">
