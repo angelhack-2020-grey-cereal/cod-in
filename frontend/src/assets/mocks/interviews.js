@@ -25,11 +25,11 @@ export default [
     feedbacks: [
       {
         me: false,
-        value: 'Gil Dong 님은 thought process를 잘 설명하시는 것...',
+        value: '용재 님은 thought process를 잘 설명 ...',
       },
       {
         me: true,
-        value: '감사합니다. 엔젤핵님 덕분에 인터뷰 실력이 향상되었...',
+        value: '감사합니다. 길동님 덕분에 인터뷰 실력이 ...',
       },
     ],
   },
@@ -43,11 +43,11 @@ export default [
     feedbacks: [
       {
         me: false,
-        value: '잘 모르겠으면 당황하지 말고 질문을 해주시면 좋을 것...',
+        value: '잘 모르겠으면 당황하지 말고 질문을 해주시면 ...',
       },
       {
         me: true,
-        value: '피드백 감사합니다. 제가 부족한 부분이 무엇인지 알게...',
+        value: '피드백 감사합니다. 제가 부족한 부분이 무엇인지 ...',
       },
     ],
   },
@@ -65,7 +65,7 @@ export default [
       },
       {
         me: true,
-        value: '다음에도 예외 케이스를 잘 생각할 수 있도록 훈련해야...',
+        value: '다음에도 예외 케이스를 잘 생각할 수 있도록 ...',
       },
     ],
   },
@@ -73,17 +73,17 @@ export default [
     ...mockInterviewBase,
     id: 'interviewee_1',
     role: 'interviewer',
-    user: mockUsers[1],
+    user: mockUsers[6],
     accepted: true,
     timestamp: Date.now() - 7 * DAY,
     feedbacks: [
       {
         me: true,
-        value: 'Gil Dong 님은 thought process를 잘 설명하시는 것...',
+        value: '꼼꼼하게 잘 구현하셨습니다. 자료구조에 ...',
       },
       {
         me: false,
-        value: '감사합니다. 엔젤핵님 덕분에 인터뷰 실력이 향상되었...',
+        value: '감사합니다. 혹시 더 부족한 부분은 없을지 ...',
       },
     ],
   },
@@ -97,11 +97,11 @@ export default [
     feedbacks: [
       {
         me: true,
-        value: '잘 모르겠으면 당황하지 말고 질문을 해주시면 좋을 것...',
+        value: 'Cereal 님 시도는 좋았습니다 하지만 이런 ...',
       },
       {
         me: false,
-        value: '피드백 감사합니다. 제가 부족한 부분이 무엇인지 알게...',
+        value: '아 그 부분을 놓쳤네요 다음부터는 더 조심 ...',
       },
     ],
   },
@@ -115,11 +115,11 @@ export default [
     feedbacks: [
       {
         me: true,
-        value: '놓칠 수 있는 예외 상황을 잘 처리하셨네요 ...',
+        value: '어떤 질문을 해야할지 잘 아시는 것 같아요 ...',
       },
       {
         me: false,
-        value: '다음에도 예외 케이스를 잘 생각할 수 있도록 훈련해야...',
+        value: '감사합니다. 기본기도 더 다져나가야 할 것 ...',
       },
     ],
   },
