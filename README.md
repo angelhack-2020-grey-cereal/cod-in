@@ -1,4 +1,4 @@
-# CodIn ![Deploy](https://github.com/angelhack-2020-grey-cereal/cod-in/workflows/Deploy/badge.svg)
+# CodIn [![Deploy](https://github.com/angelhack-2020-grey-cereal/cod-in/workflows/Deploy/badge.svg)](https://github.com/angelhack-2020-grey-cereal/cod-in/actions?query=workflow%3ADeploy)
 
 > #### Table of Contents
 > - [Demo](#demo)
