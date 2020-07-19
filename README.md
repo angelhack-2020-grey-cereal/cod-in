@@ -31,3 +31,20 @@
         - 메인 브랜치에 커밋이 푸쉬될때 마다 자동으로 Docker 이미지를 빌드하여 Docker Hub에 배포해주는 CD 파이프라인을 구현하였습니다.
     - [Ainize](https://ainize.ai/)
         - Docker Hub에 배포된 이미지를 웹에 호스팅해주는 서비스입니다.
+
+## Showcase
+<p align="center">
+<img src="https://raw.githubusercontent.com/angelhack-2020-grey-cereal/cod-in/master/src/images/showcase/1-1.png" width="30%"></img>
+<img src="https://raw.githubusercontent.com/angelhack-2020-grey-cereal/cod-in/master/src/images/showcase/1-2.png" width="30%"></img>
+<img src="https://raw.githubusercontent.com/angelhack-2020-grey-cereal/cod-in/master/src/images/showcase/4-1.png" width="30%"></img>
+</p>
+<p align="center">
+<img src="https://raw.githubusercontent.com/angelhack-2020-grey-cereal/cod-in/master/src/images/showcase/2-1.png" width="30%"></img>
+<img src="https://raw.githubusercontent.com/angelhack-2020-grey-cereal/cod-in/master/src/images/showcase/2-2.png" width="30%"></img>
+<img src="https://raw.githubusercontent.com/angelhack-2020-grey-cereal/cod-in/master/src/images/showcase/2-3.png" width="30%"></img>
+</p>
+<p align="center">
+<img src="https://raw.githubusercontent.com/angelhack-2020-grey-cereal/cod-in/master/src/images/showcase/3-1.png" width="30%"></img>
+<img src="https://raw.githubusercontent.com/angelhack-2020-grey-cereal/cod-in/master/src/images/showcase/3-2.gif" width="30%"></img>
+<img src="https://raw.githubusercontent.com/angelhack-2020-grey-cereal/cod-in/master/src/images/showcase/3-3.png" width="30%"></img>
+</p>
