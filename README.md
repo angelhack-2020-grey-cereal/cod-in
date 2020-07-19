@@ -4,6 +4,7 @@
 > - [Demo](#demo)
 > - [Showcase](#showcase)
 > - [MVP](#mvp)
+> - [Business Canvas](#business-canvas)
 > - [Tech Stack](#tech-stack)
 > - [Meet the Crew](#meet-the-crew)
 
@@ -41,6 +42,11 @@ Peer-to-Peer Coding Interview Platform
 5. 기업이 높은 티어의 사용자들을 뉴스레터처럼 매달 추천받는 인재추천정기구독을 통해 검증된 인재풀에 접근할 수 있습니다.
 6. 기업이 입사지원자의 코드인 프로필을 조회하여 코딩실력의 1차 검증을 할 수 있습니다.
 7. 기업이 코드인에 채용 공고를 게재하여 타겟팅 광고를 할 수 있습니다.
+
+## Business Canvas
+<p align="center">
+<img src="https://raw.githubusercontent.com/angelhack-2020-grey-cereal/cod-in/master/src/images/business-canvas.png" width="80%"></img>
+</p>
 
 ## Tech Stack
 - Development
