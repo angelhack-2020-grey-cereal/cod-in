@@ -19,7 +19,7 @@ export default [
     id: 'interviewee_1',
     role: 'interviewee',
     ...mockInterviewBase,
-    user: mockUsers[1],
+    user: mockUsers[4],
     accepted: true,
     timestamp: Date.now() - 7 * DAY,
     feedbacks: [
@@ -37,7 +37,7 @@ export default [
     ...mockInterviewBase,
     id: 'interviewee_2',
     role: 'interviewee',
-    user: mockUsers[2],
+    user: mockUsers[5],
     accepted: false,
     timestamp: Date.now() - 7 * DAY,
     feedbacks: [
