@@ -11,6 +11,7 @@ const mockInterviewBase = {
   intervieweeVideoURL: require('../videos/interviewee.mp4'),
   whiteboardLogs: whiteboardLogs[0],
   ideLogs: ideLogs[0],
+  outputsLogs: [{ value: [], timestamp: 0 }],
 };
 
 export default [
