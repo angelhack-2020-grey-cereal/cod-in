@@ -11,7 +11,7 @@
   .container {
     width: 100%;
     max-width: 1024px;
-    @include card;
+    // @include card; 
 
     .header {
       @media (max-width: $breakpoint-responsive) {
@@ -23,6 +23,7 @@
       align-items: center;
       justify-content: space-between;
       box-shadow: 0px 3px 6px #00000029;
+      background-color: $color-lightest;
 
       .header-component {
         width: 20%;
@@ -57,7 +58,6 @@
           color: #707070;
         }
       }
-
     }
 
     .header button {
@@ -74,12 +74,48 @@
     }
 
     .content {
-      margin: 0 20px 0 20px;      
       display: flex;
-      flex-wrap: wrap;
-      order: 4;
-      align-self: space-around;
-      justify-content: space-around;
+
+      align-self: center;
+      justify-content: center;
+      padding-top: 50px;
+
+      .table {
+        width: 100%;
+        box-shadow: 0px 3px 6px #00000029;
+        background-color: #707070;
+        border-collapse: collapse;
+
+        .table-header {
+          height: 50px;
+          opacity: 1;
+          color: $color-lightest;
+
+          .table-width {
+            width: 10%;
+          }
+          .table-width-2x {
+            width: 20%;
+          }
+        }
+        
+        .table-body  {
+          height: 100px;
+          border: 1px solid #CCCCCC;
+          background-color: $color-lightest;
+          text-align: center;
+          justify-content: center;
+
+          .avatar {
+            $size: 50%;
+            width: 50%;
+            height: $size;
+            background-position: center;
+            background-size: cover;
+            border: 1px solid $color-lighter;
+          }
+        }
+      }
       
       .order-content {
         display: flex;
