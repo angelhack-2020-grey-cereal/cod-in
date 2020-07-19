@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
 const CATEGORY_ENTIRE = 0;
+const CATEGORY_SE = 1;
 const CATEGORY_DEVWAY = 3; 
 const CATEGORY_INTERVIEW = 6;
 
@@ -93,17 +94,6 @@ const books = {
       src: 'https://www.hanbit.co.kr/data/ebook/E2375873090_l.jpg',
     },
     {
-      title: 'Cracking the Coding Interview ',
-      price: 1024,
-      src:
-        'http://image.kyobobook.co.kr/images/book/large/857/l9780984782857.jpg',
-    },
-    {
-      title: '코딩인터뷰 완전 정복',
-      price: 1024,
-      src: 'http://image.yes24.com/goods/44305533/800x0',
-    },
-    {
       title: '알고리즘 문제해결 전략',
       price: 1024,
       src: require('../../images/books/algorithm.png'),
@@ -114,6 +104,23 @@ const books = {
       src: 'http://image.yes24.com/goods/8921236/L',
     },
     {
+      title: '소프트 스킬',
+      price: 1024,
+      src: 'http://image.yes24.com/momo/TopCate878/MidCate006/66449912.jpg',
+    },
+    {
+      title: 'Cracking the Coding Interview ',
+      price: 1024,
+      src:
+        'http://image.kyobobook.co.kr/images/book/large/857/l9780984782857.jpg',
+    },
+    {
+      title: '코딩인터뷰 완전 정복',
+      price: 1024,
+      src: 'http://image.yes24.com/goods/44305533/800x0',
+    },
+    
+    {
       title: '코딩 인터뷰 퀘스천',
       price: 1024,
       src: 'http://image.yes24.com/momo/TopCate0001/kepub/L_491813.jpg',
@@ -123,11 +130,7 @@ const books = {
       price: 1024,
       src: 'http://image.yes24.com/goods/91084402/800x0',
     },
-    {
-      title: '소프트 스킬',
-      price: 1024,
-      src: 'http://image.yes24.com/momo/TopCate878/MidCate006/66449912.jpg',
-    },
+    
     {
       title: '함께 자라기',
       price: 1024,
@@ -149,12 +152,29 @@ const books = {
       src: 'http://bimage.interpark.com/goods_image/8/9/8/7/214078987g.jpg',
     },
   ],
+  [CATEGORY_SE]: [
+    {
+      title: '유지보수하기 어렵게 코딩하는 방법',
+      price: 1024,
+      src: 'https://www.hanbit.co.kr/data/ebook/E2375873090_l.jpg',
+    },
+    {
+      title: '알고리즘 문제해결 전략',
+      price: 1024,
+      src: require('../../images/books/algorithm.png'),
+    },
+    {
+      title: '미래를 바꾼 아홉가지 알고리즘',
+      price: 1024,
+      src: 'http://image.yes24.com/goods/8921236/L',
+    },
+    {
+      title: '소프트 스킬',
+      price: 1024,
+      src: 'http://image.yes24.com/momo/TopCate878/MidCate006/66449912.jpg',
+    },
+  ],
   [CATEGORY_DEVWAY]: [
-  {
-    title: '유지보수하기 어렵게 코딩하는 방법',
-    price: 1024,
-    src: 'https://www.hanbit.co.kr/data/ebook/E2375873090_l.jpg',
-  },
   {
     title: '함께 자라기',
     price: 1024,
@@ -164,6 +184,11 @@ const books = {
     title: '클린 코드',
     price: 1024,
     src: 'http://image.yes24.com/goods/11681152/800x0',
+  },
+  {
+    title: '리팩토링',
+    price: 1024,
+    src: 'http://image.yes24.com/goods/89649360/800x0',
   },
   {
     title: '테스트 주도 개발',
