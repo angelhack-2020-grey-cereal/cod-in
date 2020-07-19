@@ -13,6 +13,8 @@ Peer-to-Peer Coding Interview Platform
 [![Run on Ainize](https://ainize.ai/static/images/run_on_ainize_button.svg)](https://codin-64json.endpoint.ainize.ai)
 
 [**Pitch/Demo Video**](https://youtu.be/MCcuj5_UE9Y)
+- [Pitch Deck](https://docs.google.com/presentation/d/1NRVSzlG11e3nx5EGrjtKIM7idVHAIPxXqQTnGGHllLk/edit#slide=id.g8db44de2be_0_15)
+- [Adobe XD](https://xd.adobe.com/spec/ca17da23-91df-401b-43e5-bdd468009c02-bc26/screen/bc57acb6-3888-47e8-9dd8-036d50362923)
 
 ## Showcase
 <p align="center">
@@ -63,7 +65,7 @@ Peer-to-Peer Coding Interview Platform
 
 :) | Name (Alphabetical) | Primary Roles
 --- | --- | ---
-<img src=https://ca.slack-edge.com/T016CH03QA3-U017869R16V-477030032bc4-512 width="50"> | 김수정 | 기획 및 발표
-<img src=https://ca.slack-edge.com/T016CH03QA3-U016GNQRR0F-c27fa5860659-512 width="50"> | 박진서 | 기획 및 개발
-<img src=https://ca.slack-edge.com/T016CH03QA3-U016XDM5WCA-7208a91245f6-512 width="50"> | 이용재 | 개발 및 데모
+<img src=https://ca.slack-edge.com/T016CH03QA3-U016XDM5WCA-7208a91245f6-512 width="50"> | 김지원 | 기획 및 발표
+<img src=https://ca.slack-edge.com/T016CH03QA3-U016GNQRR0F-c27fa5860659-512 width="50"> | [박진서](https://github.com/64json) | 기획 및 개발
+<img src=https://ca.slack-edge.com/T016CH03QA3-U017869R16V-477030032bc4-512  width="50"> | [이용재](https://github.com/dididy) | 개발 및 데모
 <img src=https://ca.slack-edge.com/T016CH03QA3-U016PHWFT70-ed2827ac41e2-512 width="50"> | 임희라 | 디자인
