@@ -20,7 +20,7 @@ export default function Header() {
           <img className="logo" src={require('../../images/logo-white.png')} alt="logo"/>
         </Link>
         <Link to="/shop" className="link">Shop</Link>
-        <a href="#" className="link">Leader Board</a>
+        <Link to="/leaderboard" className="link">Leader Board</Link>
         {
           me ? (
             <a href="#" className="user" onClick={handleSignOut}>

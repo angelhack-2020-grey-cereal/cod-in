@@ -9,6 +9,7 @@ import Landing from '../../pages/LandingPage';
 import Interview from '../../pages/InterviewPage';
 import Review from '../../pages/ReviewPage';
 import Shop from '../../pages/ShopPage';
+import LeaderBoard from '../../pages/LeaderBoardPage';
 import Matching from '../../pages/MatchingPage';
 import { InterviewContext, UserContext } from '../../contexts';
 import mockInterviews from '../../assets/mocks/interviews';
@@ -58,6 +59,7 @@ function App() {
                 <Route exact path="/" component={user ? Main : Landing}/>
                 {!user && <Route path="/sign-in" component={SignIn}/>}
                 <Route path="/shop" component={Shop}/>
+                <Route path="/leaderboard" component={LeaderBoard}/>
                 <Redirect to="/"/>
               </Switch>
               <Footer/>
