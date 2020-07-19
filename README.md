@@ -4,6 +4,23 @@
 ## Demo
 [![Run on Ainize](https://ainize.ai/static/images/run_on_ainize_button.svg)](https://codin-64json.endpoint.ainize.ai)
 
+## Showcase
+<p align="center">
+<img src="https://raw.githubusercontent.com/angelhack-2020-grey-cereal/cod-in/master/src/images/showcase/1-1.png" width="30%"></img>
+<img src="https://raw.githubusercontent.com/angelhack-2020-grey-cereal/cod-in/master/src/images/showcase/1-2.png" width="30%"></img>
+<img src="https://raw.githubusercontent.com/angelhack-2020-grey-cereal/cod-in/master/src/images/showcase/4-1.png" width="30%"></img>
+</p>
+<p align="center">
+<img src="https://raw.githubusercontent.com/angelhack-2020-grey-cereal/cod-in/master/src/images/showcase/2-1.png" width="30%"></img>
+<img src="https://raw.githubusercontent.com/angelhack-2020-grey-cereal/cod-in/master/src/images/showcase/2-2.png" width="30%"></img>
+<img src="https://raw.githubusercontent.com/angelhack-2020-grey-cereal/cod-in/master/src/images/showcase/2-3.png" width="30%"></img>
+</p>
+<p align="center">
+<img src="https://raw.githubusercontent.com/angelhack-2020-grey-cereal/cod-in/master/src/images/showcase/3-1.png" width="30%"></img>
+<img src="https://raw.githubusercontent.com/angelhack-2020-grey-cereal/cod-in/master/src/images/showcase/3-2.gif" width="30%"></img>
+<img src="https://raw.githubusercontent.com/angelhack-2020-grey-cereal/cod-in/master/src/images/showcase/3-3.png" width="30%"></img>
+</p>
+
 ## MVP
 1. 사용자가 지원자로 모의 인터뷰에 참여하여 더 높은 티어의 사용자에게 피드백을 받을 수 있습니다.
 2. 사용자가 면접자로 모의 인터뷰에 참여하여 다른 사용자에게 피드백을 주며 프로트제 효과 및 반면교사를 통한 인터뷰 실력 향상을 기대할 수 있습니다.
