@@ -2,4 +2,153 @@
 
 .LeaderBoard {
   display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  opacity: 1;
+  padding: 80px 0;
+
+  .container {
+    width: 100%;
+    max-width: 1024px;
+    @include card;
+
+    .header {
+      @media (max-width: $breakpoint-responsive) {
+        display: none;
+      }
+
+      height: 128px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0px 3px 6px #00000029;
+
+      .header-component {
+        width: 20%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-size: $font-size-large;
+        
+        .rank-font {
+          padding-bottom: 10px;
+          font-size: $font-size-medium;
+          color: #707070;
+        }
+      }
+
+      .header-component-select {
+        width: 20%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 8px 4px -4px  $color-primary;
+        color: $color-primary;
+        font-size: $font-size-large;
+        
+        .rank-font {
+          padding-bottom: 10px;
+          font-size: $font-size-medium;
+          color: #707070;
+        }
+      }
+
+    }
+
+    .header button {
+      background-color: transparent;
+      border-style: none;
+    }    
+
+    button:hover {
+      opacity: 0.5;
+    }
+
+    button:focus {
+      outline: 0;
+    }
+
+    .content {
+      margin: 0 20px 0 20px;      
+      display: flex;
+      flex-wrap: wrap;
+      order: 4;
+      align-self: space-around;
+      justify-content: space-around;
+      
+      .order-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: 10px 0 10px 0;
+
+        .image-each {
+          margin: 20px 20px 20px 20px;
+          width: 200px;
+          height: 200px;
+
+          object-fit: contain;
+        }
+  
+        .point {
+          color: #999999;
+          font-size: $font-size-small;
+          margin: 5px 0 5px 0;
+        }
+  
+        .buy-it {
+          font-size: $font-size-medium;
+          padding: 4px 8px;
+        }
+      }
+
+      .book-unexist {
+        height: 256px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-weight: Bold;
+        font-size: 36px;
+        letter-spacing: 0px;
+        color: #999999;
+        opacity: 0.78;
+      }
+    }
+    .pagination {
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .pagination button {
+      color: black;
+      float: left;
+      padding: 8px 8px 8px 8px;
+      text-decoration: none;
+      transition: background-color .3s;
+
+      background-color: transparent;
+      border-style: none;
+    }
+    
+    .pagination button.active {
+      color: $color-primary;
+
+      background-color: transparent;
+      border-style: none;
+    }    
+
+  }
 }
+
+.font-green {
+  color: $color-primary;
+}
+
