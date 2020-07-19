@@ -25,6 +25,7 @@
       justify-content: space-around;
       font-size: $font-size-large;
       margin-left: 55px;
+
     }
 
     .header button {
@@ -125,3 +126,6 @@
   color: $color-primary;
 }
 
+.divider {
+  color: lightgray;
+}

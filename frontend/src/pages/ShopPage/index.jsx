@@ -35,7 +35,11 @@ export default function ShopPage() {
                 <button key={'button-' + index} onClick={() => setCategory({index})}>
                   {category.index === index ? (<div  className="font-green" >{value}</div>) :  (<span>{value}</span>)} 
                 </button>
-                <span key={'span-' + index}>{categories.length -1 !== index ? "|" : ""}</span>
+                <span 
+                  key={'span-' + index}
+                  className="divider"
+                >
+                  {categories.length -1 !== index ? "|" : ""}</span>
               </>
             )
           })}
@@ -72,11 +76,11 @@ export default function ShopPage() {
           books[category.index] !== undefined ? (
             <div className="pagination">
               <button>
-                <FontAwesomeIcon icon={faAngleLeft} />
+                <FontAwesomeIcon icon={faAngleLeft} style={{color:"#EDEDED"}}  />
               </button>
               <button className="active">1</button>
               <button>
-                <FontAwesomeIcon icon={faAngleRight} />
+                <FontAwesomeIcon icon={faAngleRight} style={{color:"#EDEDED"}} />
               </button>
             </div>
           ) : <></>
