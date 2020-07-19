@@ -8,7 +8,7 @@ export default function LandingPage() {
       <div className="content-wrapper">
         <div className="text-container">
           <div className="slogan">
-            코딩 테스트의 어려움,<br/>
+            코딩 인터뷰의 어려움,<br/>
             답은 <span className="bold">코드인</span>에서!
           </div>
           <div className="description">

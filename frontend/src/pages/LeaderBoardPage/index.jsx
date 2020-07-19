@@ -1,49 +1,83 @@
-import React, { useState } from 'react';
-import './stylesheet.scss'
-export default function LeaderBoardPage () {
+import React, { useContext, useState } from 'react';
+import './stylesheet.scss';
+import mockUsers from '../../assets/mocks/users';
+import { UserContext } from '../../contexts';
+import { classes } from '../../common/utils';
+import Profile from '../../components/Profile';
 
-  const tiers = ["Tier 1", "Tier 2", "Tier 3", "Tier 4", "Tier 5"];
-
-  const [tier, setTier] = useState(2);
+export default function LeaderBoardPage() {
+  const tiers = [1, 2, 3, 4, 5];
+  const { user: me } = useContext(UserContext);
+  const [selectedTier, setSelectedTier] = useState(me.tier);
 
   return (
     <div className="LeaderBoard">
       <div className="container">
         <div className="header">
-          {tiers.map((value, index) => {
+          {tiers.map((tier) => {
             return (
-              <button 
-                className={index === tier ? "header-component-select" : "header-component"}
-                onClick={() => setTier(index)}
-              >
+              <div key={tier}
+                   className={classes('header-component', selectedTier === tier && 'selected')}
+                   onClick={() => setSelectedTier(tier)}>
                 <div className="rank-font">Rank</div>
-                <div>{value}</div>
-              </button>
-            )
+                <div>Tier {tier}</div>
+              </div>
+            );
           })}
         </div>
         <div className="content">
           <table className="table">
+            <thead>
             <tr className="table-header">
               <th className="table-width">순위</th>
               <th className="table-width">프로필</th>
-              <th className="table-width-2x"></th>
-              <th>티어</th>
               <th>획득한 Angel</th>
               <th>참여횟수</th>
             </tr>
-            <tr className="table-body">
-              <td>a</td>
-              <td>
+            </thead>
+            <tbody>
+            {
+              new Array(10).fill(0).map((_, index) => {
+                const user = mockUsers[index % mockUsers.length];
+                return (
+                  <tr className="row" key={index}>
+                    <td>{index + 1}</td>
+                    <td style={{ fontWeight: 'bold' }}>
+                      <Profile user={user} noTier/>
+                    </td>
+                    <td>{user.coin || '-'}</td>
+                    <td>{987 - index * 17}</td>
+                  </tr>
+                );
+              })
+            }
+            <tr className="row">
+              <td colSpan={4} style={{
+                fontWeight: 'bold',
+                fontSize: 24,
+              }}>
+                ···
               </td>
-              <td>a</td>
-              <td>a</td>
-              <td>a</td>
-              <td>a</td>
             </tr>
+            {
+              new Array(5).fill(0).map((_, index) => {
+                const user = mockUsers[(index + 2) % mockUsers.length];
+                return (
+                  <tr className={classes('row', index === 2 && 'active')} key={index}>
+                    <td>{index + 874}</td>
+                    <td style={{ fontWeight: 'bold' }}>
+                      <Profile user={user} noTier/>
+                    </td>
+                    <td>{user.coin || '-'}</td>
+                    <td>{987 - index * 17}</td>
+                  </tr>
+                );
+              })
+            }
+            </tbody>
           </table>
         </div>
       </div>
     </div>
-  )
+  );
 }
