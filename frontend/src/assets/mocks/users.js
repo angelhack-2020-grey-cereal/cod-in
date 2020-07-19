@@ -6,7 +6,7 @@ const users = [
     coin: 128,
   }, {
     name: '엔젤핵',
-    tier: 5,
+    tier: 2,
     avatar_url: 'https://i.pinimg.com/564x/0b/86/66/0b8666080b8216172fb8036b19f4e47d.jpg',
     coin: 256,
   }, {

@@ -21,7 +21,7 @@ export default [
     user: mockUsers[1],
     accepted: true,
     timestamp: Date.now() - 7 * DAY,
-    comments: [
+    feedbacks: [
       {
         me: false,
         value: 'Gil Dong 님은 thought process를 잘 설명하시는 것...',
@@ -39,7 +39,7 @@ export default [
     user: mockUsers[2],
     accepted: false,
     timestamp: Date.now() - 7 * DAY,
-    comments: [
+    feedbacks: [
       {
         me: false,
         value: '잘 모르겠으면 당황하지 말고 질문을 해주시면 좋을 것...',
@@ -57,7 +57,7 @@ export default [
     user: mockUsers[3],
     accepted: true,
     timestamp: Date.now() - 7 * DAY,
-    comments: [
+    feedbacks: [
       {
         me: false,
         value: '놓칠 수 있는 예외 상황을 잘 처리하셨네요 ...',
@@ -75,7 +75,7 @@ export default [
     user: mockUsers[1],
     accepted: true,
     timestamp: Date.now() - 7 * DAY,
-    comments: [
+    feedbacks: [
       {
         me: true,
         value: 'Gil Dong 님은 thought process를 잘 설명하시는 것...',
@@ -93,7 +93,7 @@ export default [
     user: mockUsers[2],
     accepted: false,
     timestamp: Date.now() - 7 * DAY,
-    comments: [
+    feedbacks: [
       {
         me: true,
         value: '잘 모르겠으면 당황하지 말고 질문을 해주시면 좋을 것...',
@@ -111,7 +111,7 @@ export default [
     user: mockUsers[3],
     accepted: true,
     timestamp: Date.now() - 7 * DAY,
-    comments: [
+    feedbacks: [
       {
         me: true,
         value: '놓칠 수 있는 예외 상황을 잘 처리하셨네요 ...',

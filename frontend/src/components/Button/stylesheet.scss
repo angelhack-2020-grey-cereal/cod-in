@@ -25,6 +25,11 @@
     background-color: $color-critical;
   }
 
+  &.disabled {
+    opacity: .4;
+    cursor: auto;
+  }
+
   &:after {
     content: '';
     position: absolute;
@@ -37,7 +42,7 @@
     transition: opacity .1s;
   }
 
-  &:active:after {
+  &:not(.disabled):active:after {
     opacity: .2;
   }
 }

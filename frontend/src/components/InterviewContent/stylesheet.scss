@@ -5,6 +5,7 @@
   display: flex;
   flex-direction: column;
   align-items: stretch;
+  background-color: $color-dark;
 
   .controls {
     display: flex;
@@ -25,12 +26,6 @@
         justify-content: flex-end;
         align-items: stretch;
         background-color: $color-secondary;
-
-        .playhead {
-          width: 16px;
-          margin-right: -8px;
-          background-color: $color-primary;
-        }
       }
     }
   }
@@ -41,46 +36,155 @@
     display: flex;
     align-items: stretch;
 
-    .whiteboard {
+    .editor-wrapper {
       overflow: hidden;
       flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      border-left: 1px solid $color-darker;
 
-      .quill {
-        display: flex;
-        flex-direction: column;
-        align-items: stretch;
-        width: 100%;
-        height: 100%;
+      .editor {
+        overflow: hidden;
+        flex: 1;
+        position: relative;
 
-        &, * {
-          border-color: $color-darker !important;
-        }
-
-        .ql-toolbar {
-          &, * {
-            background-color: $color-dark !important;
-            color: white !important;
-            stroke: white !important;
-          }
-        }
-
-        .ql-container {
-          overflow: hidden;
-          flex: 1;
-          background-color: $color-dark;
-          color: $color-lightest;
-
-          .ql-editor {
+        &.whiteboard {
+          .quill {
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
             width: 100%;
             height: 100%;
+
+            &, * {
+              border-color: $color-darker !important;
+            }
+
+            .ql-toolbar {
+              border: none;
+
+              &, * {
+                background-color: $color-dark !important;
+                color: white !important;
+                stroke: white !important;
+              }
+            }
+
+            .ql-container {
+              overflow: hidden;
+              flex: 1;
+              background-color: $color-dark;
+              color: $color-lighter;
+              font-size: $font-size-large;
+              border: none;
+
+              .ql-editor {
+                width: 100%;
+                height: 100%;
+              }
+            }
           }
         }
       }
-    }
 
-    .ide {
-      overflow: hidden;
-      flex: 1;
+      .Drawer {
+        border-top: 1px solid $color-darker;
+        color: $color-light;
+
+        .drawer-header {
+          font-size: $font-size-large;
+          padding: 12px 20px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          cursor: pointer;
+          border-bottom: 1px solid $color-darker;
+        }
+
+        .drawer-body {
+          display: flex;
+          flex-direction: column;
+          font-size: $font-size-large;
+          color: $color-lighter;
+        }
+      }
+
+      .drawer-feedback {
+        .feedback-container {
+          height: 220px;
+          padding: 20px;
+          display: flex;
+          flex-direction: column;
+          overflow-y: auto;
+
+          .feedback {
+            margin-bottom: 8px;
+            white-space: pre-wrap;
+
+            &:last-child {
+              margin-bottom: 0;
+            }
+
+            .time {
+              font-weight: bold;
+              color: $color-primary;
+            }
+
+            .user {
+              font-weight: bold;
+            }
+          }
+        }
+
+        .feedback-input {
+          background-color: $color-darker;
+          display: flex;
+          padding: 12px 20px;
+          align-items: center;
+
+          input {
+            flex: 1;
+            margin-right: 20px;
+          }
+
+          .Button {
+            font-size: $font-size-medium;
+          }
+        }
+      }
+
+      .drawer-console {
+        .console {
+          height: 220px;
+          padding: 20px;
+          white-space: pre-wrap;
+          font-family: monospace;
+
+          .console-line {
+            &.error {
+              color: $color-critical;
+            }
+          }
+        }
+
+        .console-toolbar {
+          background-color: $color-darker;
+          display: flex;
+          padding: 12px 20px;
+          align-items: center;
+          justify-content: flex-end;
+
+          input {
+            flex: 1;
+            margin-right: 20px;
+          }
+
+          .Button {
+            font-size: $font-size-medium;
+          }
+        }
+      }
     }
   }
 }
