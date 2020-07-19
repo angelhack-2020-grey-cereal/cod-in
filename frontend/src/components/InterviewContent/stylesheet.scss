@@ -125,6 +125,12 @@
             }
           }
         }
+
+        &.ide {
+          * {
+            cursor: none !important;
+          }
+        }
       }
 
       .Drawer {
