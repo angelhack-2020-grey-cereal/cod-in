@@ -10,6 +10,7 @@ import { faPause } from '@fortawesome/free-solid-svg-icons/faPause';
 import { classes, mmss } from '../../common/utils';
 import { UserContext } from '../../contexts';
 import Drawer from './Drawer';
+import { faCaretDown } from '@fortawesome/free-solid-svg-icons/faCaretDown';
 
 monaco
   .init()
@@ -147,17 +148,33 @@ export default function InterviewContent({
   return (
     <div className="InterviewContent">
       {
-        reviewing &&
-        <div className="controls">
-          <Button className="play" onClick={playing ? onPause : onPlay}>
-            <FontAwesomeIcon fixedWidth icon={playing ? faPause : faPlay}/>
-          </Button>
-          <div className="progress-bar"
-               onMouseDown={handleMouseDown}
-               ref={progressBarRef}>
-            <div className="progress" style={{ width: `${(progress / interview.duration * 100).toFixed(1)}%` }}/>
+        interviewing ? (
+          <div className="controls controls-mode">
+            <div className="toggle">
+              <Button className="active">
+                Dark
+              </Button>
+              <Button>
+                Light
+              </Button>
+            </div>
+            <Button className="dropdown active">
+              JavaScript
+              <FontAwesomeIcon className="icon" icon={faCaretDown} size="sm"/>
+            </Button>
           </div>
-        </div>
+        ) : (
+          <div className="controls controls-progress">
+            <Button className="play" onClick={playing ? onPause : onPlay}>
+              <FontAwesomeIcon fixedWidth icon={playing ? faPause : faPlay}/>
+            </Button>
+            <div className="progress-bar"
+                 onMouseDown={handleMouseDown}
+                 ref={progressBarRef}>
+              <div className="progress" style={{ width: `${(progress / interview.duration * 100).toFixed(1)}%` }}/>
+            </div>
+          </div>
+        )
       }
       <div className="editor-container">
         <div className="editor-wrapper">

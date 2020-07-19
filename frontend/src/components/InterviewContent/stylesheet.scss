@@ -10,22 +10,61 @@
   .controls {
     display: flex;
     align-items: stretch;
+    height: 64px;
+    border-left: 1px solid $color-darker;
 
-    .play {
-      width: 48px;
+    &.controls-mode {
+      border-bottom: 1px solid $color-darker;
+      padding: 8px 48px;
+      justify-content: flex-end;
+
+      .Button {
+        font-size: $font-size-medium;
+        background-color: $color-dark;
+        padding: 0 20px;
+        color: $color-light;
+
+        &.active {
+          background-color: $color-darker;
+        }
+      }
+
+      .toggle {
+        display: flex;
+        border: 1px solid $color-darker;
+        margin-right: 16px;
+
+        .Button {
+          border: none;
+        }
+      }
+
+      .dropdown {
+        border-color: $color-darker;
+
+        .icon {
+          margin-left: 8px;
+        }
+      }
     }
 
-    .progress-bar {
-      flex: 1;
-      background-color: grey;
-      display: flex;
-      align-items: stretch;
+    &.controls-progress {
+      .play {
+        width: 64px;
+      }
 
-      .progress {
+      .progress-bar {
+        flex: 1;
+        background-color: grey;
         display: flex;
-        justify-content: flex-end;
         align-items: stretch;
-        background-color: $color-secondary;
+
+        .progress {
+          display: flex;
+          justify-content: flex-end;
+          align-items: stretch;
+          background-color: $color-secondary;
+        }
       }
     }
   }
