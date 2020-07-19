@@ -15,4 +15,3 @@ jobs:
           name: greycereal/codin
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-          workdir: frontend
