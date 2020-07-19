@@ -1,19 +1,21 @@
 @import "../../common/constants";
 
 .PromotionDialog {
-  background-color: rgba($color-darker, .7);
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @include dialog;
+  background: none;
+
+  iframe {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border: none;
+    opacity: .8;
+  }
 
   .card {
-    @include card;
-    padding: 48px;
+    position: relative;
     display: flex;
     flex-direction: column;
 
@@ -88,22 +90,6 @@
     .button-container {
       display: flex;
       justify-content: center;
-
-      .accept {
-        flex: 1;
-        margin-right: 16px;
-      }
-
-      .reject {
-        flex: 1;
-        border-color: $color-critical;
-        color: $color-critical;
-
-        &:hover {
-          background-color: $color-critical;
-          color: $color-lightest;
-        }
-      }
     }
   }
 }

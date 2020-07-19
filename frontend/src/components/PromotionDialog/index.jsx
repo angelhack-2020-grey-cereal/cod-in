@@ -8,6 +8,7 @@ export default function PromotionDialog({ onConfirm }) {
 
   return (
     <div className="PromotionDialog">
+      <iframe src="/fireworks.html" width="100%" height="100%"/>
       <div className="card">
         <div className="text">
           축하드립니다 <span className="name">{user.name}</span>님.<br/>
