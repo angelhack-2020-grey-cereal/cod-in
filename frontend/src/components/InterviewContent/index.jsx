@@ -7,9 +7,9 @@ import Button from '../Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay } from '@fortawesome/free-solid-svg-icons/faPlay';
 import { faPause } from '@fortawesome/free-solid-svg-icons/faPause';
-import { faChevronDown } from '@fortawesome/free-solid-svg-icons/faChevronDown';
-import { mmss } from '../../common/utils';
+import { classes, mmss } from '../../common/utils';
 import { UserContext } from '../../contexts';
+import Drawer from './Drawer';
 
 monaco
   .init()
@@ -26,14 +26,16 @@ monaco
   .catch(error => console.error('An error occurred during initialization of Monaco: ', error));
 
 export default function InterviewContent({
-                                           interview, onAddIdeLog, onAddWhiteboardLog, onAddFeedback, defaultProblem, defaultCode,
-                                           progress, playing, onChangeProgress, onPlay, onPause, seconds,
+                                           interview, onAddIdeLog, onAddWhiteboardLog, onAddOutputsLog, onAddFeedback, defaultProblem, defaultCode,
+                                           progress, playing, onChangeProgress, onPlay, onPause,
                                          }) {
   const interviewing = !interview;
   const reviewing = !interviewing;
   const progressBarRef = useRef(null);
   const [feedbacks, setFeedbacks] = useState(interview ? interview.feedbacks : []);
   const [feedbackValue, setFeedbackValue] = useState('');
+  const [code, setCode] = useState('');
+  const [outputs, setOutputs] = useState([]);
   const lastFeedbackRef = useRef(null);
   const startedAtRef = useRef(Date.now());
   const { user: me } = useContext(UserContext);
@@ -96,12 +98,49 @@ export default function InterviewContent({
     interview.ideLogs[0]
   );
 
+  const recordedOutputs = reviewing && (
+    interview.outputsLogs.find(({ timestamp }) => timestamp <= progress) ||
+    interview.outputsLogs[0]
+  );
+
+  const codeToEval = reviewing ? ide.value : code;
+  const handleRun = useCallback(() => {
+    const ogConsole = console;
+    const outputs = [];
+    console = {};
+
+    function stringify(v) {
+      if (v && v.toString) {
+        return v.toString();
+      }
+      return JSON.stringify(v);
+    }
+
+    for (const level of ['debug', 'info', 'log', 'warn', 'error']) {
+      console[level] = (...args) => {
+        const value = args.map(stringify).join(' ');
+        outputs.push({ level, value });
+      };
+    }
+    try {
+      eval(codeToEval);
+    } catch (e) {
+      console.error(stringify(e));
+    }
+    console = ogConsole;
+    setOutputs(outputs);
+    if (interviewing) {
+      onAddOutputsLog(outputs);
+    }
+  }, [codeToEval]);
+
   const monacoEditorProps = (options = {}) => ({
     language: 'javascript',
     theme: 'cod-in',
     options: {
       ...options,
       minimap: { enabled: false },
+      fontSize: 18,
     },
   });
 
@@ -135,43 +174,37 @@ export default function InterviewContent({
               )
             }
           </div>
-          <div className="drawer">
-            <div className="drawer-header">
-              Feedback
-              <FontAwesomeIcon fixedWidth icon={faChevronDown}/>
+          <Drawer className="drawer-feedback" title="Feedback">
+            <div className="feedback-container">
+              {
+                feedbacks.map((feedback, i) => (
+                  <div className="feedback" key={i} ref={i === feedbacks.length - 1 ? lastFeedbackRef : undefined}>
+                    {
+                      feedback.timestamp !== undefined ? (
+                        <span className="time">{mmss(feedback.timestamp / 1e3 | 0)}  </span>
+                      ) : (
+                        <span className="user">{me.name}: </span>
+                      )
+                    }
+                    {feedback.value}
+                  </div>
+                ))
+              }
             </div>
-            <div className="drawer-body">
-              <div className="feedback-container">
-                {
-                  feedbacks.map((feedback, i) => (
-                    <div className="feedback" key={i} ref={i === feedbacks.length - 1 ? lastFeedbackRef : undefined}>
-                      {
-                        feedback.timestamp !== undefined ? (
-                          <span className="time">{mmss(feedback.timestamp / 1e3 | 0)}  </span>
-                        ) : (
-                          <span className="user">{me.name}: </span>
-                        )
-                      }
-                      {feedback.value}
-                    </div>
-                  ))
-                }
-              </div>
-              <div className="feedback-input">
-                <input value={feedbackValue}
-                       onChange={({ target }) => setFeedbackValue(target.value)}
-                       onKeyPress={e => {
-                         if (e.key === 'Enter') {
-                           e.preventDefault();
-                           handleAddFeedback();
-                         }
-                       }}/>
-                <Button onClick={handleAddFeedback}>
-                  Enter
-                </Button>
-              </div>
+            <div className="feedback-input">
+              <input value={feedbackValue}
+                     onChange={({ target }) => setFeedbackValue(target.value)}
+                     onKeyPress={e => {
+                       if (e.key === 'Enter') {
+                         e.preventDefault();
+                         handleAddFeedback();
+                       }
+                     }}/>
+              <Button onClick={handleAddFeedback}>
+                피드백 남기기
+              </Button>
             </div>
-          </div>
+          </Drawer>
         </div>
         <div className="editor-wrapper">
           <div className="editor ide">
@@ -179,13 +212,32 @@ export default function InterviewContent({
               interviewing ? (
                 <MonacoEditor {...monacoEditorProps()}
                               value={defaultCode}
-                              onChange={(ev, value) => onAddIdeLog(value)}/>
+                              onChange={(ev, value) => {
+                                onAddIdeLog(value);
+                                setCode(value);
+                              }}/>
               ) : (
                 <MonacoEditor {...monacoEditorProps({ readOnly: true })}
                               value={ide.value}/>
               )
             }
           </div>
+          <Drawer className="drawer-console" title="Console">
+            <div className="console">
+              {
+                (reviewing ? recordedOutputs.value : outputs).map((output, i) => (
+                  <div className={classes('console-line', output.level)} key={i}>
+                    {output.value}
+                  </div>
+                ))
+              }
+            </div>
+            <div className="console-toolbar">
+              <Button disabled={reviewing} onClick={handleRun}>
+                실행하기
+              </Button>
+            </div>
+          </Drawer>
         </div>
       </div>
     </div>
